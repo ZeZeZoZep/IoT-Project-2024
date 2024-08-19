@@ -66,8 +66,16 @@ class BalloonController(Node):
     def rx_callback(self, msg : String):
         
         
-        #self.cache.append(msg)
-        self.get_logger().info(msg.data)
+        if len(self.cache)==self.cache_size: 
+            self.cache.pop(0)
+        self.cache.append(msg.data)
+
+        #for log in self.cache:
+        #    self.get_logger().info(f'{log.data}')
+
+        #print the cache
+        self.get_logger().info(f'{self.cache}')
+
 
 
 
