@@ -66,7 +66,7 @@ class BalloonController(Node):
     def rx_callback(self, msg : String):
         
         
-
+        #self.cache.append(msg)
         self.get_logger().info(msg.data)
 
 

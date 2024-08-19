@@ -15,7 +15,7 @@ import math_utils
 NUMBER_OF_BALLOONS = int(sys.argv[1])
 NUMBER_OF_SENSORS = int(sys.argv[2])
 
-SENSORS_RANGE = 20
+SENSORS_RANGE = 99999#20
 
 class SimulationManager(Node):
 
@@ -76,12 +76,20 @@ class SimulationManager(Node):
 
 
     def forward_data(self, sensor_id, msg : String):
-
+        min=999999.99
+        min_i=0
         for i in range(NUMBER_OF_BALLOONS):
             if sensor_id in self.sensor_positions and i in self.balloon_positions:
-                
-                if math_utils.point_distance(self.sensor_positions[sensor_id], self.balloon_positions[i]) < SENSORS_RANGE:
-                    self.balloons_rx[i].publish(msg)
+                distance=math_utils.point_distance(self.sensor_positions[sensor_id], self.balloon_positions[i])
+                if distance < SENSORS_RANGE:
+                    if distance < min:
+
+                        min=distance
+                        min_i=i
+
+        self.balloons_rx[min_i].publish(msg)
+        
+
         
 
 
