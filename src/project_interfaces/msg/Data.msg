@@ -1,2 +1,3 @@
 builtin_interfaces/Time timestamp
+int64 duration
 string data

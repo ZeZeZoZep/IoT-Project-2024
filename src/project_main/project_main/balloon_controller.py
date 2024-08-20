@@ -10,11 +10,14 @@ from rclpy.executors import MultiThreadedExecutor
 from project_interfaces.msg import Data
 from geometry_msgs.msg import Point, Vector3, Twist
 from nav_msgs.msg import Odometry
+from rosgraph_msgs.msg import Clock
 
 import math_utils
 from project_interfaces.action import Patrol
 
+from sim_utils import EventScheduler
 
+WORLD_NAME = "iot_project_world"
 MIN_ALTITUDE_TO_PERFORM_PATROL = 15
 SIZE = 10
 
@@ -24,11 +27,18 @@ class BalloonController(Node):
     def __init__(self):
         super().__init__("drone_controller")
 
-
+        #self.timers = []
         self.cache = []
         self.cache_size = SIZE
 
-
+        self.event_scheduler = EventScheduler()
+        self.clock_topic = self.create_subscription(
+            Clock,
+            f'/world/{WORLD_NAME}/clock',
+            self.event_scheduler.routine,
+            10
+        )
+        
         self.position = Point(x = 0.0, y = 0.0, z = 0.0)
         self.yaw = 0
 
@@ -64,19 +74,40 @@ class BalloonController(Node):
 
 
     def rx_callback(self, msg : Data):
-        
-        
-        if len(self.cache)==self.cache_size: 
-            self.cache.pop(0)
+        self.get_logger().info(f'{len(self.cache)}')
+        if len(self.cache)>=self.cache_size: 
+            self.remove_LRU()
         self.cache.append(msg)
-        self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
-        #for log in self.cache:
-        #    self.get_logger().info(f'{log.data}')
-
-        #print the cache
+        self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
+        self.get_logger().info('Message received')
         #self.get_logger().info(f'{self.cache}')
+        #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
+        self.get_logger().info('##############################################################')
+        for log in self.cache:
+           self.get_logger().info(f'sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec}')
+        self.get_logger().info('##############################################################')
+        #print the cache
+    def remove_LRU(self):
+        temp_msg=None
+        for m in self.cache:
+            if temp_msg==None:
+                temp_msg=m
+            elif m.timestamp.sec<temp_msg.timestamp.sec or (m.timestamp.sec==temp_msg.timestamp.sec and m.timestamp.nanosec<temp_msg.timestamp.nanosec):
+                temp_msg=m
+        try:
+            self.cache.remove(temp_msg)
+        except ValueError:
+            self.get_logger().info('err LRU')
+            pass
 
-
+    def expire_callback(self,msg):
+        try:
+            self.cache.remove(msg)
+        except ValueError:
+            self.get_logger().info('err EXP')
+            pass
+        self.get_logger().info('Timer callback triggered')
+        #self.get_logger().info(f'{self.cache}')
 
 
     def store_position(self, odometry_msg : Odometry):

@@ -35,17 +35,17 @@ class SensorController(Node):
             10
         )
 
-        self.event_scheduler.schedule_event(1, self.simple_publish)
+        self.event_scheduler.schedule_event(2, self.simple_publish)
 
         #self.create_timer(1, self.simple_publish)
 
 
     def simple_publish(self):
-
         id = self.id.get_parameter_value().integer_value
 
         msg = Data()
         msg.timestamp = self.get_clock().now().to_msg()
+        msg.duration = 4 #one min
         msg.data = f"Sensor data: {id}_{self.generate_data()}!"
 
         self.tx_topic.publish(msg) 
