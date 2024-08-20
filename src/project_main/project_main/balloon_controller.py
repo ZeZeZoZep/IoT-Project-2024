@@ -7,7 +7,7 @@ from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.executors import MultiThreadedExecutor
 
-from std_msgs.msg import String
+from project_interfaces.msg import Data
 from geometry_msgs.msg import Point, Vector3, Twist
 from nav_msgs.msg import Odometry
 
@@ -49,7 +49,7 @@ class BalloonController(Node):
 
 
         self.rx_data = self.create_subscription(
-            String,
+            Data,
             'rx_data',
             self.rx_callback,
             10
@@ -63,18 +63,18 @@ class BalloonController(Node):
         )
 
 
-    def rx_callback(self, msg : String):
+    def rx_callback(self, msg : Data):
         
         
         if len(self.cache)==self.cache_size: 
             self.cache.pop(0)
-        self.cache.append(msg.data)
-
+        self.cache.append(msg)
+        self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
         #for log in self.cache:
         #    self.get_logger().info(f'{log.data}')
 
         #print the cache
-        self.get_logger().info(f'{self.cache}')
+        #self.get_logger().info(f'{self.cache}')
 
 
 
