@@ -12,7 +12,7 @@ We need:
 -a new interface for the messages published from the sensors, something with a clock and maybe an expiration,
 -a better algorithm to replace the cache entries when the cache is full,
 -a mechanism to destroy expired cache entries (maybe using timers),
--improve the distribution of the creation of messages by the sensors (now something like 1 per x milliseconds),
+-improve the distribution of the creation of messages by the sensors (now something like 1 per x second),
 
 moreover nothing is implemented concerning the requests of an ipotetical base station towards the baloons. Hypotheticali it should request data from specific sensors to the baloons. This can be done in different ways each with different level of difficulty:
 -via requests issued at a costant rate,
@@ -22,6 +22,14 @@ moreover nothing is implemented concerning the requests of an ipotetical base st
 clearly the last solution could be expanded in various ways. Furthermore all those solution should involve exchange of messages either via topic or service, niether of those are already implemented.
 
 Lastly, we need to decide on the behaviour that baloons and/or sensor should follow. First open question: should they move?
+
+### update 1
+- the interface for the messages is done
+- a simple LRU algorithm for removal of cache entries is in place
+- a simple expiration mechanism is also in place
+
+concerning the sensor's/baloon's behaviour it would be advisable a simple patrolling for the sensors and a static approach of the baloons possibly applying clustering to optimize their position in order to cover all the sensors
+
 ## Launching the Simulation
 
 You can start the simulation displayed in the image with the command:
