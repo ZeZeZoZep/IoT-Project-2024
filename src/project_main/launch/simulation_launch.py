@@ -17,8 +17,8 @@ from project_main.sim_utils import spawn_sdf
 
 WORLD_NAME = "iot_project_world"
 
-NUMBER_OF_BALLOONS = 3
-NUMBER_OF_SENSORS = 3
+NUMBER_OF_BALLOONS = 1
+NUMBER_OF_SENSORS = 1
 
 #-----------------------------------------------------------------------------------------------
 # Launch file for the IoT Project. Launches all the nodes required to start the final solution

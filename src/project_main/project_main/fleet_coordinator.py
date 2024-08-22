@@ -101,7 +101,7 @@ class FleetCoordinator(Node):
 
 
 
-        self.get_logger().info(f"Submitting task for Balloon {uav_id}")
+        #self.get_logger().info(f"Submitting task for Balloon {uav_id}")
 
         # Submit the task here and add a callback for when the submission is accepted
         patrol_future = self.balloon_action_clients[uav_id].send_goal_async(goal)
@@ -115,7 +115,7 @@ class FleetCoordinator(Node):
     
         if not goal_handle.accepted:
             # If not, set the balloon back to hovering, and return
-            self.get_logger().info("Task has been refused by the action server")
+            #self.get_logger().info("Task has been refused by the action server")
             self.balloon_states[uav_id] = BalloonState.HOVERING
             return
         
@@ -129,7 +129,7 @@ class FleetCoordinator(Node):
 
         # Action completed, Balloon can go back to hovering. Note that we don't check if the patrol was correctly completed,
         # you may have to handle such cases
-        self.get_logger().info(f"Patrolling action for Balloon {uav_id} has been completed. Drone is going idle")
+        #self.get_logger().info(f"Patrolling action for Balloon {uav_id} has been completed. Drone is going idle")
         self.balloon_states[uav_id] = BalloonState.HOVERING
 
 

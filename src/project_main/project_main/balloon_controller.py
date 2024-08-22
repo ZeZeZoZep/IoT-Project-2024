@@ -56,8 +56,7 @@ class BalloonController(Node):
             self.store_position,
             10
         )
-
-
+        
         self.rx_data = self.create_subscription(
             Data,
             'rx_data',
@@ -74,19 +73,29 @@ class BalloonController(Node):
 
 
     def rx_callback(self, msg : Data):
-        self.get_logger().info(f'{len(self.cache)}')
+
+        #print the cache length
+        #self.get_logger().info(f'{len(self.cache)}')
+        
         if len(self.cache)>=self.cache_size: 
             self.remove_LRU()
         self.cache.append(msg)
         self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
         self.get_logger().info('Message received')
-        #self.get_logger().info(f'{self.cache}')
+
+
         #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
-        self.get_logger().info('##############################################################')
-        for log in self.cache:
-           self.get_logger().info(f'sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec}')
-        self.get_logger().info('##############################################################')
+        
         #print the cache
+
+        self.get_logger().info('#########################################################')
+        for log in self.cache:
+           self.get_logger().info(f'{log.sensor_id}-{log.sqn}==>(sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec})')
+        self.get_logger().info('##############################################################')
+        
+
+
+
     def remove_LRU(self):
         temp_msg=None
         for m in self.cache:
@@ -95,18 +104,23 @@ class BalloonController(Node):
             elif m.timestamp.sec<temp_msg.timestamp.sec or (m.timestamp.sec==temp_msg.timestamp.sec and m.timestamp.nanosec<temp_msg.timestamp.nanosec):
                 temp_msg=m
         try:
+
             self.cache.remove(temp_msg)
+            self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
         except ValueError:
-            self.get_logger().info('err LRU')
+            self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
             pass
 
     def expire_callback(self,msg):
         try:
             self.cache.remove(msg)
+            self.get_logger().info(f'Expired: {msg.sensor_id}-{msg.sqn}')
         except ValueError:
-            self.get_logger().info('err EXP')
+            self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
             pass
-        self.get_logger().info('Timer callback triggered')
+
         #self.get_logger().info(f'{self.cache}')
 
 
@@ -126,7 +140,7 @@ class BalloonController(Node):
 
         command_goal : Patrol.Goal = goal.request
 
-        self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
+        #self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
 
         self.fly_to_altitude(MIN_ALTITUDE_TO_PERFORM_PATROL)
 
@@ -138,7 +152,7 @@ class BalloonController(Node):
             self.rotate_to_target(target)
             self.move_to_target(target)
 
-            self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
+            #self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
             targets_patrolled += 1
         
         

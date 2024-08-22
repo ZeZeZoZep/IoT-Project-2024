@@ -5,6 +5,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
 
+from project_interfaces.msg import Req
 from project_interfaces.msg import Data
 from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
@@ -26,7 +27,7 @@ class SimulationManager(Node):
 
         self.sensor_positions = {}
         self.balloon_positions = {}
-
+        
 
         for i in range(NUMBER_OF_SENSORS):
 
@@ -41,13 +42,13 @@ class SimulationManager(Node):
             self.create_subscription(
                 Data,
                 f'Sensor_{i}/tx_data',
-                lambda string_msg, sensor_id = i: self.forward_data(sensor_id, string_msg),
+                lambda string_msg, sensor_id = i: self.forward_data_sb(sensor_id, string_msg),
                 #self.forward_data,
                 10
             )
 
         self.balloons_rx = {}
-
+        self.balloons_rx_req = {}
         for i in range(NUMBER_OF_BALLOONS):
 
 
@@ -64,7 +65,29 @@ class SimulationManager(Node):
                 f'Balloon_{i}/rx_data',
                 10
             )
-
+            self.balloons_rx_req[i] = self.create_publisher(
+                Req,
+                f'Balloon_{i}/rx_req',
+                10
+            )
+            self.create_subscription(
+                Data,
+                f'Balloon_{i}/tx_data',
+                lambda string_msg, balloon_id = i: self.forward_data_ba(balloon_id, string_msg),
+                #self.forward_data,
+                10
+            )
+        self.antenna_tx = self.create_publisher(
+            Data,
+            f'Antenna/tx_data',
+            10
+        )
+        self.antenna_rx = self.create_publisher(
+            Req,
+            f'Antenna/rx_data',
+            lambda string_msg: self.forward_data_ab(string_msg),                
+            10
+        )
     def store_sensor_position(self, sensor_id, position : Odometry):
 
         self.sensor_positions[sensor_id] = position.pose.pose.position
@@ -73,9 +96,11 @@ class SimulationManager(Node):
     def store_balloon_position(self, balloon_id, position : Odometry):
 
         self.balloon_positions[balloon_id] = position.pose.pose.position
-
-
-    def forward_data(self, sensor_id, msg : Data):
+    def forward_data_ab(msg : Req):
+        return
+    def forward_data_ba(self, balloon_id, msg : Data):
+        return
+    def forward_data_sb(self, sensor_id, msg : Data):
         min=999999.99
         min_i=0
         for i in range(NUMBER_OF_BALLOONS):
