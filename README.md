@@ -30,6 +30,13 @@ Lastly, we need to decide on the behaviour that baloons and/or sensor should fol
 
 concerning the sensor's/baloon's behaviour it would be advisable a simple patrolling for the sensors and a static approach of the baloons possibly applying clustering to optimize their position in order to cover all the sensors
 
+### update 2
+- added poissonian distribution to spawn the sensors message
+
+we need to decide the behaviour of the exchange Antenna-Balloon (via topic, via service, or via action?) probably the service is the best option however we created topics and an action interface. Keep in mind that theese interactions should be monitored so that the QoS can be evaluated and studied for the report.
+
+There's still the need to create some kind of patrolling system for the sensors.
+
 ## Launching the Simulation
 
 You can start the simulation displayed in the image with the command:
