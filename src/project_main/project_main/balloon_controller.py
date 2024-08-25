@@ -1,6 +1,6 @@
 import time
 import math
-
+import random
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionServer
@@ -85,16 +85,28 @@ class BalloonController(Node):
 
 
         #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
-        
-        #print the cache
+        self.print_cache()
 
-        self.get_logger().info('#########################################################')
-        for log in self.cache:
-           self.get_logger().info(f'{log.sensor_id}-{log.sqn}==>(sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec})')
-        self.get_logger().info('##############################################################')
-        
+    def remove_FIFO(self):
+        temp_msg=self.cache[0]
+        try:
+            self.cache.pop(0)
+            self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
+        except ValueError:
+            self.get_logger().info(f'ERR_FIFO: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            pass
+            
+    def remove_RND(self):
+        temp_msg=self.cache[random.randint(0, len(self.cache) - 1)]
 
-
+        try:
+            self.cache.remove(temp_msg)
+            self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
+        except ValueError:
+            self.get_logger().info(f'ERR_RND: {temp_msg.sensor_id}-{temp_msg.sqn}')       
+            pass
 
     def remove_LRU(self):
         temp_msg=None
@@ -110,7 +122,6 @@ class BalloonController(Node):
             
         except ValueError:
             self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
-            
             pass
 
     def expire_callback(self,msg):
@@ -122,7 +133,11 @@ class BalloonController(Node):
             pass
 
         #self.get_logger().info(f'{self.cache}')
-
+    def print_cache(self):
+        self.get_logger().info('#########################################################')
+        for log in self.cache:
+           self.get_logger().info(f'{log.sensor_id}-{log.sqn}==>(sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec})')
+        self.get_logger().info('##############################################################')
 
     def store_position(self, odometry_msg : Odometry):
 
@@ -134,7 +149,7 @@ class BalloonController(Node):
             odometry_msg.pose.pose.orientation.w
         )
         #self.get_logger().info(f"Storing position {self.drone_position}")
-
+    
     def execute_patrol_action(self, goal : ServerGoalHandle):
 
 
