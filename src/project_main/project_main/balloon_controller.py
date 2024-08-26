@@ -14,6 +14,7 @@ from rosgraph_msgs.msg import Clock
 
 import math_utils
 from project_interfaces.action import Patrol
+from project_interfaces.action import Polling
 
 from sim_utils import EventScheduler
 
@@ -72,6 +73,12 @@ class BalloonController(Node):
             self.execute_patrol_action
         )
 
+        self.polling_action_server = ActionServer(
+            self,
+            Polling,
+            'polling',
+            self.execute_polling_action
+        )
 
     def rx_callback(self, msg : Data):
 
@@ -178,6 +185,36 @@ class BalloonController(Node):
 
         result =  Patrol.Result()
         result.result = "Movement completed"
+
+        return result
+    
+    def execute_polling_action(self, goal : ServerGoalHandle):
+
+        self.get_logger().info(f'Executing goal, polling sensor {goal.request.sensor_id}')
+        
+        request_sensor = goal.request.sensor_id
+
+        sensor_data = None
+        for d in self.cache:
+            if d.sensor_id == request_sensor:
+                #self.get_logger().info(f'Data found: {d.sensor_id}-{d.sqn}')
+                sensor_data = d
+                d.timestamp = self.get_clock().now().to_msg()
+            else:
+                #self.get_logger().info(f'Data NOT found for sensor {goal.request.sensor_id}')
+                sensor_data = None
+        
+        goal.succeed()
+        
+        result = Polling.Result()
+        if sensor_data:
+            result.result = sensor_data
+        else:
+            result.result.timestamp = self.get_clock().now().to_msg()
+            result.result.duration = 4
+            result.result.sensor_id = request_sensor
+            result.result.sqn = -1
+            result.result.data = "404"
 
         return result
 
