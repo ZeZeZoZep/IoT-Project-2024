@@ -16,6 +16,7 @@ find_package(geometry_msgs REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/Patrol.action"
+  "action/Polling.action"
   "msg/Data.msg"
   DEPENDENCIES geometry_msgs
 
