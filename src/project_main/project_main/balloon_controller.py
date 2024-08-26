@@ -1,6 +1,6 @@
 import time
 import math
-
+import random
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionServer
@@ -19,9 +19,10 @@ from project_interfaces.action import Polling
 from sim_utils import EventScheduler
 
 WORLD_NAME = "iot_project_world"
-MIN_ALTITUDE_TO_PERFORM_PATROL = 15
+MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
+DEBUG_RX = False
 
 class BalloonController(Node):
 
@@ -88,20 +89,34 @@ class BalloonController(Node):
             self.remove_LRU()
         self.cache.append(msg)
         self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
-        #self.get_logger().info('Message received')
+        
 
 
         #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
-        
-        #print the cache - RICORDA DI DECOMMENTARE
+        if DEBUG_RX :
+            self.get_logger().info('Message received')
+            self.print_cache()
 
-        self.get_logger().info('#########################################################')
-        for log in self.cache:
-           self.get_logger().info(f'{log.sensor_id}-{log.sqn}==>(sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec})')
-        self.get_logger().info('#########################################################')
-        
+    def remove_FIFO(self):
+        temp_msg=self.cache[0]
+        try:
+            self.cache.pop(0)
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
+        except ValueError:
+            if DEBUG_RX :self.get_logger().info(f'ERR_FIFO: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            pass
+            
+    def remove_RND(self):
+        temp_msg=self.cache[random.randint(0, len(self.cache) - 1)]
 
-
+        try:
+            self.cache.remove(temp_msg)
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
+        except ValueError:
+            if DEBUG_RX :self.get_logger().info(f'ERR_RND: {temp_msg.sensor_id}-{temp_msg.sqn}')       
+            pass
 
     def remove_LRU(self):
         temp_msg=None
@@ -113,23 +128,26 @@ class BalloonController(Node):
         try:
 
             self.cache.remove(temp_msg)
-            self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
-            
+            if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass
 
     def expire_callback(self,msg):
         try:
             self.cache.remove(msg)
-            self.get_logger().info(f'Expired: {msg.sensor_id}-{msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'Expired: {msg.sensor_id}-{msg.sqn}')
         except ValueError:
-            self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
             pass
 
         #self.get_logger().info(f'{self.cache}')
-
+    def print_cache(self):
+        self.get_logger().info('#########################################################')
+        for log in self.cache:
+           self.get_logger().info(f'{log.sensor_id}-{log.sqn}==>(sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec})')
+        self.get_logger().info('##############################################################')
 
     def store_position(self, odometry_msg : Odometry):
 
@@ -141,19 +159,19 @@ class BalloonController(Node):
             odometry_msg.pose.pose.orientation.w
         )
         #self.get_logger().info(f"Storing position {self.drone_position}")
-
+    
     def execute_patrol_action(self, goal : ServerGoalHandle):
 
 
         command_goal : Patrol.Goal = goal.request
 
-        #self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
+        self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
 
         self.fly_to_altitude(MIN_ALTITUDE_TO_PERFORM_PATROL)
 
 
         targets_patrolled = 0
-        
+        '''
         for target in command_goal.targets:
                 
             self.rotate_to_target(target)
@@ -162,7 +180,7 @@ class BalloonController(Node):
             #self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
             targets_patrolled += 1
         
-        
+        '''
         goal.succeed()
 
         result =  Patrol.Result()

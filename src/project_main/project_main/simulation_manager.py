@@ -15,7 +15,7 @@ import math_utils
 NUMBER_OF_BALLOONS = int(sys.argv[1])
 NUMBER_OF_SENSORS = int(sys.argv[2])
 
-SENSORS_RANGE = 99999#20
+SENSORS_RANGE = 20
 
 class SimulationManager(Node):
 
@@ -63,7 +63,7 @@ class SimulationManager(Node):
                 f'Balloon_{i}/rx_data',
                 10
             )
-
+            
     def store_sensor_position(self, sensor_id, position : Odometry):
 
         self.sensor_positions[sensor_id] = position.pose.pose.position
@@ -72,7 +72,7 @@ class SimulationManager(Node):
     def store_balloon_position(self, balloon_id, position : Odometry):
 
         self.balloon_positions[balloon_id] = position.pose.pose.position
-    
+
     def forward_data_sb(self, sensor_id, msg : Data):
         min=999999.99
         min_i=0
