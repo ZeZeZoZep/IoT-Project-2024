@@ -18,9 +18,10 @@ from project_interfaces.action import Patrol
 from sim_utils import EventScheduler
 
 WORLD_NAME = "iot_project_world"
-MIN_ALTITUDE_TO_PERFORM_PATROL = 15
+MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
+DEBUG_RX = False
 
 class BalloonController(Node):
 
@@ -81,20 +82,22 @@ class BalloonController(Node):
             self.remove_LRU()
         self.cache.append(msg)
         self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
-        self.get_logger().info('Message received')
+        
 
 
         #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
-        self.print_cache()
+        if DEBUG_RX :
+            self.get_logger().info('Message received')
+            self.print_cache()
 
     def remove_FIFO(self):
         temp_msg=self.cache[0]
         try:
             self.cache.pop(0)
-            self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            self.get_logger().info(f'ERR_FIFO: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'ERR_FIFO: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass
             
     def remove_RND(self):
@@ -102,10 +105,10 @@ class BalloonController(Node):
 
         try:
             self.cache.remove(temp_msg)
-            self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            self.get_logger().info(f'ERR_RND: {temp_msg.sensor_id}-{temp_msg.sqn}')       
+            if DEBUG_RX :self.get_logger().info(f'ERR_RND: {temp_msg.sensor_id}-{temp_msg.sqn}')       
             pass
 
     def remove_LRU(self):
@@ -118,18 +121,18 @@ class BalloonController(Node):
         try:
 
             self.cache.remove(temp_msg)
-            self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass
 
     def expire_callback(self,msg):
         try:
             self.cache.remove(msg)
-            self.get_logger().info(f'Expired: {msg.sensor_id}-{msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'Expired: {msg.sensor_id}-{msg.sqn}')
         except ValueError:
-            self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
             pass
 
         #self.get_logger().info(f'{self.cache}')
@@ -155,13 +158,13 @@ class BalloonController(Node):
 
         command_goal : Patrol.Goal = goal.request
 
-        #self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
+        self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
 
         self.fly_to_altitude(MIN_ALTITUDE_TO_PERFORM_PATROL)
 
 
         targets_patrolled = 0
-        
+        '''
         for target in command_goal.targets:
                 
             self.rotate_to_target(target)
@@ -170,7 +173,7 @@ class BalloonController(Node):
             #self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
             targets_patrolled += 1
         
-        
+        '''
         goal.succeed()
 
         result =  Patrol.Result()
