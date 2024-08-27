@@ -28,7 +28,8 @@ setup(
             'simulation_manager=project_main.simulation_manager:main',
             'balloon_controller=project_main.balloon_controller:main',
             'sensor_controller=project_main.sensor_controller:main',
-            'fleet_coordinator=project_main.fleet_coordinator:main'
+            'fleet_coordinator=project_main.fleet_coordinator:main',
+            'base_station_controller=project_main.base_station_controller:main'
         ],
     },
 )

@@ -18,6 +18,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/Patrol.action"
   "action/Polling.action"
   "msg/Data.msg"
+  "msg/Req.msg"
   DEPENDENCIES geometry_msgs
 
 )

@@ -6,6 +6,7 @@ from rclpy.node import Node
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.executors import MultiThreadedExecutor
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 
 from project_interfaces.msg import Data
 from geometry_msgs.msg import Point, Vector3, Twist
@@ -24,6 +25,7 @@ SIZE = 10
 
 DEBUG_RX = True
 DEBUG_SETUP = False
+DEBUG_POLLING = True
 
 class BalloonController(Node):
 
@@ -61,11 +63,13 @@ class BalloonController(Node):
             10
         )
         
+        rx_callback_group = MutuallyExclusiveCallbackGroup()
         self.rx_data = self.create_subscription(
             Data,
             'rx_data',
             self.rx_callback,
-            10
+            10,
+            callback_group=rx_callback_group
         )
 
         self.patrol_action_server = ActionServer(
@@ -75,11 +79,13 @@ class BalloonController(Node):
             self.execute_patrol_action
         )
 
+        polling_callback_group = MutuallyExclusiveCallbackGroup()
         self.polling_action_server = ActionServer(
             self,
             Polling,
             'polling',
-            self.execute_polling_action
+            self.execute_polling_action,
+            callback_group=polling_callback_group
         )
 
     def rx_callback(self, msg : Data):
@@ -180,18 +186,18 @@ class BalloonController(Node):
     
     def execute_polling_action(self, goal : ServerGoalHandle):
 
-        self.get_logger().info(f'Executing goal, polling sensor {goal.request.sensor_id}')
+        if DEBUG_POLLING: self.get_logger().info(f'Executing goal, polling sensor {goal.request.req.sensor_id}')
         
-        request_sensor = goal.request.sensor_id
+        request_sensor = goal.request.req.sensor_id
 
         sensor_data = None
         for d in self.cache:
             if d.sensor_id == request_sensor:
-                #self.get_logger().info(f'Data found: {d.sensor_id}-{d.sqn}')
+                if DEBUG_POLLING: self.get_logger().info(f'SERVER - Data found: {d.sensor_id}-{d.sqn} (Polling sqn number {goal.request.req.sqn})')
                 sensor_data = d
                 d.timestamp = self.get_clock().now().to_msg()
+                break
             else:
-                #self.get_logger().info(f'Data NOT found for sensor {goal.request.sensor_id}')
                 sensor_data = None
         
         goal.succeed()
@@ -200,10 +206,11 @@ class BalloonController(Node):
         if sensor_data:
             result.result = sensor_data
         else:
+            if DEBUG_POLLING: self.get_logger().info(f'SERVER - Data NOT found for sensor {goal.request.req.sensor_id} (Polling sqn number {goal.request.req.sqn})')
             result.result.timestamp = self.get_clock().now().to_msg()
             result.result.duration = 4
             result.result.sensor_id = request_sensor
-            result.result.sqn = -1
+            result.result.sqn = goal.request.req.sqn
             result.result.data = "404"
 
         return result
