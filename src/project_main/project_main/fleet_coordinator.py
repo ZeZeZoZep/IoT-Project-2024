@@ -3,16 +3,24 @@ from time import sleep
 from threading import Thread
 from enum import Enum
 import random
+from random import randint
+
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
+from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 
 from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
+from rosgraph_msgs.msg import Clock
 from project_interfaces.action import Patrol
 from project_main.math_utils import random_point_in_circle, is_segment_in_circles
+from project_interfaces.action import Polling
 
+from sim_utils import EventScheduler
+
+WORLD_NAME = "iot_project_world"
 NUMBER_OF_BALLOONS = int(sys.argv[1])
 NUMBER_OF_SENSORS = int(sys.argv[2])
 
@@ -31,13 +39,23 @@ class FleetCoordinator(Node):
 
         super().__init__('fleet_coordinator')
 
+        self.polling_action_clients = {}
         self.balloon_action_clients = {}
         self.sensor_action_clients = {}
         self.balloon_positions = {}
         self.sensor_positions = {}      
-        self.balloon_states = {}
         self.sensor_states = {} 
         self.circles =[]
+        self.balloon_states = {} 
+
+        self.event_scheduler = EventScheduler()
+        self.clock_topic = self.create_subscription(
+            Clock,
+            f'/world/{WORLD_NAME}/clock',
+            self.event_scheduler.routine,
+            10
+        )
+
         for i in range(NUMBER_OF_BALLOONS):
 
             self.balloon_action_clients[i] = ActionClient(
@@ -54,7 +72,16 @@ class FleetCoordinator(Node):
                 lambda msg, id = i : self.store_balloon_position(id, msg),
                 10
             )
-        
+
+            polling_callback_group = ReentrantCallbackGroup()
+            self.polling_action_clients[i] = ActionClient(
+                self,
+                Polling,
+                f'/Balloon_{i}/polling',
+                callback_group = polling_callback_group
+            )    
+
+
         for i in range(NUMBER_OF_SENSORS):
             self.sensor_action_clients[i] = ActionClient(
                     self,
@@ -71,6 +98,12 @@ class FleetCoordinator(Node):
                 10
             )
         
+    
+        random_sensor = self.pick_random_sensor()
+        random_rate = self.pick_polling_rate()
+
+        self.event_scheduler.schedule_event(1, self.setup_balloon, False, args = [])
+        self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
     def setup_balloon(self):
 
         
@@ -79,6 +112,7 @@ class FleetCoordinator(Node):
         
 
         def setup_balloon_inner():
+
 
             
             for i in range(NUMBER_OF_BALLOONS):
@@ -133,6 +167,7 @@ class FleetCoordinator(Node):
         # you may have to handle such cases
         if DEBUG_SETUP:self.get_logger().info(f"Patrolling action for Balloon {uav_id} has been completed. Drone is going idle")
         self.balloon_states[uav_id] = BalloonState.HOVERING
+        self.event_scheduler.schedule_event(1, self.patrol_targets, False, args = [])
     
     def patrol_targets(self):
 
@@ -215,7 +250,7 @@ class FleetCoordinator(Node):
         # you may have to handle such cases
         if DEBUG_PATROLLING:self.get_logger().info(f"Patrolling action for Sensor{sensor_id} has been completed. Drone is going idle")
         self.sensor_states[sensor_id] = SensorState.STILL
-        self.patrol_targets()
+        self.event_scheduler.schedule_event(1, self.patrol_targets, False, args = [])
 
    
 
@@ -224,6 +259,62 @@ class FleetCoordinator(Node):
         self.sensor_positions[id] = msg.pose.pose.position
     def store_balloon_position(self, id, msg : Odometry):
         self.balloon_positions[id] = msg.pose.pose.position
+
+    def pick_random_sensor(self):
+        return randint(0, NUMBER_OF_SENSORS - 1)
+    
+    def pick_polling_rate(self):
+        return randint(2, 6)
+    
+    def send_polling_goal(self, sensor_id : int, polling_rate : int):
+        self.responses = []
+        polling_goal_msg = Polling.Goal()
+        polling_goal_msg.sensor_id = sensor_id
+
+        for i in range(NUMBER_OF_BALLOONS):
+
+            while not self.polling_action_clients[i].wait_for_server(1):
+                self.get_logger().info("Waiting for polling action server to come online")
+                sleep(3)
+            
+            self.polling_future = self.polling_action_clients[i].send_goal_async(polling_goal_msg)
+            self.polling_future.add_done_callback(lambda future, polling_rate = polling_rate : self.polling_submitted_callback(future, polling_rate))
+    
+    def polling_submitted_callback(self, future, polling_rate):
+        polling_goal_handle = future.result()
+
+        if not polling_goal_handle.accepted:
+            self.get_logger().info('Goal rejected :(')
+            return
+        
+        self.polling_result_future = polling_goal_handle.get_result_async()
+        self.polling_result_future.add_done_callback(lambda future, polling_rate = polling_rate : self.polling_result_callback(future, polling_rate))
+    
+    def polling_result_callback(self, future, polling_rate):
+        result = future.result().result
+        if result.result.data == "404":
+            self.responses.append(result.result)
+            self.get_logger().info(f'{result.result.data}')
+            if len(self.responses) == NUMBER_OF_BALLOONS:
+                if polling_rate == 0:
+                    random_sensor = self.pick_random_sensor()
+                    random_rate = self.pick_polling_rate()
+                    self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
+                else:
+                    self.get_logger().info(f'Polling rate: {polling_rate}')
+                    polling_rate -= 1
+                    self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [result.result.sensor_id, polling_rate])
+        else:
+            self.responses.append(result.result)
+            self.get_logger().info(f'{result.result.data}')
+            if polling_rate == 0:
+                random_sensor = self.pick_random_sensor()
+                random_rate = self.pick_polling_rate()
+                self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
+            else:
+                self.get_logger().info(f'Polling rate: {polling_rate}')
+                polling_rate -= 1
+                self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [result.result.sensor_id, polling_rate])
 
 
 class BalloonState(Enum):
@@ -239,18 +330,16 @@ class SensorState(Enum):
 def main():
 
     rclpy.init()
-
     executor = MultiThreadedExecutor()
     fleet_coordinator = FleetCoordinator()
 
     executor.add_node(fleet_coordinator)
-    fleet_coordinator.setup_balloon()
-    fleet_coordinator.patrol_targets()
+    #fleet_coordinator.patrol_targets()
 
     executor.spin()
 
-    executor.shutdown()
     fleet_coordinator.destroy_node()
+    executor.shutdown()
     rclpy.shutdown()
 
     
