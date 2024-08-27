@@ -1,8 +1,56 @@
 import math
 
 from geometry_msgs.msg import Point
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+def random_point_in_circle(centre,radius):
+    # Genera un angolo casuale tra 0 e 2π
+        theta = np.random.uniform(0, 2 * math.pi)
+        
+        # Genera un raggio casuale tra 0 e 1 con distribuzione radiale
+        r = math.sqrt(np.random.uniform(0, 1))
+        r=r*radius
+        
+        # Converte le coordinate polari in cartesiane
+        x = r * math.cos(theta)
+        y = r * math.sin(theta)
+        
+        return (centre[0]+x, centre[1]+y, 0,701)
 
-
+def is_segment_in_circles(segment, circles, num_points=100):
+    """
+    Checks if a line segment is completely contained within an area defined by circles.
+    
+    Parameters:
+    - segment: tuple of ((x1, y1), (x2, y2)) defining the line segment endpoints.
+    - circles: list of tuples [(cx, cy, r), ...] defining circles with center (cx, cy) and radius r.
+    - num_points: number of points to sample along the segment for the check (default is 100).
+    
+    Returns:
+    - True if the segment is completely contained within at least one of the circles, False otherwise.
+    """
+    (x1, y1), (x2, y2) = segment
+    
+    # Generate points along the segment
+    for i in range(num_points + 1):
+        t = i / num_points
+        x = x1 + t * (x2 - x1)
+        y = y1 + t * (y2 - y1)
+        
+        # Check if this point (x, y) is inside any circle
+        point_in_any_circle = False
+        for cx, cy, r in circles:
+            if (x - cx)**2 + (y - cy)**2 <= r**2:
+                point_in_any_circle = True
+                break
+        
+        # If this point is not in any circle, return False
+        if not point_in_any_circle:
+            return False
+    
+    # If all points are in at least one circle, return True
+    return True
 def angle_between_points(p0 : Point, p1 : Point) -> float:
 
     '''
