@@ -18,25 +18,13 @@ from project_main.sim_utils import spawn_sdf
 WORLD_NAME = "iot_project_world"
 
 NUMBER_OF_BALLOONS = 3
-NUMBER_OF_SENSORS = 3
+NUMBER_OF_SENSORS = 10
 
 
 import numpy as np
-import matplotlib.pyplot as plt
-import math
-def random_point_in_circle(centre,radius):
-    # Genera un angolo casuale tra 0 e 2π
-        theta = np.random.uniform(0, 2 * math.pi)
-        
-        # Genera un raggio casuale tra 0 e 1 con distribuzione radiale
-        r = math.sqrt(np.random.uniform(0, 1))
-        r=r*radius
-        
-        # Converte le coordinate polari in cartesiane
-        x = r * math.cos(theta)
-        y = r * math.sin(theta)
-        
-        return (centre[0]+x, centre[1]+y, 0)
+from project_main.math_utils import random_point_in_circle
+
+
 
 #-----------------------------------------------------------------------------------------------
 # Launch file for the IoT Project. Launches all the nodes required to start the final solution
@@ -102,7 +90,7 @@ def generate_launch_description():
             punto=(27.71, (((i-1)/3)*32)+16, 0)
         else:
             punto=(-27.71, (((i-2)/3)*32)+16, 0)
-        circles.append((punto,19))
+        circles.append((punto,10))
         targets_to_spawn.append(spawn_sdf("resources/balloon/balloon.sdf", id = i, pos = punto))
         targets_to_spawn.append(
         Node(
@@ -134,17 +122,26 @@ def generate_launch_description():
 
     print(circles)
     #-------------------------- Spawn sensors and bridge their topics ---------------------------
-    
+    '''
     for i in range(NUMBER_OF_SENSORS):
         circle=np.random.randint(0, NUMBER_OF_BALLOONS)
-        targets_to_spawn.append(spawn_sdf("resources/sensor/sensor.sdf", id = i, pos = random_point_in_circle(circles[circle][0],circles[circle][1])))
+        targets_to_spawn.append(spawn_sdf("resources/active_sensor/active_sensor.sdf", id = i, pos = random_point_in_circle(circles[circle][0],circles[circle][1])))
 
         targets_to_spawn.append(
         Node(
             package="ros_gz_bridge",
             executable="parameter_bridge",
             arguments=[
-            f"/Sensor_{i}/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
+            f"/ActiveSensor_{i}/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
+            ]
+        )
+        )
+        targets_to_spawn.append(
+        Node(             
+            package="ros_gz_bridge",
+            executable="parameter_bridge",
+            arguments=[
+            f"/ActiveSensor_{i}/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
             ]
         )
         )
@@ -153,7 +150,7 @@ def generate_launch_description():
             Node(
                 package="project_main",
                 executable="sensor_controller",
-                namespace=f"Sensor_{i}",
+                namespace=f"ActiveSensor_{i}",
                 parameters=[
                     {'id': i}
                 ]
@@ -163,7 +160,7 @@ def generate_launch_description():
      #-------------------------- Spawn sensors and bridge their topics ---------------------------
     for i in range(NUMBER_OF_SENSORS):
         circle=np.random.randint(0, NUMBER_OF_BALLOONS)
-        targets_to_spawn.append(spawn_sdf("resources/sensor/sensor.sdf", id = i, pos = random_point_in_circle(circles[circle][0],circles[circle][1])))
+        targets_to_spawn.append(spawn_sdf("resources/active_sensor/active_sensor.sdf", id = i, pos = random_point_in_circle(circles[circle][0],circles[circle][1])))
 
         targets_to_spawn.append(
         Node(
@@ -189,13 +186,13 @@ def generate_launch_description():
             Node(
                 package="project_main",
                 executable="sensor_controller",
-                namespace=f"Sensor_{i}",
+                namespace=f"ActiveSensor_{i}",
                 parameters=[
                     {'id': i}
                 ]
             )
         )
-    '''
+    
 
 
     #------------------------------------ Spawn base station -------------------------------------

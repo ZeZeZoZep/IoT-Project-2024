@@ -29,22 +29,23 @@ class SimulationManager(Node):
         
 
         for i in range(NUMBER_OF_SENSORS):
-
+            
             self.create_subscription(
                 Odometry,
-                f'Sensor_{i}/odometry',
+                f'ActiveSensor_{i}/odometry',
                 lambda odometry_msg, sensor_id = i: self.store_sensor_position(sensor_id, odometry_msg),
                 10
                 #self.store_sensor_position
             )
-
+            
             self.create_subscription(
                 Data,
-                f'Sensor_{i}/tx_data',
+                f'ActiveSensor_{i}/tx_data',
                 lambda string_msg, sensor_id = i: self.forward_data_sb(sensor_id, string_msg),
                 #self.forward_data,
                 10
             )
+            
 
         self.balloons_rx = {}
         for i in range(NUMBER_OF_BALLOONS):

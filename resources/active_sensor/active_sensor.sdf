@@ -176,6 +176,7 @@
         <parent>body</parent>
         <child>caster</child>
     </joint>
+    
     <plugin
             filename="libignition-gazebo-diff-drive-system.so"
             name="ignition::gazebo::systems::DiffDrive">
@@ -185,6 +186,7 @@
             <wheel_radius>0.1</wheel_radius>
             <topic>ActiveSensor/cmd_vel</topic>
     </plugin>
+    
     <plugin name='ignition::gazebo::systems::OdometryPublisher' filename='ignition-gazebo-odometry-publisher-system'>
       <odom_topic>/ActiveSensor/odometry</odom_topic>
       <dimensions>3</dimensions>
