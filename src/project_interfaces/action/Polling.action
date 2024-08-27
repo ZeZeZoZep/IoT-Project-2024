@@ -1,5 +1,5 @@
-int8 sensor_id
+project_interfaces/Req req
 ---
-Data result
+project_interfaces/Data result
 ---
 string feedback
