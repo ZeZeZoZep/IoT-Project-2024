@@ -29,7 +29,7 @@ class SensorController(Node):
             'patrol',
             self.execute_patrol_action
         )
-        
+
         self.odometry_subscrber = self.create_subscription(
             Odometry,
             'odometry',
@@ -192,7 +192,6 @@ class SensorController(Node):
             odometry_msg.pose.pose.orientation.w
         )
     def generate_data(self):
-
         self.generated_data += 1
         return self.generated_data
 
