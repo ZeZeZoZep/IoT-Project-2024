@@ -2,10 +2,12 @@ import time
 import math
 import random
 import rclpy
+import rclpy.action
 from rclpy.node import Node
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.executors import MultiThreadedExecutor
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 
 from project_interfaces.msg import Data
 from geometry_msgs.msg import Point, Vector3, Twist
@@ -24,6 +26,7 @@ SIZE = 10
 
 DEBUG_RX = True
 DEBUG_SETUP = False
+DEBUG_POLLING = True
 
 class BalloonController(Node):
 
@@ -61,11 +64,13 @@ class BalloonController(Node):
             10
         )
         
+        rx_callback_group = MutuallyExclusiveCallbackGroup()
         self.rx_data = self.create_subscription(
             Data,
             'rx_data',
             self.rx_callback,
-            10
+            10,
+            callback_group=rx_callback_group
         )
 
         self.patrol_action_server = ActionServer(
@@ -75,11 +80,15 @@ class BalloonController(Node):
             self.execute_patrol_action
         )
 
+        polling_callback_group = MutuallyExclusiveCallbackGroup()
         self.polling_action_server = ActionServer(
             self,
             Polling,
             'polling',
-            self.execute_polling_action
+            self.execute_polling_action,
+            goal_callback=self.polling_goal_callback,
+            cancel_callback=self.cancel_polling_callback,
+            callback_group=polling_callback_group
         )
 
     def rx_callback(self, msg : Data):
@@ -178,21 +187,40 @@ class BalloonController(Node):
 
         return result
     
+    def polling_goal_callback(self, goal):
+
+        if DEBUG_POLLING: self.get_logger().info(f'SERVER - Goal received, polling sensor {goal.req.sensor_id}')
+
+        return rclpy.action.GoalResponse.ACCEPT
+    
+    def cancel_polling_callback(self, goal_handle):
+
+        if DEBUG_POLLING: self.get_logger().info(f'SERVER - Request for polling cancel received')
+
+        return rclpy.action.CancelResponse.ACCEPT
+    
     def execute_polling_action(self, goal : ServerGoalHandle):
 
-        self.get_logger().info(f'Executing goal, polling sensor {goal.request.sensor_id}')
+        if DEBUG_POLLING: self.get_logger().info(f'SERVER - Executing goal, polling sensor {goal.request.req.sensor_id}')
         
-        request_sensor = goal.request.sensor_id
+        requested_sensor = goal.request.req.sensor_id
 
         sensor_data = None
+        index = 0
         for d in self.cache:
-            if d.sensor_id == request_sensor:
-                #self.get_logger().info(f'Data found: {d.sensor_id}-{d.sqn}')
-                sensor_data = d
-                d.timestamp = self.get_clock().now().to_msg()
-            else:
-                #self.get_logger().info(f'Data NOT found for sensor {goal.request.sensor_id}')
-                sensor_data = None
+            if d.sensor_id == requested_sensor:
+                index = self.cache.index(d)
+                if sensor_data == None:
+                    sensor_data = d
+                elif d.timestamp.sec > sensor_data.timestamp.sec or (d.timestamp.sec == sensor_data.timestamp.sec and d.timestamp.nanosec > sensor_data.timestamp.nanosec):
+                    sensor_data = d
+
+        
+        if sensor_data:
+            if DEBUG_POLLING: self.get_logger().info(f'SERVER - Data found: {self.cache[index].sensor_id}-{self.cache[index].sqn} (Polling sqn number {goal.request.req.sqn})')
+            self.cache[index].timestamp = self.get_clock().now().to_msg()
+        else:
+            if DEBUG_POLLING: self.get_logger().info(f'SERVER - Data NOT found for sensor {goal.request.req.sensor_id} (Polling sqn number {goal.request.req.sqn})')
         
         goal.succeed()
         
@@ -202,8 +230,8 @@ class BalloonController(Node):
         else:
             result.result.timestamp = self.get_clock().now().to_msg()
             result.result.duration = 4
-            result.result.sensor_id = request_sensor
-            result.result.sqn = -1
+            result.result.sensor_id = requested_sensor
+            result.result.sqn = goal.request.req.sqn
             result.result.data = "404"
 
         return result

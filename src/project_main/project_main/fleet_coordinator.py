@@ -8,7 +8,7 @@ from random import randint
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from rclpy.callback_groups import ReentrantCallbackGroup
+#from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 
 from geometry_msgs.msg import Point
@@ -16,7 +16,7 @@ from nav_msgs.msg import Odometry
 from rosgraph_msgs.msg import Clock
 from project_interfaces.action import Patrol
 from project_main.math_utils import random_point_in_circle, is_segment_in_circles
-from project_interfaces.action import Polling
+#from project_interfaces.action import Polling
 
 from sim_utils import EventScheduler
 
@@ -39,7 +39,7 @@ class FleetCoordinator(Node):
 
         super().__init__('fleet_coordinator')
 
-        self.polling_action_clients = {}
+        #self.polling_action_clients = {}
         self.balloon_action_clients = {}
         self.sensor_action_clients = {}
         self.balloon_positions = {}
@@ -73,13 +73,13 @@ class FleetCoordinator(Node):
                 10
             )
 
-            polling_callback_group = ReentrantCallbackGroup()
+            """ polling_callback_group = ReentrantCallbackGroup()
             self.polling_action_clients[i] = ActionClient(
                 self,
                 Polling,
                 f'/Balloon_{i}/polling',
                 callback_group = polling_callback_group
-            )    
+            ) """
 
 
         for i in range(NUMBER_OF_SENSORS):
@@ -99,11 +99,11 @@ class FleetCoordinator(Node):
             )
         
     
-        random_sensor = self.pick_random_sensor()
-        random_rate = self.pick_polling_rate()
+        """ random_sensor = self.pick_random_sensor()
+        random_rate = self.pick_polling_rate() """
 
         self.event_scheduler.schedule_event(1, self.setup_balloon, False, args = [])
-        self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
+        #self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
     def setup_balloon(self):
 
         
@@ -252,7 +252,7 @@ class FleetCoordinator(Node):
     def store_balloon_position(self, id, msg : Odometry):
         self.balloon_positions[id] = msg.pose.pose.position
 
-    def pick_random_sensor(self):
+    """ def pick_random_sensor(self):
         return randint(0, NUMBER_OF_SENSORS - 1)
     
     def pick_polling_rate(self):
@@ -306,7 +306,7 @@ class FleetCoordinator(Node):
             else:
                 self.get_logger().info(f'Polling rate: {polling_rate}')
                 polling_rate -= 1
-                self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [result.result.sensor_id, polling_rate])
+                self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [result.result.sensor_id, polling_rate]) """
 
 
 class BalloonState(Enum):
@@ -326,7 +326,6 @@ def main():
     fleet_coordinator = FleetCoordinator()
 
     executor.add_node(fleet_coordinator)
-    #fleet_coordinator.patrol_targets()
 
     executor.spin()
 

@@ -17,8 +17,8 @@ from project_main.sim_utils import spawn_sdf
 
 WORLD_NAME = "iot_project_world"
 
-NUMBER_OF_BALLOONS = 3
-NUMBER_OF_SENSORS = 10
+NUMBER_OF_BALLOONS = 4
+NUMBER_OF_SENSORS = 12
 
 
 import numpy as np
@@ -203,6 +203,17 @@ def generate_launch_description():
             executable="parameter_bridge",
             arguments=[
             f"/base_station/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
+            ]
+        )
+    )
+
+    targets_to_spawn.append(
+        Node(
+            package="project_main",
+            executable="base_station_controller",
+            arguments=[
+                f"{NUMBER_OF_BALLOONS}",
+                f"{NUMBER_OF_SENSORS}"
             ]
         )
     )
