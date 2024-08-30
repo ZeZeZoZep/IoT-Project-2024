@@ -118,10 +118,10 @@ class BalloonController(Node):
     def remove_SPECIFIC(self,m):
         try:
             self.cache.remove(m)
-            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'Removing: {m.sensor_id}-{m.sqn}')
             
         except ValueError:
-            if DEBUG_RX :self.get_logger().info(f'ERR_FIFO: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if DEBUG_RX :self.get_logger().info(f'ERR_FIFO: {m.sensor_id}-{m.sqn}')
             pass       
 
     def remove_FIFO(self):
