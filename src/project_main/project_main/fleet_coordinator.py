@@ -196,18 +196,10 @@ class FleetCoordinator(Node):
             if DEBUG_PATROLLING:self.get_logger().info("Waiting for sensors")
             sleep(3)
         temp=None
-        '''
-        if len(self.circles)<NUMBER_OF_BALLOONS:
-            for i in range(NUMBER_OF_BALLOONS):
-                var = self.balloon_positions[i]
-                self.get_logger().info(f'{var}')
-                self.circles.append((var.x,var.y,19))
-        '''
         balloon_id=random.randint(0,NUMBER_OF_BALLOONS-1)
         chosen_balloon=self.balloon_positions[balloon_id]
         temp=random_point_in_circle((chosen_balloon.x,chosen_balloon.y),10) 
-        #    if is_segment_in_circles(segment=((temp[0],temp[1]),(self.sensor_positions[sensor_id].x,self.sensor_positions[sensor_id].y)),circles=self.circles):break
-        #    else: self.get_logger().info('porcodio')
+
          
         # Set the Balloon to moving state
         self.sensor_states[sensor_id] = SensorState.MOVING
