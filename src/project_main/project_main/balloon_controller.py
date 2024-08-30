@@ -95,18 +95,34 @@ class BalloonController(Node):
 
         #print the cache length
         #self.get_logger().info(f'{len(self.cache)}')
-        
-        if len(self.cache)>=self.cache_size: 
+        #updating the message of the same sensor if present
+        temp_msg=None
+        for m in self.cache:
+            if (msg.sensor_id == m.sensor_id):
+                temp_msg = m
+                break
+        if temp_msg!= None:
+            self.remove_SPECIFIC(temp_msg)    
+        elif len(self.cache)>=self.cache_size: 
             self.remove_LRU()
         self.cache.append(msg)
         self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
-        
-
+        #Idea: Depending on the global variable we apply a different policy for the removal of messages in the cache
+                
 
         #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
         if DEBUG_RX :
             self.get_logger().info('Message received')
             self.print_cache()
+
+    def remove_SPECIFIC(self,m):
+        try:
+            self.cache.remove(m)
+            if DEBUG_RX :self.get_logger().info(f'Removing: {m.sensor_id}-{m.sqn}')
+            
+        except ValueError:
+            if DEBUG_RX :self.get_logger().info(f'ERR_FIFO: {m.sensor_id}-{m.sqn}')
+            pass       
 
     def remove_FIFO(self):
         temp_msg=self.cache[0]
