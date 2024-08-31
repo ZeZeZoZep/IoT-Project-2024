@@ -161,6 +161,22 @@ class BalloonController(Node):
             if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass
 
+    def remove_MRU(self):
+        temp_msg=None
+        for m in self.cache:
+            if temp_msg==None:
+                temp_msg=m
+            elif m.timestamp.sec>temp_msg.timestamp.sec or (m.timestamp.sec==temp_msg.timestamp.sec and m.timestamp.nanosec>temp_msg.timestamp.nanosec):
+                temp_msg=m
+        try:
+
+            self.cache.remove(temp_msg)
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
+        except ValueError:
+            if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            pass    
+
     def expire_callback(self,msg):
         try:
             self.cache.remove(msg)

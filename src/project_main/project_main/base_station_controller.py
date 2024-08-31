@@ -2,6 +2,9 @@ import sys
 from time import sleep
 from threading import Thread
 from random import randint
+import requests
+import json
+from datetime import datetime
 
 import rclpy
 from rclpy.node import Node
@@ -20,6 +23,8 @@ NUMBER_OF_SENSORS = int(sys.argv[2])
 DEBUG_POLLING = True
 
 
+
+
 class BaseStationController(Node):
     
     def __init__(self):
@@ -29,6 +34,8 @@ class BaseStationController(Node):
         self.polling_action_clients = {}
         self.polling_msgs_sqn = [0] * NUMBER_OF_BALLOONS
         self.seq = NUMBER_OF_SENSORS
+
+        self.data_id = 0
 
         #Vars specific for cancelling goals no more needed
         self.polling_goal_handles = {}
@@ -88,7 +95,7 @@ class BaseStationController(Node):
         while not self.polling_action_clients[uav_id].wait_for_server(1):
             if DEBUG_POLLING: self.get_logger().info("Waiting for polling action server to come online")
             sleep(3)
-        
+
         polling_goal_msg = Polling.Goal()
         polling_goal_msg.req.sensor_id = sensor_id
         polling_goal_msg.req.sqn = self.generate_polling_msgs(uav_id)
@@ -129,7 +136,37 @@ class BaseStationController(Node):
                 else:
                     if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
                     self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.result.sensor_id , polling_rate])
+            data_to_offload = {
+                "id" : self.data_id,
+                "balloon_id": uav_id,
+                "sensor_id": result.result.sensor_id,
+                "sqn": result.result.sqn,
+                "data": result.result.data,
+                #"data_timestamp": result.result.timestamp
+            }
+            self.offload_data_to_file(data_to_offload)        
         else:
+            #OFFLOAD SU SERVER
+            data_to_offload = {
+                #"id" : self.data_id,
+                "balloon_id": uav_id,
+                "sensor_id": result.result.sensor_id,
+                "sqn": result.result.sqn,
+                "data": result.result.data
+            }
+            self.offload_data_to_server(data_to_offload)
+
+            #OFFLOAD SU FILE
+            data_to_offload = {
+                "id" : self.data_id,
+                "balloon_id": uav_id,
+                "sensor_id": result.result.sensor_id,
+                "sqn": result.result.sqn,
+                "data": result.result.data,
+                #"data_timestamp": result.result.timestamp
+            }
+            self.offload_data_to_file(data_to_offload)
+
             if not self.received_polling_data:
                 self.received_polling_data = True
                 self.cancel_remaining_polling_goals(uav_id)
@@ -159,6 +196,37 @@ class BaseStationController(Node):
             if DEBUG_POLLING: self.get_logger().info('CLIENT - Goal successfully cancelled')
             else:
                 self.get_logger().info('CLIENT - Impossible to cancel goal')
+
+    #OFFLOAD SU SERVER
+    def offload_data_to_server(self, data):
+        server_url = "http://example.com/offload"  # Inserisci l'URL del tuo server
+        try:
+            response = requests.post(server_url, json=data)
+            if response.status_code == 200:
+                if DEBUG_POLLING: self.get_logger().info("Data offloading successful")
+            else:
+                if DEBUG_POLLING: self.get_logger().info(f"Data offloading failed with status code {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            self.get_logger().error(f"Error during data offloading: {e}")         
+
+    #OFFLOAD SU FILE 
+    def offload_data_to_file(self, data):
+        
+        filename = "offloaded_data.json"  # Nome del file dove verranno salvati i dati
+        try:
+            #with open(filename, "w") as file:
+             #   pass  # Questo svuoterà il file
+            # Apre il file in modalità append per aggiungere i dati alla fine
+            with open(filename, "a") as file:
+               # Aggiunge un timestamp ai dati
+                data["timestamp"] = datetime.now().isoformat()
+                # Scrive i dati come stringa JSON nel file
+                file.write(json.dumps(data) + "\n")
+            self.data_id += 1
+            if DEBUG_POLLING: 
+                self.get_logger().info("Data successfully offloaded to file")
+        except IOError as e:
+            self.get_logger().error(f"Error during file offloading: {e}")          
 
 def main():
 
