@@ -2,7 +2,7 @@ import rclpy
 from rclpy.node import Node
 import numpy as np
 from rclpy.executors import MultiThreadedExecutor
-import time
+from time import sleep
 import math
 from project_interfaces.msg import Data
 from rosgraph_msgs.msg import Clock
@@ -10,18 +10,20 @@ import math_utils
 from sim_utils import EventScheduler
 from geometry_msgs.msg import Point, Vector3, Twist
 from nav_msgs.msg import Odometry
+
+from sensor_msgs.msg import LaserScan
 from project_interfaces.action import Patrol
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 WORLD_NAME = "iot_project_world"
-
+DEBUG_PATROLLING=False
 class SensorController(Node):
 
     def __init__(self):
         super().__init__('sensor_controller')
         self.position = Point(x = 0.0, y = 0.0, z = 0.0)
         self.yaw = 0
-
+        self.obstacle=False
         self.stop_msg = Twist()
         self.patrol_action_server = ActionServer(
             self,
@@ -30,10 +32,16 @@ class SensorController(Node):
             self.execute_patrol_action
         )
 
-        self.odometry_subscrber = self.create_subscription(
+        self.odometry_subscriber = self.create_subscription(
             Odometry,
             'odometry',
             self.store_position,
+            10
+        )
+        self.lidar_subscriber = self.create_subscription(
+            LaserScan,
+            'lidar',
+            self.wrapperino,
             10
         )
         
@@ -65,7 +73,14 @@ class SensorController(Node):
         self.event_scheduler.schedule_event(np.random.exponential(1 / self.rate), self.simple_publish, False)
 
         #self.create_timer(1, self.simple_publish)
-
+    def wrapperino(self,msg):
+        flag=False
+        for sample in msg.ranges:
+            if sample<1.0:
+                if DEBUG_PATROLLING:self.get_logger().info('LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR')
+                flag=True
+                break
+        self.obstacle=flag
 
     def simple_publish(self):
         id = self.id.get_parameter_value().integer_value
@@ -96,7 +111,7 @@ class SensorController(Node):
             self.rotate_to_target(target)
             self.move_to_target(target)
 
-            self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
+            if DEBUG_PATROLLING:self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
             targets_patrolled += 1
         self.get_logger().info(f"completed")
         
@@ -153,7 +168,7 @@ class SensorController(Node):
         distance = math_utils.point_distance(self.position, target)
 
         # Keep publishing movement while the distance is greater than the given EPS
-        while (distance > eps):
+        while (distance > eps and self.obstacle==False):
 
             # Compute the move vector with the given position and target
             mv = math_utils.move_vector(self.position, target)
@@ -176,9 +191,15 @@ class SensorController(Node):
 
             # Update position and distance after finishing
             distance = math_utils.point_distance(self.position, target)
-
-
+        
         # After reaching the target, publish a stop msg
+        self.cmd_vel_publisher.publish(self.stop_msg)
+        while self.obstacle==True:
+            twist_msg = Twist()
+            twist_msg.linear.x = -1.0
+            self.cmd_vel_publisher.publish(twist_msg )
+            self.get_logger().info('daidaidai')
+            sleep(0.5)
         self.cmd_vel_publisher.publish(self.stop_msg)
 
 

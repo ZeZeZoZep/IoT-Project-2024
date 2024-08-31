@@ -1,9 +1,12 @@
 <sdf version='1.6'>
-  <model name='ActiveSensor'>
+  <model name='ActiveSensor' canonical_link='body'>
+
     <link name='body'>
+        
+
       <pose>0 0 0 0 0 0</pose>
       <inertial> <!--inertial properties of the link mass, inertia matix-->
-          <mass>1.14395</mass>
+          <mass>5</mass>
           <inertia>
               <ixx>0.095329</ixx>
               <ixy>0</ixy>
@@ -42,6 +45,63 @@
         </geometry>
       </visual>
     </link>
+    <link name='sensor'>
+        <pose>0.3 0 0.5 0 1.5707 0</pose>
+        <inertial>
+            <mass>0.1</mass>
+            <inertia>
+                <ixx>0.000166667</ixx>
+                <iyy>0.000166667</iyy>
+                <izz>0.000166667</izz>
+            </inertia>
+        </inertial>
+        <collision name="collision">
+            <geometry>
+                <cylinder>
+                    <radius>0.05</radius>
+                    <length>0.2</length>
+                </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+                <radius>0.05</radius>
+                <length>0.2</length>
+            </cylinder>
+          </geometry>
+        </visual>
+        <sensor name='gpu_lidar' type='gpu_lidar'>"
+            <pose>0 0 0 0 -1.5707 0</pose>
+
+            <topic>ActiveSensor/lidar</topic>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>160</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-1</min_angle>
+                        <max_angle>1</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>1</samples>
+                        <resolution>0.01</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>0</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.08</min>
+                    <max>10.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+            </ray>
+            <always_on>1</always_on>
+            <visualize>true</visualize>
+        </sensor>
+    </link>
+
     <link name='left_wheel'>
       <pose relative_to="body">-0.3 0.3 0.15 -1.5707 0 0</pose>
       <inertial>
@@ -159,6 +219,11 @@
                 <upper>1.79769e+308</upper>     <!--positive infinity-->
             </limit>
         </axis>
+    </joint>
+    <joint name="lidar_joint" type="fixed">
+      <parent>body</parent>
+      <child>sensor</child>
+      <pose>0 0 0.15 0 0 0</pose>
     </joint>
     <joint name='right_wheel_joint' type='revolute'>
         <pose relative_to='right_wheel'/>

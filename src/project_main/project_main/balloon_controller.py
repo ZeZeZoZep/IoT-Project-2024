@@ -24,9 +24,9 @@ WORLD_NAME = "iot_project_world"
 MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
-DEBUG_RX = True
+DEBUG_RX = False
 DEBUG_SETUP = False
-DEBUG_POLLING = True
+DEBUG_POLLING = False
 
 class BalloonController(Node):
 
