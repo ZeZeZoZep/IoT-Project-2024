@@ -8,7 +8,7 @@ from rclpy.executors import MultiThreadedExecutor
 from project_interfaces.msg import Data
 from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
-
+from sensor_msgs.msg import LaserScan
 import math_utils
 
 
@@ -45,6 +45,13 @@ class SimulationManager(Node):
                 #self.forward_data,
                 10
             )
+            self.create_subscription(
+                Odometry,
+                f'ActiveSensor_{i}/odometry',
+                lambda odometry_msg, sensor_id = i: self.store_sensor_position(sensor_id, odometry_msg),
+                10
+                #self.store_sensor_position
+            )
             
 
         self.balloons_rx = {}
@@ -64,9 +71,9 @@ class SimulationManager(Node):
                 f'Balloon_{i}/rx_data',
                 10
             )
-            
+    
     def store_sensor_position(self, sensor_id, position : Odometry):
-
+        
         self.sensor_positions[sensor_id] = position.pose.pose.position
 
 

@@ -26,7 +26,7 @@ NUMBER_OF_SENSORS = int(sys.argv[2])
 
 HOVERING_HEIGHT = 5.0
 
-DEBUG_SETUP= False
+DEBUG_SETUP= True
 DEBUG_PATROLLING= False
 class FleetCoordinator(Node):
 
@@ -212,7 +212,7 @@ class FleetCoordinator(Node):
 
 
 
-        self.get_logger().info(f"Submitting task for sensor{sensor_id}")
+        if DEBUG_PATROLLING:self.get_logger().info(f"Submitting task for sensor{sensor_id}")
 
         # Submit the task here and add a callback for when the submission is accepted
         patrol_future = self.sensor_action_clients[sensor_id].send_goal_async(goal)

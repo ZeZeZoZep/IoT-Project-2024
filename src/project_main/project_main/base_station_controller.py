@@ -17,7 +17,7 @@ WORLD_NAME = "iot_project_world"
 NUMBER_OF_BALLOONS = int(sys.argv[1])
 NUMBER_OF_SENSORS = int(sys.argv[2])
 
-DEBUG_POLLING = True
+DEBUG_POLLING = False
 
 
 class BaseStationController(Node):
