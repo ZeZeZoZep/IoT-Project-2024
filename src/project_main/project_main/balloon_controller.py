@@ -16,6 +16,7 @@ from rosgraph_msgs.msg import Clock
 import math_utils
 from project_interfaces.action import Patrol
 from project_interfaces.action import Polling
+from project_interfaces.msg import Res
 
 from sim_utils import EventScheduler
 
@@ -24,8 +25,8 @@ MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
 DEBUG_RX = False
-DEBUG_SETUP = True
-DEBUG_POLLING = False
+DEBUG_SETUP = False
+DEBUG_POLLING = True
 
 class BalloonController(Node):
 
@@ -257,13 +258,15 @@ class BalloonController(Node):
         
         result = Polling.Result()
         if sensor_data:
-            result.result = sensor_data
-        else:
-            result.result.timestamp = self.get_clock().now().to_msg()
-            result.result.duration = 4
-            result.result.sensor_id = requested_sensor
+            result.result.data = sensor_data
             result.result.sqn = goal.request.req.sqn
-            result.result.data = "404"
+        else:
+            result.result.data.timestamp = self.get_clock().now().to_msg()
+            result.result.data.duration = 0
+            result.result.data.sensor_id = requested_sensor
+            result.result.data.sqn = -1
+            result.result.data.data = "404"
+            result.result.sqn = goal.request.req.sqn
 
         return result
 

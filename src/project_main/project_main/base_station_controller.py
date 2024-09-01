@@ -14,13 +14,14 @@ from rclpy.executors import MultiThreadedExecutor
 
 from rosgraph_msgs.msg import Clock
 from project_interfaces.action import Polling
+from project_interfaces.msg import Res
 from sim_utils import EventScheduler
 
 WORLD_NAME = "iot_project_world"
 NUMBER_OF_BALLOONS = int(sys.argv[1])
 NUMBER_OF_SENSORS = int(sys.argv[2])
 
-DEBUG_POLLING = False
+DEBUG_POLLING = True
 
 
 
@@ -62,12 +63,15 @@ class BaseStationController(Node):
             self.polling_goal_handles[i] = None 
         
         #Schedule the first call of the polling action with sensor 0 and a random polling rate
-        sensor_pick = 0 % NUMBER_OF_SENSORS
+        sensor_pick = self.pick_sensor()
         random_rate = self.pick_polling_rate()
 
         self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
     
     #Utility functions for polling rate and sqn number generator for the base station's requests
+    def pick_sensor(self):
+        return randint(0, NUMBER_OF_SENSORS - 1)
+
     def pick_polling_rate(self):
         return randint(2, 5)
     
@@ -122,64 +126,45 @@ class BaseStationController(Node):
     #Do what you have with the result of the action
     def polling_result_callback(self, future, polling_rate, uav_id):
 
-        result = future.result().result
+        result = future.result().result.result
+
+        data_to_offload = {
+            "id" : self.data_id,
+            "balloon_id": uav_id,
+            "data": self.ros_message_to_dict(result.data),
+            "polling_sqn": result.sqn,
+            "msg_receive_timestamp": self.time_to_dict(self.get_clock().now().to_msg())
+        }
+        self.offload_data_to_file(data_to_offload)
 
         polling_rate -= 1
-        if result.result.data == "404":
-            self.responses.append(result.result)
-            if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Balloon {uav_id}. No data found for sensor {result.result.sensor_id}, polling req sqn number {result.result.sqn}')
+        if result.data.data == "404":
+            self.responses.append(result)
+            if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Balloon {uav_id}. No data found for sensor {result.data.sensor_id}, polling req sqn number {result.sqn}')
             if len(self.responses) == NUMBER_OF_BALLOONS:
                 if polling_rate == 0:
-                    sensor_pick = (result.result.sensor_id + 1) % NUMBER_OF_SENSORS
+                    sensor_pick = self.pick_sensor()
                     random_rate = self.pick_polling_rate()
                     self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
                 else:
                     if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
-                    self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.result.sensor_id , polling_rate])
-            data_to_offload = {
-                "id" : self.data_id,
-                "balloon_id": uav_id,
-                "sensor_id": result.result.sensor_id,
-                "sqn": result.result.sqn,
-                "data": result.result.data,
-                #"data_timestamp": result.result.timestamp
-            }
-            self.offload_data_to_file(data_to_offload)        
-        else:
-            #OFFLOAD SU SERVER
-            data_to_offload = {
-                #"id" : self.data_id,
-                "balloon_id": uav_id,
-                "sensor_id": result.result.sensor_id,
-                "sqn": result.result.sqn,
-                "data": result.result.data
-            }
-            self.offload_data_to_server(data_to_offload)
+                    self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id , polling_rate])
 
-            #OFFLOAD SU FILE
-            data_to_offload = {
-                "id" : self.data_id,
-                "balloon_id": uav_id,
-                "sensor_id": result.result.sensor_id,
-                "sqn": result.result.sqn,
-                "data": result.result.data,
-                #"data_timestamp": result.result.timestamp
-            }
-            self.offload_data_to_file(data_to_offload)
+        else:
 
             if not self.received_polling_data:
                 self.received_polling_data = True
                 self.cancel_remaining_polling_goals(uav_id)
             
-            if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Balloon {uav_id}. Result data for sensor {result.result.sensor_id}, sensor sqn number {result.result.sqn}: {result.result.data}')
+            if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Balloon {uav_id}. Result data for sensor {result.data.sensor_id}, sensor sqn number {result.data.sqn}: {result.data.data}')
 
             if polling_rate == 0:
-                sensor_pick = (result.result.sensor_id + 1) % NUMBER_OF_SENSORS
+                sensor_pick = self.pick_sensor()
                 random_rate = self.pick_polling_rate()
                 self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
             else:
                 if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
-                self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.result.sensor_id, polling_rate])
+                self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id, polling_rate])
     
     def cancel_remaining_polling_goals(self, completed_uav_id):
         if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Canceling pending goals of other ballons except balloon {completed_uav_id}')
@@ -214,19 +199,39 @@ class BaseStationController(Node):
         
         filename = "offloaded_data.json"  # Nome del file dove verranno salvati i dati
         try:
-            #with open(filename, "w") as file:
-             #   pass  # Questo svuoterà il file
-            # Apre il file in modalità append per aggiungere i dati alla fine
-            with open(filename, "a") as file:
-               # Aggiunge un timestamp ai dati
-                data["timestamp"] = datetime.now().isoformat()
-                # Scrive i dati come stringa JSON nel file
-                file.write(json.dumps(data) + "\n")
+            with open(filename, "a+", encoding='utf-8') as file:
+                file.write(json.dumps(data, ensure_ascii='utf-8', indent=4) + ",\n")
+                #json.dump(data, file, ensure_ascii='utf-8', indent=4)
+
             self.data_id += 1
-            if DEBUG_POLLING: 
-                self.get_logger().info("Data successfully offloaded to file")
+            if DEBUG_POLLING: self.get_logger().info("Data successfully offloaded to file")
+
         except IOError as e:
-            self.get_logger().error(f"Error during file offloading: {e}")          
+            self.get_logger().error(f"Error during file offloading: {e}")     
+
+
+
+    
+    def ros_message_to_dict(self, msg):
+        # Using the built-in method to convert ROS 2 message to a dictionary
+        if hasattr(msg, '__slots__') and hasattr(msg, '_fields_and_field_types'):
+            msg_dict = {}
+            for field_name in msg.__slots__:
+                field_value = getattr(msg, field_name)
+                if field_name == "_timestamp":
+                    field_value = self.time_to_dict(field_value)
+                
+                msg_dict[field_name] = field_value
+            return msg_dict
+        else:
+            raise ValueError("Input is not a valid ROS message")    
+        
+    # Funzione per convertire il messaggio Time in un dizionario
+    def time_to_dict(self, time_msg):
+        return {
+            'sec': time_msg.sec,
+            'nanosec': time_msg.nanosec
+        }
 
 def main():
 
