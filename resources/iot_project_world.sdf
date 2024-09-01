@@ -17,8 +17,9 @@
     <scene>
       <ambient>0.4 0.4 0.4 1</ambient>
       <background>0.7 0.7 0.7 1</background>
-      <shadows>true</shadows>
+      <shadows>0</shadows>
       <grid>false</grid>
+      <origin_visual>false</origin_visual>
     </scene>
     <wind>
       <linear_velocity>
@@ -76,7 +77,7 @@
     </model>
     <light name='Sun' type='directional'>
       <pose>0 0 10 0 -0 0</pose>
-      <cast_shadows>true</cast_shadows>
+      <cast_shadows>false</cast_shadows>
       <intensity>1</intensity>
       <direction>-0.5 0.1 -0.9</direction>
       <diffuse>0.8 0.8 0.8 1</diffuse>

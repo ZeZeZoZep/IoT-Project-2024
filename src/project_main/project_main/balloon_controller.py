@@ -1,5 +1,4 @@
 import time
-import math
 import random
 import rclpy
 import rclpy.action
@@ -25,7 +24,7 @@ MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
 DEBUG_RX = False
-DEBUG_SETUP = False
+DEBUG_SETUP = True
 DEBUG_POLLING = False
 
 class BalloonController(Node):

@@ -38,12 +38,13 @@ class SensorController(Node):
             self.store_position,
             10
         )
+        """
         self.lidar_subscriber = self.create_subscription(
             LaserScan,
             'lidar',
             self.wrapperino,
             10
-        )
+        ) """
         
         self.cmd_vel_publisher = self.create_publisher(
             Twist,
