@@ -45,13 +45,6 @@ class SimulationManager(Node):
                 #self.forward_data,
                 10
             )
-            self.create_subscription(
-                Odometry,
-                f'ActiveSensor_{i}/odometry',
-                lambda odometry_msg, sensor_id = i: self.store_sensor_position(sensor_id, odometry_msg),
-                10
-                #self.store_sensor_position
-            )
             
 
         self.balloons_rx = {}
@@ -82,18 +75,13 @@ class SimulationManager(Node):
         self.balloon_positions[balloon_id] = position.pose.pose.position
 
     def forward_data_sb(self, sensor_id, msg : Data):
-        min=999999.99
-        min_i=0
+
         for i in range(NUMBER_OF_BALLOONS):
             if sensor_id in self.sensor_positions and i in self.balloon_positions:
                 distance=math_utils.point_distance(self.sensor_positions[sensor_id], self.balloon_positions[i])
                 if distance < SENSORS_RANGE:
-                    if distance < min:
-
-                        min=distance
-                        min_i=i
-
-        self.balloons_rx[min_i].publish(msg)
+                        self.balloons_rx[i].publish(msg)
+        
         
 
         

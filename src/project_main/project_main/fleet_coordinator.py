@@ -26,7 +26,7 @@ NUMBER_OF_SENSORS = int(sys.argv[2])
 
 HOVERING_HEIGHT = 5.0
 
-DEBUG_SETUP= True
+DEBUG_SETUP= False
 DEBUG_PATROLLING= False
 class FleetCoordinator(Node):
 
@@ -103,6 +103,7 @@ class FleetCoordinator(Node):
         random_rate = self.pick_polling_rate() """
 
         self.event_scheduler.schedule_event(1, self.setup_balloon, False, args = [])
+        self.event_scheduler.schedule_event(5, self.patrol_targets, False, args = [])
         #self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
     def setup_balloon(self):
 
@@ -124,11 +125,24 @@ class FleetCoordinator(Node):
         # this function has finished
         Thread(target=setup_balloon_inner).start()
     def submit_task_balloon(self, uav_id : int):
-
         # Wait for the action server to go online
-        while not self.balloon_action_clients[uav_id].wait_for_server(1) or len(self.sensor_positions) < NUMBER_OF_SENSORS:
-            if DEBUG_SETUP:self.get_logger().info(f"{self.balloon_action_clients[uav_id].wait_for_server(1)}or{len(self.sensor_positions) < NUMBER_OF_SENSORS} Waiting for action server to come online and sensors to announce their position")
+        flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
+        if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        while flag:
             sleep(3)
+            flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
+            if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if DEBUG_SETUP:self.get_logger().info(f"Controllo se so dove sono")   
+
+        while self.balloon_positions[uav_id] == None :
+            if DEBUG_SETUP:self.get_logger().info(f"dove sooonooooo?") 
+            sleep(3)
+
+        if DEBUG_SETUP:self.get_logger().info(f"ECCOCI =)")  
+
+        """ while not self.balloon_action_clients[uav_id].wait_for_server(1) or len(self.balloon_positions) < NUMBER_OF_BALLOONS:
+            if DEBUG_SETUP:self.get_logger().info(f"{self.balloon_action_clients[uav_id].wait_for_server(1)}or{len(self.balloon_positions) < NUMBER_OF_BALLOONS} Waiting for action server to come online and sensors to announce their position")
+            sleep(3) """
 
         # Set the Balloon to moving state
         self.balloon_states[uav_id] = BalloonState.MOVING
@@ -167,7 +181,7 @@ class FleetCoordinator(Node):
         # you may have to handle such cases
         if DEBUG_SETUP:self.get_logger().info(f"Patrolling action for Balloon {uav_id} has been completed. Drone is going idle")
         self.balloon_states[uav_id] = BalloonState.HOVERING
-        self.event_scheduler.schedule_event(1, self.patrol_targets, False, args = [])
+        
     
     def patrol_targets(self):
 
@@ -176,25 +190,36 @@ class FleetCoordinator(Node):
         #When a patrolling task has been completed, a new one with the same targets is given again.
         
 
-        def patrol_targets_inner():
 
-            while True:
-                for i in range(NUMBER_OF_SENSORS):
-                    # Do not resubmit tasks to already moving balloons
-                    if not self.sensor_states[i] is SensorState.MOVING:
-                        self.submit_task_sensor(i)
             
         # Start this function in another thread, so that the node can start spinning immediately after
         # this function has finished
-        Thread(target=patrol_targets_inner).start()
+        Thread(target=self.patrol_targets_inner).start()
 
-    
+    def patrol_targets_inner(self):
+        for i in range(NUMBER_OF_SENSORS):
+            # Do not resubmit tasks to already moving balloons
+            if not self.sensor_states[i] is SensorState.MOVING:
+                self.submit_task_sensor(i)
     def submit_task_sensor(self,sensor_id : int):
 
         # Wait for the action server to go online
-        while not self.sensor_action_clients[sensor_id].wait_for_server(1) or (len(self.sensor_positions) < NUMBER_OF_SENSORS and len(self.balloon_positions) < NUMBER_OF_BALLOONS): 
-            if DEBUG_PATROLLING:self.get_logger().info("Waiting for sensors")
+        flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
+        if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        while flag:
             sleep(3)
+            flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
+            if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if DEBUG_SETUP:self.get_logger().info(f"Controllo se so dove sono i plaons")   
+
+        while len(self.balloon_positions) < NUMBER_OF_BALLOONS :
+            if DEBUG_SETUP:self.get_logger().info(f"dove sono i miei amici?") 
+            sleep(3)
+
+        if DEBUG_SETUP:self.get_logger().info(f"ECCOCI =)")  
+        """ while not self.sensor_action_clients[sensor_id].wait_for_server(1) or (len(self.sensor_positions) < NUMBER_OF_SENSORS and len(self.balloon_positions) < NUMBER_OF_BALLOONS): 
+            if DEBUG_PATROLLING:self.get_logger().info("Waiting for sensors")
+            sleep(3) """
         temp=None
         balloon_id=random.randint(0,NUMBER_OF_BALLOONS-1)
         chosen_balloon=self.balloon_positions[balloon_id]
@@ -242,7 +267,7 @@ class FleetCoordinator(Node):
         # you may have to handle such cases
         if DEBUG_PATROLLING:self.get_logger().info(f"Patrolling action for Sensor{sensor_id} has been completed. Drone is going idle")
         self.sensor_states[sensor_id] = SensorState.STILL
-        self.event_scheduler.schedule_event(1, self.patrol_targets, False, args = [])
+        self.event_scheduler.schedule_event(1, self.submit_task_sensor, False, args = [sensor_id])
 
    
 
