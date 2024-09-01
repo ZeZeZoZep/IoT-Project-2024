@@ -24,9 +24,9 @@ WORLD_NAME = "iot_project_world"
 MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
-DEBUG_RX = True
+DEBUG_RX = False
 DEBUG_SETUP = False
-DEBUG_POLLING = True
+DEBUG_POLLING = False
 
 class BalloonController(Node):
 
@@ -160,6 +160,22 @@ class BalloonController(Node):
         except ValueError:
             if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass
+
+    def remove_MRU(self):
+        temp_msg=None
+        for m in self.cache:
+            if temp_msg==None:
+                temp_msg=m
+            elif m.timestamp.sec>temp_msg.timestamp.sec or (m.timestamp.sec==temp_msg.timestamp.sec and m.timestamp.nanosec>temp_msg.timestamp.nanosec):
+                temp_msg=m
+        try:
+
+            self.cache.remove(temp_msg)
+            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            
+        except ValueError:
+            if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            pass    
 
     def expire_callback(self,msg):
         try:

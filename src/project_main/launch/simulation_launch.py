@@ -18,7 +18,7 @@ from project_main.sim_utils import spawn_sdf
 WORLD_NAME = "iot_project_world"
 
 NUMBER_OF_BALLOONS = 3
-NUMBER_OF_SENSORS = 6
+NUMBER_OF_SENSORS = 8
 
 
 import numpy as np
@@ -178,6 +178,15 @@ def generate_launch_description():
             executable="parameter_bridge",
             arguments=[
             f"/ActiveSensor_{i}/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
+            ]
+        )
+        )
+        targets_to_spawn.append(
+        Node(             
+            package="ros_gz_bridge",
+            executable="parameter_bridge",
+            arguments=[
+            f"/ActiveSensor_{i}/lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan"
             ]
         )
         )

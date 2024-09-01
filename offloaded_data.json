@@ -1,0 +1,1018 @@
+{"id": 0, "balloon_id": 0, "sensor_id": 0, "sqn": 1, "data": "404", "timestamp": "2024-08-31T19:14:31.228969"}
+{"id": 1, "balloon_id": 2, "sensor_id": 0, "sqn": 1, "data": "404", "timestamp": "2024-08-31T19:14:31.250178"}
+{"id": 2, "balloon_id": 1, "sensor_id": 0, "sqn": 1, "data": "404", "timestamp": "2024-08-31T19:14:31.662669"}
+{"id": 3, "balloon_id": 0, "sensor_id": 0, "sqn": 2, "data": "404", "timestamp": "2024-08-31T19:14:33.663027"}
+{"id": 4, "balloon_id": 1, "sensor_id": 0, "sqn": 2, "data": "404", "timestamp": "2024-08-31T19:14:33.665150"}
+{"id": 5, "balloon_id": 2, "sensor_id": 0, "sqn": 2, "data": "404", "timestamp": "2024-08-31T19:14:33.710359"}
+{"id": 6, "balloon_id": 0, "sensor_id": 0, "sqn": 3, "data": "404", "timestamp": "2024-08-31T19:14:35.639620"}
+{"id": 7, "balloon_id": 1, "sensor_id": 0, "sqn": 3, "data": "404", "timestamp": "2024-08-31T19:14:35.666368"}
+{"id": 8, "balloon_id": 2, "sensor_id": 0, "sqn": 3, "data": "404", "timestamp": "2024-08-31T19:14:35.684678"}
+{"id": 9, "balloon_id": 0, "sensor_id": 0, "sqn": 4, "data": "404", "timestamp": "2024-08-31T19:14:36.886646"}
+{"id": 10, "balloon_id": 1, "sensor_id": 0, "sqn": 4, "data": "404", "timestamp": "2024-08-31T19:14:36.931816"}
+{"id": 10, "balloon_id": 2, "sensor_id": 0, "sqn": 4, "data": "404", "timestamp": "2024-08-31T19:14:36.934101"}
+{"id": 12, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "404", "timestamp": "2024-08-31T19:14:38.156083"}
+{"id": 12, "balloon_id": 2, "sensor_id": 1, "sqn": 5, "data": "404", "timestamp": "2024-08-31T19:14:38.157725"}
+{"id": 14, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "404", "timestamp": "2024-08-31T19:14:38.318503"}
+{"id": 15, "balloon_id": 2, "sensor_id": 1, "sqn": 6, "data": "404", "timestamp": "2024-08-31T19:14:38.337998"}
+{"id": 16, "balloon_id": 1, "sensor_id": 1, "sqn": 1, "data": "Sensor data: 1_1!", "timestamp": "2024-08-31T19:14:38.637464"}
+{"id": 17, "balloon_id": 1, "sensor_id": 1, "sqn": 1, "data": "Sensor data: 1_1!", "timestamp": "2024-08-31T19:14:38.689704"}
+{"id": 18, "balloon_id": 2, "sensor_id": 1, "sqn": 7, "data": "404", "timestamp": "2024-08-31T19:14:39.903874"}
+{"id": 19, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "404", "timestamp": "2024-08-31T19:14:39.910375"}
+{"id": 20, "balloon_id": 2, "sensor_id": 1, "sqn": 8, "data": "404", "timestamp": "2024-08-31T19:14:40.016701"}
+{"id": 21, "balloon_id": 0, "sensor_id": 1, "sqn": 8, "data": "404", "timestamp": "2024-08-31T19:14:40.028790"}
+{"id": 22, "balloon_id": 1, "sensor_id": 1, "sqn": 2, "data": "Sensor data: 1_2!", "timestamp": "2024-08-31T19:14:40.182965"}
+{"id": 23, "balloon_id": 1, "sensor_id": 1, "sqn": 2, "data": "Sensor data: 1_2!", "timestamp": "2024-08-31T19:14:40.328897"}
+{"id": 24, "balloon_id": 0, "sensor_id": 2, "sqn": 9, "data": "404", "timestamp": "2024-08-31T19:14:41.499167"}
+{"id": 25, "balloon_id": 2, "sensor_id": 2, "sqn": 9, "data": "404", "timestamp": "2024-08-31T19:14:41.512908"}
+{"id": 26, "balloon_id": 0, "sensor_id": 2, "sqn": 10, "data": "404", "timestamp": "2024-08-31T19:14:41.630995"}
+{"id": 27, "balloon_id": 2, "sensor_id": 2, "sqn": 10, "data": "404", "timestamp": "2024-08-31T19:14:41.657549"}
+{"id": 28, "balloon_id": 1, "sensor_id": 2, "sqn": 1, "data": "Sensor data: 2_1!", "timestamp": "2024-08-31T19:14:41.802397"}
+{"id": 29, "balloon_id": 1, "sensor_id": 2, "sqn": 1, "data": "Sensor data: 2_1!", "timestamp": "2024-08-31T19:14:41.966435"}
+{"id": 30, "balloon_id": 2, "sensor_id": 2, "sqn": 11, "data": "404", "timestamp": "2024-08-31T19:14:43.267467"}
+{"id": 31, "balloon_id": 0, "sensor_id": 2, "sqn": 11, "data": "404", "timestamp": "2024-08-31T19:14:43.285327"}
+{"id": 32, "balloon_id": 2, "sensor_id": 2, "sqn": 12, "data": "404", "timestamp": "2024-08-31T19:14:43.526139"}
+{"id": 32, "balloon_id": 0, "sensor_id": 2, "sqn": 12, "data": "404", "timestamp": "2024-08-31T19:14:43.533160"}
+{"id": 34, "balloon_id": 1, "sensor_id": 2, "sqn": 1, "data": "Sensor data: 2_1!", "timestamp": "2024-08-31T19:14:43.563713"}
+{"id": 35, "balloon_id": 1, "sensor_id": 2, "sqn": 1, "data": "Sensor data: 2_1!", "timestamp": "2024-08-31T19:14:43.818774"}
+{"id": 36, "balloon_id": 2, "sensor_id": 2, "sqn": 13, "data": "404", "timestamp": "2024-08-31T19:14:45.004646"}
+{"id": 36, "balloon_id": 0, "sensor_id": 2, "sqn": 13, "data": "404", "timestamp": "2024-08-31T19:14:45.006619"}
+{"id": 38, "balloon_id": 1, "sensor_id": 2, "sqn": 1, "data": "Sensor data: 2_1!", "timestamp": "2024-08-31T19:14:45.325007"}
+{"id": 39, "balloon_id": 2, "sensor_id": 2, "sqn": 14, "data": "404", "timestamp": "2024-08-31T19:14:45.396984"}
+{"id": 40, "balloon_id": 0, "sensor_id": 2, "sqn": 14, "data": "404", "timestamp": "2024-08-31T19:14:45.410281"}
+{"id": 41, "balloon_id": 1, "sensor_id": 2, "sqn": 1, "data": "Sensor data: 2_1!", "timestamp": "2024-08-31T19:14:45.694501"}
+{"id": 42, "balloon_id": 2, "sensor_id": 3, "sqn": 15, "data": "404", "timestamp": "2024-08-31T19:14:47.374792"}
+{"id": 43, "balloon_id": 1, "sensor_id": 3, "sqn": 15, "data": "404", "timestamp": "2024-08-31T19:14:47.376411"}
+{"id": 44, "balloon_id": 0, "sensor_id": 3, "sqn": 3, "data": "Sensor data: 3_3!", "timestamp": "2024-08-31T19:14:47.677103"}
+{"id": 45, "balloon_id": 0, "sensor_id": 2, "sqn": 16, "data": "404", "timestamp": "2024-08-31T19:14:47.800402"}
+{"id": 45, "balloon_id": 1, "sensor_id": 2, "sqn": 16, "data": "404", "timestamp": "2024-08-31T19:14:47.802963"}
+{"id": 46, "balloon_id": 2, "sensor_id": 2, "sqn": 16, "data": "404", "timestamp": "2024-08-31T19:14:47.805953"}
+{"id": 48, "balloon_id": 1, "sensor_id": 3, "sqn": 17, "data": "404", "timestamp": "2024-08-31T19:14:49.443019"}
+{"id": 49, "balloon_id": 2, "sensor_id": 3, "sqn": 17, "data": "404", "timestamp": "2024-08-31T19:14:49.476807"}
+{"id": 50, "balloon_id": 2, "sensor_id": 2, "sqn": 18, "data": "404", "timestamp": "2024-08-31T19:14:49.712561"}
+{"id": 51, "balloon_id": 0, "sensor_id": 2, "sqn": 19, "data": "404", "timestamp": "2024-08-31T19:14:49.734176"}
+{"id": 51, "balloon_id": 1, "sensor_id": 2, "sqn": 18, "data": "404", "timestamp": "2024-08-31T19:14:49.745201"}
+{"id": 53, "balloon_id": 0, "sensor_id": 2, "sqn": 18, "data": "404", "timestamp": "2024-08-31T19:14:49.764175"}
+{"id": 54, "balloon_id": 2, "sensor_id": 2, "sqn": 19, "data": "404", "timestamp": "2024-08-31T19:14:49.772879"}
+{"id": 55, "balloon_id": 1, "sensor_id": 2, "sqn": 19, "data": "404", "timestamp": "2024-08-31T19:14:49.791006"}
+{"id": 56, "balloon_id": 0, "sensor_id": 3, "sqn": 3, "data": "Sensor data: 3_3!", "timestamp": "2024-08-31T19:14:49.798168"}
+{"id": 57, "balloon_id": 2, "sensor_id": 2, "sqn": 20, "data": "404", "timestamp": "2024-08-31T19:14:49.902553"}
+{"id": 58, "balloon_id": 1, "sensor_id": 2, "sqn": 20, "data": "404", "timestamp": "2024-08-31T19:14:49.905618"}
+{"id": 59, "balloon_id": 0, "sensor_id": 2, "sqn": 20, "data": "404", "timestamp": "2024-08-31T19:14:49.911932"}
+{"id": 60, "balloon_id": 2, "sensor_id": 3, "sqn": 21, "data": "404", "timestamp": "2024-08-31T19:14:51.414264"}
+{"id": 61, "balloon_id": 1, "sensor_id": 3, "sqn": 21, "data": "404", "timestamp": "2024-08-31T19:14:51.452180"}
+{"id": 62, "balloon_id": 2, "sensor_id": 3, "sqn": 22, "data": "404", "timestamp": "2024-08-31T19:14:51.674472"}
+{"id": 63, "balloon_id": 1, "sensor_id": 3, "sqn": 23, "data": "404", "timestamp": "2024-08-31T19:14:51.695088"}
+{"id": 64, "balloon_id": 1, "sensor_id": 3, "sqn": 22, "data": "404", "timestamp": "2024-08-31T19:14:51.716091"}
+{"id": 65, "balloon_id": 2, "sensor_id": 3, "sqn": 23, "data": "404", "timestamp": "2024-08-31T19:14:51.724809"}
+{"id": 66, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:51.792057"}
+{"id": 67, "balloon_id": 2, "sensor_id": 3, "sqn": 24, "data": "404", "timestamp": "2024-08-31T19:14:51.864559"}
+{"id": 68, "balloon_id": 1, "sensor_id": 3, "sqn": 24, "data": "404", "timestamp": "2024-08-31T19:14:51.883202"}
+{"id": 69, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:51.942696"}
+{"id": 70, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:52.022602"}
+{"id": 71, "balloon_id": 1, "sensor_id": 3, "sqn": 25, "data": "404", "timestamp": "2024-08-31T19:14:52.114994"}
+{"id": 71, "balloon_id": 2, "sensor_id": 3, "sqn": 25, "data": "404", "timestamp": "2024-08-31T19:14:52.117018"}
+{"id": 73, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:52.171612"}
+{"id": 74, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:52.419994"}
+{"id": 75, "balloon_id": 1, "sensor_id": 3, "sqn": 26, "data": "404", "timestamp": "2024-08-31T19:14:53.640141"}
+{"id": 75, "balloon_id": 2, "sensor_id": 3, "sqn": 26, "data": "404", "timestamp": "2024-08-31T19:14:53.650155"}
+{"id": 77, "balloon_id": 2, "sensor_id": 3, "sqn": 27, "data": "404", "timestamp": "2024-08-31T19:14:53.858153"}
+{"id": 78, "balloon_id": 1, "sensor_id": 3, "sqn": 27, "data": "404", "timestamp": "2024-08-31T19:14:53.875135"}
+{"id": 79, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:53.962695"}
+{"id": 80, "balloon_id": 1, "sensor_id": 3, "sqn": 29, "data": "404", "timestamp": "2024-08-31T19:14:54.097910"}
+{"id": 81, "balloon_id": 2, "sensor_id": 3, "sqn": 29, "data": "404", "timestamp": "2024-08-31T19:14:54.107320"}
+{"id": 82, "balloon_id": 1, "sensor_id": 3, "sqn": 28, "data": "404", "timestamp": "2024-08-31T19:14:54.141738"}
+{"id": 83, "balloon_id": 2, "sensor_id": 3, "sqn": 28, "data": "404", "timestamp": "2024-08-31T19:14:54.151595"}
+{"id": 84, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:54.204850"}
+{"id": 85, "balloon_id": 1, "sensor_id": 3, "sqn": 30, "data": "404", "timestamp": "2024-08-31T19:14:54.276748"}
+{"id": 86, "balloon_id": 2, "sensor_id": 3, "sqn": 30, "data": "404", "timestamp": "2024-08-31T19:14:54.294887"}
+{"id": 87, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:54.421403"}
+{"id": 87, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:54.425092"}
+{"id": 88, "balloon_id": 1, "sensor_id": 3, "sqn": 31, "data": "404", "timestamp": "2024-08-31T19:14:54.437673"}
+{"id": 90, "balloon_id": 2, "sensor_id": 3, "sqn": 31, "data": "404", "timestamp": "2024-08-31T19:14:54.476689"}
+{"id": 91, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:54.575040"}
+{"id": 92, "balloon_id": 0, "sensor_id": 3, "sqn": 4, "data": "Sensor data: 3_4!", "timestamp": "2024-08-31T19:14:54.738141"}
+{"id": 93, "balloon_id": 1, "sensor_id": 3, "sqn": 32, "data": "404", "timestamp": "2024-08-31T19:14:56.023866"}
+{"id": 93, "balloon_id": 2, "sensor_id": 3, "sqn": 32, "data": "404", "timestamp": "2024-08-31T19:14:56.034353"}
+{"id": 95, "balloon_id": 1, "sensor_id": 3, "sqn": 33, "data": "404", "timestamp": "2024-08-31T19:14:56.215858"}
+{"id": 95, "balloon_id": 2, "sensor_id": 3, "sqn": 33, "data": "404", "timestamp": "2024-08-31T19:14:56.217973"}
+{"id": 97, "balloon_id": 0, "sensor_id": 3, "sqn": 5, "data": "Sensor data: 3_5!", "timestamp": "2024-08-31T19:14:56.336113"}
+{"id": 98, "balloon_id": 2, "sensor_id": 3, "sqn": 34, "data": "404", "timestamp": "2024-08-31T19:14:56.502587"}
+{"id": 99, "balloon_id": 1, "sensor_id": 3, "sqn": 35, "data": "404", "timestamp": "2024-08-31T19:14:56.519261"}
+{"id": 99, "balloon_id": 2, "sensor_id": 3, "sqn": 35, "data": "404", "timestamp": "2024-08-31T19:14:56.522893"}
+{"id": 101, "balloon_id": 0, "sensor_id": 3, "sqn": 5, "data": "Sensor data: 3_5!", "timestamp": "2024-08-31T19:14:56.539195"}
+{"id": 102, "balloon_id": 1, "sensor_id": 3, "sqn": 34, "data": "404", "timestamp": "2024-08-31T19:14:56.543120"}
+{"id": 103, "balloon_id": 1, "sensor_id": 3, "sqn": 36, "data": "404", "timestamp": "2024-08-31T19:14:56.648287"}
+{"id": 104, "balloon_id": 2, "sensor_id": 3, "sqn": 36, "data": "404", "timestamp": "2024-08-31T19:14:56.664613"}
+{"id": 105, "balloon_id": 0, "sensor_id": 3, "sqn": 5, "data": "Sensor data: 3_5!", "timestamp": "2024-08-31T19:14:56.785972"}
+{"id": 105, "balloon_id": 0, "sensor_id": 3, "sqn": 5, "data": "Sensor data: 3_5!", "timestamp": "2024-08-31T19:14:56.787121"}
+{"id": 107, "balloon_id": 2, "sensor_id": 3, "sqn": 37, "data": "404", "timestamp": "2024-08-31T19:14:56.884273"}
+{"id": 107, "balloon_id": 1, "sensor_id": 3, "sqn": 37, "data": "404", "timestamp": "2024-08-31T19:14:56.888393"}
+{"id": 109, "balloon_id": 0, "sensor_id": 3, "sqn": 5, "data": "Sensor data: 3_5!", "timestamp": "2024-08-31T19:14:56.978394"}
+{"id": 110, "balloon_id": 1, "sensor_id": 4, "sqn": 38, "data": "404", "timestamp": "2024-08-31T19:14:57.095845"}
+{"id": 111, "balloon_id": 0, "sensor_id": 4, "sqn": 38, "data": "404", "timestamp": "2024-08-31T19:14:57.105937"}
+{"id": 112, "balloon_id": 0, "sensor_id": 3, "sqn": 5, "data": "Sensor data: 3_5!", "timestamp": "2024-08-31T19:14:57.185333"}
+{"id": 113, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:14:57.414691"}
+{"id": 114, "balloon_id": 0, "sensor_id": 4, "sqn": 39, "data": "404", "timestamp": "2024-08-31T19:14:58.474356"}
+{"id": 114, "balloon_id": 1, "sensor_id": 4, "sqn": 39, "data": "404", "timestamp": "2024-08-31T19:14:58.475514"}
+{"id": 116, "balloon_id": 1, "sensor_id": 4, "sqn": 40, "data": "404", "timestamp": "2024-08-31T19:14:58.509727"}
+{"id": 117, "balloon_id": 0, "sensor_id": 4, "sqn": 40, "data": "404", "timestamp": "2024-08-31T19:14:58.520082"}
+{"id": 118, "balloon_id": 0, "sensor_id": 4, "sqn": 41, "data": "404", "timestamp": "2024-08-31T19:14:58.713306"}
+{"id": 119, "balloon_id": 1, "sensor_id": 4, "sqn": 41, "data": "404", "timestamp": "2024-08-31T19:14:58.720558"}
+{"id": 120, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:14:58.733646"}
+{"id": 121, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:14:58.764424"}
+{"id": 122, "balloon_id": 0, "sensor_id": 4, "sqn": 42, "data": "404", "timestamp": "2024-08-31T19:14:58.939117"}
+{"id": 123, "balloon_id": 1, "sensor_id": 4, "sqn": 42, "data": "404", "timestamp": "2024-08-31T19:14:58.965258"}
+{"id": 124, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:14:59.030092"}
+{"id": 125, "balloon_id": 0, "sensor_id": 4, "sqn": 43, "data": "404", "timestamp": "2024-08-31T19:14:59.136704"}
+{"id": 126, "balloon_id": 1, "sensor_id": 4, "sqn": 43, "data": "404", "timestamp": "2024-08-31T19:14:59.174240"}
+{"id": 127, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:14:59.275721"}
+{"id": 128, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:14:59.503267"}
+{"id": 129, "balloon_id": 2, "sensor_id": 3, "sqn": 44, "data": "404", "timestamp": "2024-08-31T19:14:59.537229"}
+{"id": 130, "balloon_id": 1, "sensor_id": 3, "sqn": 44, "data": "404", "timestamp": "2024-08-31T19:14:59.576791"}
+{"id": 131, "balloon_id": 0, "sensor_id": 4, "sqn": 45, "data": "404", "timestamp": "2024-08-31T19:14:59.798561"}
+{"id": 132, "balloon_id": 1, "sensor_id": 4, "sqn": 45, "data": "404", "timestamp": "2024-08-31T19:14:59.823878"}
+{"id": 133, "balloon_id": 0, "sensor_id": 3, "sqn": 6, "data": "Sensor data: 3_6!", "timestamp": "2024-08-31T19:14:59.870435"}
+{"id": 134, "balloon_id": 1, "sensor_id": 4, "sqn": 46, "data": "404", "timestamp": "2024-08-31T19:15:00.091180"}
+{"id": 135, "balloon_id": 0, "sensor_id": 4, "sqn": 46, "data": "404", "timestamp": "2024-08-31T19:15:00.110309"}
+{"id": 136, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:00.163536"}
+{"id": 137, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:00.507860"}
+{"id": 138, "balloon_id": 1, "sensor_id": 4, "sqn": 47, "data": "404", "timestamp": "2024-08-31T19:15:00.925179"}
+{"id": 138, "balloon_id": 0, "sensor_id": 4, "sqn": 47, "data": "404", "timestamp": "2024-08-31T19:15:00.928848"}
+{"id": 140, "balloon_id": 1, "sensor_id": 4, "sqn": 48, "data": "404", "timestamp": "2024-08-31T19:15:01.194550"}
+{"id": 141, "balloon_id": 0, "sensor_id": 4, "sqn": 49, "data": "404", "timestamp": "2024-08-31T19:15:01.246711"}
+{"id": 141, "balloon_id": 0, "sensor_id": 4, "sqn": 48, "data": "404", "timestamp": "2024-08-31T19:15:01.247457"}
+{"id": 142, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:01.253566"}
+{"id": 143, "balloon_id": 1, "sensor_id": 4, "sqn": 49, "data": "404", "timestamp": "2024-08-31T19:15:01.258105"}
+{"id": 145, "balloon_id": 0, "sensor_id": 4, "sqn": 50, "data": "404", "timestamp": "2024-08-31T19:15:01.479391"}
+{"id": 146, "balloon_id": 1, "sensor_id": 4, "sqn": 50, "data": "404", "timestamp": "2024-08-31T19:15:01.493646"}
+{"id": 147, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:01.557772"}
+{"id": 148, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:01.563223"}
+{"id": 149, "balloon_id": 0, "sensor_id": 4, "sqn": 51, "data": "404", "timestamp": "2024-08-31T19:15:01.714727"}
+{"id": 150, "balloon_id": 1, "sensor_id": 4, "sqn": 51, "data": "404", "timestamp": "2024-08-31T19:15:01.731501"}
+{"id": 151, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:01.825991"}
+{"id": 152, "balloon_id": 0, "sensor_id": 4, "sqn": 52, "data": "404", "timestamp": "2024-08-31T19:15:01.980236"}
+{"id": 153, "balloon_id": 1, "sensor_id": 4, "sqn": 52, "data": "404", "timestamp": "2024-08-31T19:15:01.993798"}
+{"id": 154, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:02.025136"}
+{"id": 155, "balloon_id": 0, "sensor_id": 4, "sqn": 53, "data": "404", "timestamp": "2024-08-31T19:15:02.177837"}
+{"id": 156, "balloon_id": 1, "sensor_id": 4, "sqn": 53, "data": "404", "timestamp": "2024-08-31T19:15:02.205299"}
+{"id": 157, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:02.374382"}
+{"id": 158, "balloon_id": 0, "sensor_id": 4, "sqn": 54, "data": "404", "timestamp": "2024-08-31T19:15:02.454752"}
+{"id": 159, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:02.485263"}
+{"id": 160, "balloon_id": 1, "sensor_id": 4, "sqn": 54, "data": "404", "timestamp": "2024-08-31T19:15:02.503867"}
+{"id": 161, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:02.726104"}
+{"id": 162, "balloon_id": 1, "sensor_id": 4, "sqn": 55, "data": "404", "timestamp": "2024-08-31T19:15:02.748194"}
+{"id": 163, "balloon_id": 1, "sensor_id": 4, "sqn": 56, "data": "404", "timestamp": "2024-08-31T19:15:02.964132"}
+{"id": 164, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:03.016546"}
+{"id": 165, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:03.050279"}
+{"id": 166, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:03.299982"}
+{"id": 167, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:03.331048"}
+{"id": 168, "balloon_id": 1, "sensor_id": 4, "sqn": 57, "data": "404", "timestamp": "2024-08-31T19:15:03.776353"}
+{"id": 169, "balloon_id": 1, "sensor_id": 4, "sqn": 58, "data": "404", "timestamp": "2024-08-31T19:15:04.039297"}
+{"id": 170, "balloon_id": 1, "sensor_id": 4, "sqn": 59, "data": "404", "timestamp": "2024-08-31T19:15:04.054839"}
+{"id": 171, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:04.086255"}
+{"id": 172, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:04.109213"}
+{"id": 173, "balloon_id": 1, "sensor_id": 4, "sqn": 60, "data": "404", "timestamp": "2024-08-31T19:15:04.281030"}
+{"id": 174, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:04.316091"}
+{"id": 175, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:04.337926"}
+{"id": 176, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:04.390991"}
+{"id": 177, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:04.429483"}
+{"id": 178, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:04.610295"}
+{"id": 178, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:04.643321"}
+{"id": 179, "balloon_id": 1, "sensor_id": 4, "sqn": 61, "data": "404", "timestamp": "2024-08-31T19:15:04.655908"}
+{"id": 181, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:05.047394"}
+{"id": 181, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:05.057678"}
+{"id": 183, "balloon_id": 1, "sensor_id": 4, "sqn": 62, "data": "404", "timestamp": "2024-08-31T19:15:05.084675"}
+{"id": 184, "balloon_id": 1, "sensor_id": 4, "sqn": 63, "data": "404", "timestamp": "2024-08-31T19:15:05.295260"}
+{"id": 185, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:05.375557"}
+{"id": 185, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:05.380807"}
+{"id": 187, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:05.721385"}
+{"id": 187, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:05.726598"}
+{"id": 189, "balloon_id": 1, "sensor_id": 4, "sqn": 64, "data": "404", "timestamp": "2024-08-31T19:15:05.787352"}
+{"id": 190, "balloon_id": 1, "sensor_id": 4, "sqn": 65, "data": "404", "timestamp": "2024-08-31T19:15:06.113978"}
+{"id": 190, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:06.116429"}
+{"id": 192, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:06.136492"}
+{"id": 193, "balloon_id": 1, "sensor_id": 5, "sqn": 66, "data": "404", "timestamp": "2024-08-31T19:15:06.166077"}
+{"id": 194, "balloon_id": 2, "sensor_id": 5, "sqn": 66, "data": "404", "timestamp": "2024-08-31T19:15:06.184148"}
+{"id": 195, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:06.363826"}
+{"id": 195, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:06.415400"}
+{"id": 195, "balloon_id": 1, "sensor_id": 5, "sqn": 67, "data": "404", "timestamp": "2024-08-31T19:15:06.415920"}
+{"id": 198, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:06.446711"}
+{"id": 199, "balloon_id": 2, "sensor_id": 5, "sqn": 67, "data": "404", "timestamp": "2024-08-31T19:15:06.510045"}
+{"id": 200, "balloon_id": 1, "sensor_id": 4, "sqn": 68, "data": "404", "timestamp": "2024-08-31T19:15:06.512650"}
+{"id": 201, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:06.673980"}
+{"id": 202, "balloon_id": 1, "sensor_id": 4, "sqn": 69, "data": "404", "timestamp": "2024-08-31T19:15:06.718780"}
+{"id": 203, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:06.832813"}
+{"id": 204, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:06.845352"}
+{"id": 205, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:07.073848"}
+{"id": 205, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:07.074816"}
+{"id": 205, "balloon_id": 1, "sensor_id": 4, "sqn": 70, "data": "404", "timestamp": "2024-08-31T19:15:07.076913"}
+{"id": 208, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:07.374871"}
+{"id": 208, "balloon_id": 1, "sensor_id": 4, "sqn": 72, "data": "404", "timestamp": "2024-08-31T19:15:07.376584"}
+{"id": 209, "balloon_id": 1, "sensor_id": 4, "sqn": 71, "data": "404", "timestamp": "2024-08-31T19:15:07.395433"}
+{"id": 210, "balloon_id": 1, "sensor_id": 4, "sqn": 73, "data": "404", "timestamp": "2024-08-31T19:15:07.426994"}
+{"id": 212, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:07.438735"}
+{"id": 213, "balloon_id": 1, "sensor_id": 4, "sqn": 74, "data": "404", "timestamp": "2024-08-31T19:15:07.615858"}
+{"id": 214, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:07.622752"}
+{"id": 215, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:07.645530"}
+{"id": 216, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:07.664173"}
+{"id": 216, "balloon_id": 1, "sensor_id": 4, "sqn": 75, "data": "404", "timestamp": "2024-08-31T19:15:07.665103"}
+{"id": 218, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:07.785609"}
+{"id": 218, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:07.791496"}
+{"id": 218, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:07.810272"}
+{"id": 221, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:08.030389"}
+{"id": 222, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:08.041524"}
+{"id": 221, "balloon_id": 1, "sensor_id": 4, "sqn": 76, "data": "404", "timestamp": "2024-08-31T19:15:08.068572"}
+{"id": 223, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:08.099472"}
+{"id": 225, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:08.173417"}
+{"id": 225, "balloon_id": 1, "sensor_id": 4, "sqn": 78, "data": "404", "timestamp": "2024-08-31T19:15:08.190659"}
+{"id": 227, "balloon_id": 1, "sensor_id": 4, "sqn": 77, "data": "404", "timestamp": "2024-08-31T19:15:08.269374"}
+{"id": 227, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:08.271962"}
+{"id": 229, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:08.365588"}
+{"id": 229, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:08.391884"}
+{"id": 231, "balloon_id": 1, "sensor_id": 4, "sqn": 79, "data": "404", "timestamp": "2024-08-31T19:15:08.451563"}
+{"id": 232, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:08.538294"}
+{"id": 233, "balloon_id": 1, "sensor_id": 4, "sqn": 82, "data": "404", "timestamp": "2024-08-31T19:15:08.623112"}
+{"id": 234, "balloon_id": 1, "sensor_id": 4, "sqn": 80, "data": "404", "timestamp": "2024-08-31T19:15:08.630175"}
+{"id": 235, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:08.757607"}
+{"id": 236, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:08.779047"}
+{"id": 237, "balloon_id": 1, "sensor_id": 4, "sqn": 81, "data": "404", "timestamp": "2024-08-31T19:15:08.890598"}
+{"id": 237, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:08.915915"}
+{"id": 239, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:09.095907"}
+{"id": 239, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:09.128778"}
+{"id": 239, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:09.160234"}
+{"id": 241, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:09.217463"}
+{"id": 242, "balloon_id": 1, "sensor_id": 5, "sqn": 83, "data": "404", "timestamp": "2024-08-31T19:15:09.236627"}
+{"id": 244, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:09.293388"}
+{"id": 244, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:09.294703"}
+{"id": 244, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:09.310606"}
+{"id": 247, "balloon_id": 1, "sensor_id": 4, "sqn": 85, "data": "404", "timestamp": "2024-08-31T19:15:09.351265"}
+{"id": 248, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:09.418182"}
+{"id": 249, "balloon_id": 1, "sensor_id": 5, "sqn": 84, "data": "404", "timestamp": "2024-08-31T19:15:09.436898"}
+{"id": 250, "balloon_id": 2, "sensor_id": 5, "sqn": 83, "data": "404", "timestamp": "2024-08-31T19:15:09.469594"}
+{"id": 251, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:09.491196"}
+{"id": 252, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:09.632097"}
+{"id": 252, "balloon_id": 2, "sensor_id": 5, "sqn": 85, "data": "404", "timestamp": "2024-08-31T19:15:09.641069"}
+{"id": 254, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:09.705175"}
+{"id": 254, "balloon_id": 1, "sensor_id": 4, "sqn": 86, "data": "404", "timestamp": "2024-08-31T19:15:09.726590"}
+{"id": 255, "balloon_id": 1, "sensor_id": 4, "sqn": 87, "data": "404", "timestamp": "2024-08-31T19:15:09.758735"}
+{"id": 255, "balloon_id": 1, "sensor_id": 4, "sqn": 88, "data": "404", "timestamp": "2024-08-31T19:15:09.760610"}
+{"id": 255, "balloon_id": 1, "sensor_id": 4, "sqn": 89, "data": "404", "timestamp": "2024-08-31T19:15:09.764434"}
+{"id": 257, "balloon_id": 1, "sensor_id": 4, "sqn": 90, "data": "404", "timestamp": "2024-08-31T19:15:09.790745"}
+{"id": 260, "balloon_id": 1, "sensor_id": 4, "sqn": 91, "data": "404", "timestamp": "2024-08-31T19:15:09.861100"}
+{"id": 261, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:09.916546"}
+{"id": 261, "balloon_id": 1, "sensor_id": 5, "sqn": 92, "data": "404", "timestamp": "2024-08-31T19:15:09.975531"}
+{"id": 263, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:10.025204"}
+{"id": 263, "balloon_id": 1, "sensor_id": 4, "sqn": 93, "data": "404", "timestamp": "2024-08-31T19:15:10.048486"}
+{"id": 265, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:10.127309"}
+{"id": 266, "balloon_id": 1, "sensor_id": 4, "sqn": 94, "data": "404", "timestamp": "2024-08-31T19:15:10.137394"}
+{"id": 267, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:10.173333"}
+{"id": 268, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:10.246525"}
+{"id": 268, "balloon_id": 1, "sensor_id": 5, "sqn": 95, "data": "404", "timestamp": "2024-08-31T19:15:10.255317"}
+{"id": 270, "balloon_id": 0, "sensor_id": 4, "sqn": 6, "data": "Sensor data: 4_6!", "timestamp": "2024-08-31T19:15:10.279304"}
+{"id": 271, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:10.326660"}
+{"id": 271, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:10.342242"}
+{"id": 273, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:10.383796"}
+{"id": 274, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:10.428738"}
+{"id": 275, "balloon_id": 1, "sensor_id": 5, "sqn": 96, "data": "404", "timestamp": "2024-08-31T19:15:10.462183"}
+{"id": 276, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:10.477620"}
+{"id": 277, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:10.518591"}
+{"id": 278, "balloon_id": 2, "sensor_id": 5, "sqn": 92, "data": "404", "timestamp": "2024-08-31T19:15:10.573654"}
+{"id": 279, "balloon_id": 1, "sensor_id": 5, "sqn": 97, "data": "404", "timestamp": "2024-08-31T19:15:10.630426"}
+{"id": 280, "balloon_id": 1, "sensor_id": 4, "sqn": 98, "data": "404", "timestamp": "2024-08-31T19:15:10.732365"}
+{"id": 281, "balloon_id": 1, "sensor_id": 4, "sqn": 99, "data": "404", "timestamp": "2024-08-31T19:15:10.738826"}
+{"id": 282, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:10.760273"}
+{"id": 282, "balloon_id": 1, "sensor_id": 5, "sqn": 101, "data": "404", "timestamp": "2024-08-31T19:15:10.766841"}
+{"id": 282, "balloon_id": 2, "sensor_id": 5, "sqn": 95, "data": "404", "timestamp": "2024-08-31T19:15:10.770608"}
+{"id": 285, "balloon_id": 1, "sensor_id": 5, "sqn": 100, "data": "404", "timestamp": "2024-08-31T19:15:10.817902"}
+{"id": 286, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:10.930197"}
+{"id": 287, "balloon_id": 2, "sensor_id": 5, "sqn": 96, "data": "404", "timestamp": "2024-08-31T19:15:10.956673"}
+{"id": 288, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:11.014921"}
+{"id": 289, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:11.036659"}
+{"id": 289, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:11.038099"}
+{"id": 289, "balloon_id": 1, "sensor_id": 4, "sqn": 102, "data": "404", "timestamp": "2024-08-31T19:15:11.050493"}
+{"id": 291, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:11.090161"}
+{"id": 291, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:11.110982"}
+{"id": 294, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:11.221160"}
+{"id": 295, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:11.302278"}
+{"id": 296, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:11.374461"}
+{"id": 296, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:11.415268"}
+{"id": 297, "balloon_id": 1, "sensor_id": 5, "sqn": 104, "data": "404", "timestamp": "2024-08-31T19:15:11.504871"}
+{"id": 297, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:11.550914"}
+{"id": 300, "balloon_id": 1, "sensor_id": 4, "sqn": 103, "data": "404", "timestamp": "2024-08-31T19:15:11.595878"}
+{"id": 301, "balloon_id": 2, "sensor_id": 5, "sqn": 97, "data": "404", "timestamp": "2024-08-31T19:15:11.617391"}
+{"id": 302, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:11.667063"}
+{"id": 303, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:11.815591"}
+{"id": 304, "balloon_id": 1, "sensor_id": 4, "sqn": 105, "data": "404", "timestamp": "2024-08-31T19:15:11.854406"}
+{"id": 304, "balloon_id": 2, "sensor_id": 5, "sqn": 101, "data": "404", "timestamp": "2024-08-31T19:15:11.856710"}
+{"id": 306, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:11.978147"}
+{"id": 306, "balloon_id": 2, "sensor_id": 5, "sqn": 100, "data": "404", "timestamp": "2024-08-31T19:15:12.002465"}
+{"id": 308, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:12.108799"}
+{"id": 308, "balloon_id": 1, "sensor_id": 4, "sqn": 106, "data": "404", "timestamp": "2024-08-31T19:15:12.134900"}
+{"id": 309, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:12.193749"}
+{"id": 310, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:12.227120"}
+{"id": 310, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:12.231854"}
+{"id": 313, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:12.412505"}
+{"id": 313, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:12.422024"}
+{"id": 313, "balloon_id": 1, "sensor_id": 4, "sqn": 108, "data": "404", "timestamp": "2024-08-31T19:15:12.477497"}
+{"id": 316, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:12.592546"}
+{"id": 317, "balloon_id": 1, "sensor_id": 4, "sqn": 107, "data": "404", "timestamp": "2024-08-31T19:15:12.647072"}
+{"id": 318, "balloon_id": 2, "sensor_id": 5, "sqn": 104, "data": "404", "timestamp": "2024-08-31T19:15:12.886521"}
+{"id": 319, "balloon_id": 1, "sensor_id": 5, "sqn": 109, "data": "404", "timestamp": "2024-08-31T19:15:12.981463"}
+{"id": 319, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:12.987730"}
+{"id": 321, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:13.103837"}
+{"id": 321, "balloon_id": 1, "sensor_id": 5, "sqn": 112, "data": "404", "timestamp": "2024-08-31T19:15:13.115004"}
+{"id": 323, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:13.154768"}
+{"id": 324, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:13.297410"}
+{"id": 325, "balloon_id": 1, "sensor_id": 4, "sqn": 110, "data": "404", "timestamp": "2024-08-31T19:15:13.369888"}
+{"id": 326, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:13.394457"}
+{"id": 327, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:13.613571"}
+{"id": 328, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:13.645133"}
+{"id": 329, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:13.779860"}
+{"id": 330, "balloon_id": 1, "sensor_id": 5, "sqn": 111, "data": "404", "timestamp": "2024-08-31T19:15:13.819152"}
+{"id": 330, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:13.822879"}
+{"id": 332, "balloon_id": 1, "sensor_id": 5, "sqn": 113, "data": "404", "timestamp": "2024-08-31T19:15:13.958666"}
+{"id": 333, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:13.998307"}
+{"id": 333, "balloon_id": 2, "sensor_id": 5, "sqn": 115, "data": "404", "timestamp": "2024-08-31T19:15:14.010301"}
+{"id": 335, "balloon_id": 0, "sensor_id": 4, "sqn": 7, "data": "Sensor data: 4_7!", "timestamp": "2024-08-31T19:15:14.142510"}
+{"id": 335, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:14.176450"}
+{"id": 337, "balloon_id": 1, "sensor_id": 4, "sqn": 124, "data": "404", "timestamp": "2024-08-31T19:15:14.234645"}
+{"id": 338, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:14.249613"}
+{"id": 339, "balloon_id": 1, "sensor_id": 5, "sqn": 130, "data": "404", "timestamp": "2024-08-31T19:15:14.258091"}
+{"id": 339, "balloon_id": 2, "sensor_id": 5, "sqn": 119, "data": "404", "timestamp": "2024-08-31T19:15:14.366157"}
+{"id": 341, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:14.506489"}
+{"id": 341, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:14.530297"}
+{"id": 343, "balloon_id": 2, "sensor_id": 4, "sqn": 5, "data": "Sensor data: 4_5!", "timestamp": "2024-08-31T19:15:14.568091"}
+{"id": 344, "balloon_id": 1, "sensor_id": 5, "sqn": 135, "data": "404", "timestamp": "2024-08-31T19:15:14.598710"}
+{"id": 345, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:14.639852"}
+{"id": 346, "balloon_id": 2, "sensor_id": 5, "sqn": 126, "data": "404", "timestamp": "2024-08-31T19:15:14.647643"}
+{"id": 347, "balloon_id": 2, "sensor_id": 5, "sqn": 132, "data": "404", "timestamp": "2024-08-31T19:15:14.789298"}
+{"id": 348, "balloon_id": 1, "sensor_id": 5, "sqn": 136, "data": "404", "timestamp": "2024-08-31T19:15:14.802384"}
+{"id": 348, "balloon_id": 2, "sensor_id": 5, "sqn": 134, "data": "404", "timestamp": "2024-08-31T19:15:14.834293"}
+{"id": 350, "balloon_id": 1, "sensor_id": 5, "sqn": 138, "data": "404", "timestamp": "2024-08-31T19:15:14.995771"}
+{"id": 350, "balloon_id": 1, "sensor_id": 4, "sqn": 128, "data": "404", "timestamp": "2024-08-31T19:15:15.013851"}
+{"id": 352, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.060161"}
+{"id": 352, "balloon_id": 2, "sensor_id": 5, "sqn": 140, "data": "404", "timestamp": "2024-08-31T19:15:15.070627"}
+{"id": 353, "balloon_id": 1, "sensor_id": 5, "sqn": 141, "data": "404", "timestamp": "2024-08-31T19:15:15.081575"}
+{"id": 355, "balloon_id": 2, "sensor_id": 5, "sqn": 133, "data": "404", "timestamp": "2024-08-31T19:15:15.117441"}
+{"id": 356, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.320646"}
+{"id": 356, "balloon_id": 2, "sensor_id": 5, "sqn": 142, "data": "404", "timestamp": "2024-08-31T19:15:15.334246"}
+{"id": 358, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.372832"}
+{"id": 359, "balloon_id": 1, "sensor_id": 5, "sqn": 144, "data": "404", "timestamp": "2024-08-31T19:15:15.525444"}
+{"id": 360, "balloon_id": 2, "sensor_id": 5, "sqn": 143, "data": "404", "timestamp": "2024-08-31T19:15:15.554207"}
+{"id": 361, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.596246"}
+{"id": 360, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.596992"}
+{"id": 363, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.629050"}
+{"id": 363, "balloon_id": 1, "sensor_id": 5, "sqn": 142, "data": "404", "timestamp": "2024-08-31T19:15:15.644558"}
+{"id": 365, "balloon_id": 2, "sensor_id": 5, "sqn": 144, "data": "404", "timestamp": "2024-08-31T19:15:15.692384"}
+{"id": 366, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.898671"}
+{"id": 367, "balloon_id": 2, "sensor_id": 5, "sqn": 147, "data": "404", "timestamp": "2024-08-31T19:15:15.936091"}
+{"id": 367, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:15.961037"}
+{"id": 369, "balloon_id": 1, "sensor_id": 5, "sqn": 149, "data": "404", "timestamp": "2024-08-31T19:15:16.018272"}
+{"id": 369, "balloon_id": 1, "sensor_id": 5, "sqn": 145, "data": "404", "timestamp": "2024-08-31T19:15:16.037331"}
+{"id": 371, "balloon_id": 2, "sensor_id": 5, "sqn": 150, "data": "404", "timestamp": "2024-08-31T19:15:16.060687"}
+{"id": 371, "balloon_id": 1, "sensor_id": 5, "sqn": 148, "data": "404", "timestamp": "2024-08-31T19:15:16.085522"}
+{"id": 373, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:16.458608"}
+{"id": 374, "balloon_id": 2, "sensor_id": 5, "sqn": 151, "data": "404", "timestamp": "2024-08-31T19:15:16.544505"}
+{"id": 375, "balloon_id": 1, "sensor_id": 5, "sqn": 151, "data": "404", "timestamp": "2024-08-31T19:15:16.575680"}
+{"id": 376, "balloon_id": 1, "sensor_id": 5, "sqn": 152, "data": "404", "timestamp": "2024-08-31T19:15:16.599531"}
+{"id": 377, "balloon_id": 2, "sensor_id": 5, "sqn": 149, "data": "404", "timestamp": "2024-08-31T19:15:16.626805"}
+{"id": 376, "balloon_id": 2, "sensor_id": 5, "sqn": 152, "data": "404", "timestamp": "2024-08-31T19:15:16.641656"}
+{"id": 379, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:16.729235"}
+{"id": 380, "balloon_id": 2, "sensor_id": 5, "sqn": 155, "data": "404", "timestamp": "2024-08-31T19:15:16.858748"}
+{"id": 380, "balloon_id": 2, "sensor_id": 5, "sqn": 153, "data": "404", "timestamp": "2024-08-31T19:15:16.871768"}
+{"id": 382, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:16.926443"}
+{"id": 382, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:16.938257"}
+{"id": 384, "balloon_id": 1, "sensor_id": 5, "sqn": 154, "data": "404", "timestamp": "2024-08-31T19:15:16.984558"}
+{"id": 385, "balloon_id": 1, "sensor_id": 5, "sqn": 155, "data": "404", "timestamp": "2024-08-31T19:15:17.105360"}
+{"id": 386, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:17.134745"}
+{"id": 386, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:17.179983"}
+{"id": 387, "balloon_id": 1, "sensor_id": 5, "sqn": 156, "data": "404", "timestamp": "2024-08-31T19:15:17.194910"}
+{"id": 389, "balloon_id": 2, "sensor_id": 5, "sqn": 158, "data": "404", "timestamp": "2024-08-31T19:15:17.401488"}
+{"id": 390, "balloon_id": 1, "sensor_id": 5, "sqn": 159, "data": "404", "timestamp": "2024-08-31T19:15:17.476078"}
+{"id": 390, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:17.476171"}
+{"id": 391, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:17.495820"}
+{"id": 393, "balloon_id": 1, "sensor_id": 5, "sqn": 163, "data": "404", "timestamp": "2024-08-31T19:15:17.631820"}
+{"id": 393, "balloon_id": 2, "sensor_id": 5, "sqn": 159, "data": "404", "timestamp": "2024-08-31T19:15:17.634981"}
+{"id": 395, "balloon_id": 2, "sensor_id": 5, "sqn": 160, "data": "404", "timestamp": "2024-08-31T19:15:17.666844"}
+{"id": 396, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:17.700303"}
+{"id": 397, "balloon_id": 1, "sensor_id": 5, "sqn": 162, "data": "404", "timestamp": "2024-08-31T19:15:17.817223"}
+{"id": 398, "balloon_id": 2, "sensor_id": 5, "sqn": 161, "data": "404", "timestamp": "2024-08-31T19:15:17.832730"}
+{"id": 399, "balloon_id": 2, "sensor_id": 5, "sqn": 164, "data": "404", "timestamp": "2024-08-31T19:15:17.863763"}
+{"id": 400, "balloon_id": 1, "sensor_id": 5, "sqn": 167, "data": "404", "timestamp": "2024-08-31T19:15:17.881763"}
+{"id": 401, "balloon_id": 2, "sensor_id": 5, "sqn": 165, "data": "404", "timestamp": "2024-08-31T19:15:17.887489"}
+{"id": 400, "balloon_id": 1, "sensor_id": 5, "sqn": 166, "data": "404", "timestamp": "2024-08-31T19:15:17.903396"}
+{"id": 403, "balloon_id": 1, "sensor_id": 5, "sqn": 171, "data": "404", "timestamp": "2024-08-31T19:15:17.916031"}
+{"id": 404, "balloon_id": 1, "sensor_id": 5, "sqn": 175, "data": "404", "timestamp": "2024-08-31T19:15:17.970137"}
+{"id": 405, "balloon_id": 2, "sensor_id": 5, "sqn": 169, "data": "404", "timestamp": "2024-08-31T19:15:18.020244"}
+{"id": 405, "balloon_id": 2, "sensor_id": 5, "sqn": 171, "data": "404", "timestamp": "2024-08-31T19:15:18.026396"}
+{"id": 407, "balloon_id": 2, "sensor_id": 5, "sqn": 172, "data": "404", "timestamp": "2024-08-31T19:15:18.061810"}
+{"id": 407, "balloon_id": 1, "sensor_id": 5, "sqn": 172, "data": "404", "timestamp": "2024-08-31T19:15:18.062760"}
+{"id": 408, "balloon_id": 1, "sensor_id": 5, "sqn": 173, "data": "404", "timestamp": "2024-08-31T19:15:18.069401"}
+{"id": 409, "balloon_id": 2, "sensor_id": 5, "sqn": 173, "data": "404", "timestamp": "2024-08-31T19:15:18.091696"}
+{"id": 411, "balloon_id": 1, "sensor_id": 5, "sqn": 174, "data": "404", "timestamp": "2024-08-31T19:15:18.132365"}
+{"id": 411, "balloon_id": 2, "sensor_id": 5, "sqn": 174, "data": "404", "timestamp": "2024-08-31T19:15:18.134175"}
+{"id": 412, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.180526"}
+{"id": 414, "balloon_id": 2, "sensor_id": 5, "sqn": 176, "data": "404", "timestamp": "2024-08-31T19:15:18.305173"}
+{"id": 415, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.352942"}
+{"id": 415, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.378324"}
+{"id": 417, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.398734"}
+{"id": 415, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.399488"}
+{"id": 418, "balloon_id": 2, "sensor_id": 5, "sqn": 177, "data": "404", "timestamp": "2024-08-31T19:15:18.411875"}
+{"id": 420, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.510026"}
+{"id": 420, "balloon_id": 1, "sensor_id": 5, "sqn": 176, "data": "404", "timestamp": "2024-08-31T19:15:18.543587"}
+{"id": 422, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.559145"}
+{"id": 422, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.561742"}
+{"id": 424, "balloon_id": 1, "sensor_id": 5, "sqn": 177, "data": "404", "timestamp": "2024-08-31T19:15:18.591104"}
+{"id": 425, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.735248"}
+{"id": 425, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:18.749816"}
+{"id": 425, "balloon_id": 2, "sensor_id": 5, "sqn": 179, "data": "404", "timestamp": "2024-08-31T19:15:18.751329"}
+{"id": 428, "balloon_id": 1, "sensor_id": 5, "sqn": 178, "data": "404", "timestamp": "2024-08-31T19:15:18.794964"}
+{"id": 427, "balloon_id": 2, "sensor_id": 5, "sqn": 175, "data": "404", "timestamp": "2024-08-31T19:15:18.845457"}
+{"id": 430, "balloon_id": 1, "sensor_id": 5, "sqn": 180, "data": "404", "timestamp": "2024-08-31T19:15:18.921115"}
+{"id": 431, "balloon_id": 2, "sensor_id": 5, "sqn": 178, "data": "404", "timestamp": "2024-08-31T19:15:18.937825"}
+{"id": 430, "balloon_id": 1, "sensor_id": 5, "sqn": 179, "data": "404", "timestamp": "2024-08-31T19:15:18.938519"}
+{"id": 433, "balloon_id": 2, "sensor_id": 5, "sqn": 180, "data": "404", "timestamp": "2024-08-31T19:15:18.975775"}
+{"id": 434, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:19.006989"}
+{"id": 435, "balloon_id": 1, "sensor_id": 5, "sqn": 181, "data": "404", "timestamp": "2024-08-31T19:15:19.159925"}
+{"id": 435, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:19.163542"}
+{"id": 435, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:19.258275"}
+{"id": 438, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:19.301211"}
+{"id": 439, "balloon_id": 2, "sensor_id": 5, "sqn": 182, "data": "404", "timestamp": "2024-08-31T19:15:19.350244"}
+{"id": 440, "balloon_id": 1, "sensor_id": 5, "sqn": 183, "data": "404", "timestamp": "2024-08-31T19:15:19.358826"}
+{"id": 439, "balloon_id": 2, "sensor_id": 5, "sqn": 181, "data": "404", "timestamp": "2024-08-31T19:15:19.367720"}
+{"id": 439, "balloon_id": 1, "sensor_id": 5, "sqn": 182, "data": "404", "timestamp": "2024-08-31T19:15:19.368052"}
+{"id": 438, "balloon_id": 0, "sensor_id": 5, "sqn": 182, "data": "404", "timestamp": "2024-08-31T19:15:19.411008"}
+{"id": 442, "balloon_id": 2, "sensor_id": 5, "sqn": 183, "data": "404", "timestamp": "2024-08-31T19:15:19.445747"}
+{"id": 442, "balloon_id": 1, "sensor_id": 5, "sqn": 184, "data": "404", "timestamp": "2024-08-31T19:15:19.459866"}
+{"id": 446, "balloon_id": 1, "sensor_id": 5, "sqn": 185, "data": "404", "timestamp": "2024-08-31T19:15:19.496249"}
+{"id": 446, "balloon_id": 0, "sensor_id": 5, "sqn": 2, "data": "Sensor data: 5_2!", "timestamp": "2024-08-31T19:15:19.552551"}
+{"id": 446, "balloon_id": 0, "sensor_id": 5, "sqn": 183, "data": "404", "timestamp": "2024-08-31T19:15:19.615169"}
+{"id": 448, "balloon_id": 2, "sensor_id": 5, "sqn": 184, "data": "404", "timestamp": "2024-08-31T19:15:19.649243"}
+{"id": 450, "balloon_id": 2, "sensor_id": 5, "sqn": 185, "data": "404", "timestamp": "2024-08-31T19:15:19.839253"}
+{"id": 451, "balloon_id": 1, "sensor_id": 5, "sqn": 186, "data": "404", "timestamp": "2024-08-31T19:15:19.935961"}
+{"id": 452, "balloon_id": 0, "sensor_id": 5, "sqn": 184, "data": "404", "timestamp": "2024-08-31T19:15:19.956158"}
+{"id": 453, "balloon_id": 1, "sensor_id": 5, "sqn": 187, "data": "404", "timestamp": "2024-08-31T19:15:20.095600"}
+{"id": 453, "balloon_id": 0, "sensor_id": 5, "sqn": 186, "data": "404", "timestamp": "2024-08-31T19:15:20.133685"}
+{"id": 454, "balloon_id": 1, "sensor_id": 5, "sqn": 189, "data": "404", "timestamp": "2024-08-31T19:15:20.163390"}
+{"id": 453, "balloon_id": 2, "sensor_id": 5, "sqn": 187, "data": "404", "timestamp": "2024-08-31T19:15:20.176556"}
+{"id": 454, "balloon_id": 2, "sensor_id": 5, "sqn": 186, "data": "404", "timestamp": "2024-08-31T19:15:20.228003"}
+{"id": 458, "balloon_id": 2, "sensor_id": 5, "sqn": 188, "data": "404", "timestamp": "2024-08-31T19:15:20.321799"}
+{"id": 458, "balloon_id": 0, "sensor_id": 5, "sqn": 185, "data": "404", "timestamp": "2024-08-31T19:15:20.359328"}
+{"id": 458, "balloon_id": 0, "sensor_id": 5, "sqn": 188, "data": "404", "timestamp": "2024-08-31T19:15:20.411650"}
+{"id": 460, "balloon_id": 1, "sensor_id": 5, "sqn": 188, "data": "404", "timestamp": "2024-08-31T19:15:20.481057"}
+{"id": 461, "balloon_id": 1, "sensor_id": 5, "sqn": 191, "data": "404", "timestamp": "2024-08-31T19:15:20.519511"}
+{"id": 461, "balloon_id": 0, "sensor_id": 5, "sqn": 187, "data": "404", "timestamp": "2024-08-31T19:15:20.541103"}
+{"id": 463, "balloon_id": 1, "sensor_id": 5, "sqn": 190, "data": "404", "timestamp": "2024-08-31T19:15:20.660899"}
+{"id": 463, "balloon_id": 0, "sensor_id": 5, "sqn": 191, "data": "404", "timestamp": "2024-08-31T19:15:20.665373"}
+{"id": 463, "balloon_id": 2, "sensor_id": 5, "sqn": 189, "data": "404", "timestamp": "2024-08-31T19:15:20.667818"}
+{"id": 467, "balloon_id": 0, "sensor_id": 5, "sqn": 189, "data": "404", "timestamp": "2024-08-31T19:15:20.976787"}
+{"id": 468, "balloon_id": 2, "sensor_id": 5, "sqn": 190, "data": "404", "timestamp": "2024-08-31T19:15:20.978254"}
+{"id": 468, "balloon_id": 1, "sensor_id": 5, "sqn": 192, "data": "404", "timestamp": "2024-08-31T19:15:20.990931"}
+{"id": 468, "balloon_id": 0, "sensor_id": 5, "sqn": 190, "data": "404", "timestamp": "2024-08-31T19:15:21.009092"}
+{"id": 471, "balloon_id": 2, "sensor_id": 5, "sqn": 192, "data": "404", "timestamp": "2024-08-31T19:15:21.172451"}
+{"id": 472, "balloon_id": 1, "sensor_id": 5, "sqn": 194, "data": "404", "timestamp": "2024-08-31T19:15:21.181800"}
+{"id": 472, "balloon_id": 0, "sensor_id": 5, "sqn": 192, "data": "404", "timestamp": "2024-08-31T19:15:21.183429"}
+{"id": 472, "balloon_id": 0, "sensor_id": 5, "sqn": 195, "data": "404", "timestamp": "2024-08-31T19:15:21.203721"}
+{"id": 471, "balloon_id": 1, "sensor_id": 5, "sqn": 193, "data": "404", "timestamp": "2024-08-31T19:15:21.222921"}
+{"id": 475, "balloon_id": 2, "sensor_id": 5, "sqn": 196, "data": "404", "timestamp": "2024-08-31T19:15:21.310127"}
+{"id": 477, "balloon_id": 0, "sensor_id": 5, "sqn": 196, "data": "404", "timestamp": "2024-08-31T19:15:21.333023"}
+{"id": 478, "balloon_id": 2, "sensor_id": 5, "sqn": 191, "data": "404", "timestamp": "2024-08-31T19:15:21.474595"}
+{"id": 479, "balloon_id": 1, "sensor_id": 5, "sqn": 197, "data": "404", "timestamp": "2024-08-31T19:15:21.517854"}
+{"id": 479, "balloon_id": 2, "sensor_id": 5, "sqn": 195, "data": "404", "timestamp": "2024-08-31T19:15:21.520574"}
+{"id": 480, "balloon_id": 1, "sensor_id": 5, "sqn": 195, "data": "404", "timestamp": "2024-08-31T19:15:21.565630"}
+{"id": 482, "balloon_id": 0, "sensor_id": 5, "sqn": 193, "data": "404", "timestamp": "2024-08-31T19:15:21.639898"}
+{"id": 482, "balloon_id": 2, "sensor_id": 5, "sqn": 193, "data": "404", "timestamp": "2024-08-31T19:15:21.650138"}
+{"id": 484, "balloon_id": 0, "sensor_id": 5, "sqn": 199, "data": "404", "timestamp": "2024-08-31T19:15:21.709865"}
+{"id": 484, "balloon_id": 2, "sensor_id": 5, "sqn": 194, "data": "404", "timestamp": "2024-08-31T19:15:21.734061"}
+{"id": 484, "balloon_id": 1, "sensor_id": 5, "sqn": 198, "data": "404", "timestamp": "2024-08-31T19:15:21.736310"}
+{"id": 487, "balloon_id": 2, "sensor_id": 5, "sqn": 197, "data": "404", "timestamp": "2024-08-31T19:15:21.887066"}
+{"id": 488, "balloon_id": 1, "sensor_id": 5, "sqn": 196, "data": "404", "timestamp": "2024-08-31T19:15:22.013412"}
+{"id": 489, "balloon_id": 1, "sensor_id": 5, "sqn": 199, "data": "404", "timestamp": "2024-08-31T19:15:22.089656"}
+{"id": 490, "balloon_id": 1, "sensor_id": 5, "sqn": 200, "data": "404", "timestamp": "2024-08-31T19:15:22.100028"}
+{"id": 491, "balloon_id": 0, "sensor_id": 5, "sqn": 194, "data": "404", "timestamp": "2024-08-31T19:15:22.112250"}
+{"id": 492, "balloon_id": 2, "sensor_id": 5, "sqn": 202, "data": "404", "timestamp": "2024-08-31T19:15:22.222133"}
+{"id": 493, "balloon_id": 0, "sensor_id": 5, "sqn": 198, "data": "404", "timestamp": "2024-08-31T19:15:22.243363"}
+{"id": 494, "balloon_id": 1, "sensor_id": 5, "sqn": 203, "data": "404", "timestamp": "2024-08-31T19:15:22.297588"}
+{"id": 495, "balloon_id": 2, "sensor_id": 5, "sqn": 201, "data": "404", "timestamp": "2024-08-31T19:15:22.307787"}
+{"id": 496, "balloon_id": 2, "sensor_id": 5, "sqn": 199, "data": "404", "timestamp": "2024-08-31T19:15:22.312929"}
+{"id": 496, "balloon_id": 1, "sensor_id": 5, "sqn": 204, "data": "404", "timestamp": "2024-08-31T19:15:22.316626"}
+{"id": 496, "balloon_id": 0, "sensor_id": 5, "sqn": 200, "data": "404", "timestamp": "2024-08-31T19:15:22.317019"}
+{"id": 499, "balloon_id": 0, "sensor_id": 5, "sqn": 202, "data": "404", "timestamp": "2024-08-31T19:15:22.373211"}
+{"id": 499, "balloon_id": 1, "sensor_id": 5, "sqn": 205, "data": "404", "timestamp": "2024-08-31T19:15:22.428191"}
+{"id": 501, "balloon_id": 0, "sensor_id": 5, "sqn": 203, "data": "404", "timestamp": "2024-08-31T19:15:22.497403"}
+{"id": 502, "balloon_id": 1, "sensor_id": 5, "sqn": 207, "data": "404", "timestamp": "2024-08-31T19:15:22.680941"}
+{"id": 503, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:22.707126"}
+{"id": 504, "balloon_id": 2, "sensor_id": 5, "sqn": 208, "data": "404", "timestamp": "2024-08-31T19:15:22.772367"}
+{"id": 505, "balloon_id": 2, "sensor_id": 5, "sqn": 204, "data": "404", "timestamp": "2024-08-31T19:15:22.818871"}
+{"id": 505, "balloon_id": 2, "sensor_id": 5, "sqn": 209, "data": "404", "timestamp": "2024-08-31T19:15:22.821085"}
+{"id": 505, "balloon_id": 1, "sensor_id": 0, "sqn": 4, "data": "Sensor data: 0_4!", "timestamp": "2024-08-31T19:15:22.822178"}
+{"id": 508, "balloon_id": 0, "sensor_id": 5, "sqn": 205, "data": "404", "timestamp": "2024-08-31T19:15:22.884542"}
+{"id": 508, "balloon_id": 1, "sensor_id": 5, "sqn": 208, "data": "404", "timestamp": "2024-08-31T19:15:22.907571"}
+{"id": 508, "balloon_id": 0, "sensor_id": 5, "sqn": 208, "data": "404", "timestamp": "2024-08-31T19:15:22.910257"}
+{"id": 511, "balloon_id": 1, "sensor_id": 5, "sqn": 211, "data": "404", "timestamp": "2024-08-31T19:15:22.997230"}
+{"id": 512, "balloon_id": 1, "sensor_id": 5, "sqn": 210, "data": "404", "timestamp": "2024-08-31T19:15:23.021153"}
+{"id": 513, "balloon_id": 0, "sensor_id": 0, "sqn": 209, "data": "404", "timestamp": "2024-08-31T19:15:23.076435"}
+{"id": 513, "balloon_id": 1, "sensor_id": 0, "sqn": 4, "data": "Sensor data: 0_4!", "timestamp": "2024-08-31T19:15:23.081485"}
+{"id": 514, "balloon_id": 0, "sensor_id": 5, "sqn": 207, "data": "404", "timestamp": "2024-08-31T19:15:23.085456"}
+{"id": 514, "balloon_id": 0, "sensor_id": 0, "sqn": 206, "data": "404", "timestamp": "2024-08-31T19:15:23.086274"}
+{"id": 517, "balloon_id": 2, "sensor_id": 5, "sqn": 210, "data": "404", "timestamp": "2024-08-31T19:15:23.185734"}
+{"id": 518, "balloon_id": 2, "sensor_id": 5, "sqn": 211, "data": "404", "timestamp": "2024-08-31T19:15:23.200591"}
+{"id": 519, "balloon_id": 0, "sensor_id": 5, "sqn": 210, "data": "404", "timestamp": "2024-08-31T19:15:23.247149"}
+{"id": 520, "balloon_id": 1, "sensor_id": 5, "sqn": 212, "data": "404", "timestamp": "2024-08-31T19:15:23.266408"}
+{"id": 521, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:23.324536"}
+{"id": 521, "balloon_id": 0, "sensor_id": 5, "sqn": 211, "data": "404", "timestamp": "2024-08-31T19:15:23.392580"}
+{"id": 523, "balloon_id": 1, "sensor_id": 5, "sqn": 213, "data": "404", "timestamp": "2024-08-31T19:15:23.409083"}
+{"id": 524, "balloon_id": 0, "sensor_id": 5, "sqn": 212, "data": "404", "timestamp": "2024-08-31T19:15:23.420160"}
+{"id": 524, "balloon_id": 1, "sensor_id": 5, "sqn": 214, "data": "404", "timestamp": "2024-08-31T19:15:23.426030"}
+{"id": 524, "balloon_id": 2, "sensor_id": 5, "sqn": 212, "data": "404", "timestamp": "2024-08-31T19:15:23.426823"}
+{"id": 525, "balloon_id": 2, "sensor_id": 5, "sqn": 214, "data": "404", "timestamp": "2024-08-31T19:15:23.437279"}
+{"id": 528, "balloon_id": 2, "sensor_id": 5, "sqn": 215, "data": "404", "timestamp": "2024-08-31T19:15:23.480421"}
+{"id": 528, "balloon_id": 1, "sensor_id": 5, "sqn": 215, "data": "404", "timestamp": "2024-08-31T19:15:23.488769"}
+{"id": 525, "balloon_id": 2, "sensor_id": 5, "sqn": 213, "data": "404", "timestamp": "2024-08-31T19:15:23.490182"}
+{"id": 528, "balloon_id": 0, "sensor_id": 5, "sqn": 213, "data": "404", "timestamp": "2024-08-31T19:15:23.497499"}
+{"id": 531, "balloon_id": 0, "sensor_id": 5, "sqn": 215, "data": "404", "timestamp": "2024-08-31T19:15:23.532016"}
+{"id": 531, "balloon_id": 1, "sensor_id": 5, "sqn": 216, "data": "404", "timestamp": "2024-08-31T19:15:23.568819"}
+{"id": 532, "balloon_id": 0, "sensor_id": 5, "sqn": 214, "data": "404", "timestamp": "2024-08-31T19:15:23.582315"}
+{"id": 535, "balloon_id": 1, "sensor_id": 5, "sqn": 217, "data": "404", "timestamp": "2024-08-31T19:15:23.605546"}
+{"id": 536, "balloon_id": 2, "sensor_id": 5, "sqn": 217, "data": "404", "timestamp": "2024-08-31T19:15:23.631976"}
+{"id": 537, "balloon_id": 2, "sensor_id": 5, "sqn": 216, "data": "404", "timestamp": "2024-08-31T19:15:23.639288"}
+{"id": 537, "balloon_id": 0, "sensor_id": 5, "sqn": 216, "data": "404", "timestamp": "2024-08-31T19:15:23.650570"}
+{"id": 538, "balloon_id": 1, "sensor_id": 5, "sqn": 218, "data": "404", "timestamp": "2024-08-31T19:15:23.662735"}
+{"id": 538, "balloon_id": 0, "sensor_id": 5, "sqn": 217, "data": "404", "timestamp": "2024-08-31T19:15:23.668806"}
+{"id": 538, "balloon_id": 0, "sensor_id": 5, "sqn": 218, "data": "404", "timestamp": "2024-08-31T19:15:23.670960"}
+{"id": 542, "balloon_id": 2, "sensor_id": 5, "sqn": 218, "data": "404", "timestamp": "2024-08-31T19:15:23.715262"}
+{"id": 543, "balloon_id": 1, "sensor_id": 0, "sqn": 219, "data": "404", "timestamp": "2024-08-31T19:15:24.104673"}
+{"id": 544, "balloon_id": 0, "sensor_id": 0, "sqn": 219, "data": "404", "timestamp": "2024-08-31T19:15:24.124894"}
+{"id": 545, "balloon_id": 1, "sensor_id": 5, "sqn": 220, "data": "404", "timestamp": "2024-08-31T19:15:24.188822"}
+{"id": 546, "balloon_id": 0, "sensor_id": 5, "sqn": 220, "data": "404", "timestamp": "2024-08-31T19:15:24.203335"}
+{"id": 547, "balloon_id": 2, "sensor_id": 5, "sqn": 220, "data": "404", "timestamp": "2024-08-31T19:15:24.216646"}
+{"id": 548, "balloon_id": 0, "sensor_id": 5, "sqn": 221, "data": "404", "timestamp": "2024-08-31T19:15:24.356161"}
+{"id": 549, "balloon_id": 2, "sensor_id": 5, "sqn": 221, "data": "404", "timestamp": "2024-08-31T19:15:24.390500"}
+{"id": 550, "balloon_id": 1, "sensor_id": 5, "sqn": 221, "data": "404", "timestamp": "2024-08-31T19:15:24.407867"}
+{"id": 551, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:24.509611"}
+{"id": 552, "balloon_id": 1, "sensor_id": 5, "sqn": 222, "data": "404", "timestamp": "2024-08-31T19:15:24.905932"}
+{"id": 552, "balloon_id": 2, "sensor_id": 5, "sqn": 222, "data": "404", "timestamp": "2024-08-31T19:15:24.913998"}
+{"id": 554, "balloon_id": 0, "sensor_id": 5, "sqn": 222, "data": "404", "timestamp": "2024-08-31T19:15:24.933967"}
+{"id": 555, "balloon_id": 1, "sensor_id": 5, "sqn": 223, "data": "404", "timestamp": "2024-08-31T19:15:25.135849"}
+{"id": 556, "balloon_id": 0, "sensor_id": 5, "sqn": 223, "data": "404", "timestamp": "2024-08-31T19:15:25.185062"}
+{"id": 557, "balloon_id": 2, "sensor_id": 5, "sqn": 223, "data": "404", "timestamp": "2024-08-31T19:15:25.200104"}
+{"id": 558, "balloon_id": 0, "sensor_id": 0, "sqn": 224, "data": "404", "timestamp": "2024-08-31T19:15:25.776476"}
+{"id": 559, "balloon_id": 1, "sensor_id": 0, "sqn": 224, "data": "404", "timestamp": "2024-08-31T19:15:25.825873"}
+{"id": 560, "balloon_id": 1, "sensor_id": 0, "sqn": 225, "data": "404", "timestamp": "2024-08-31T19:15:25.848512"}
+{"id": 561, "balloon_id": 0, "sensor_id": 0, "sqn": 225, "data": "404", "timestamp": "2024-08-31T19:15:25.861187"}
+{"id": 562, "balloon_id": 1, "sensor_id": 0, "sqn": 226, "data": "404", "timestamp": "2024-08-31T19:15:26.024990"}
+{"id": 563, "balloon_id": 0, "sensor_id": 0, "sqn": 226, "data": "404", "timestamp": "2024-08-31T19:15:26.093387"}
+{"id": 564, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:26.306143"}
+{"id": 565, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:26.343010"}
+{"id": 566, "balloon_id": 0, "sensor_id": 0, "sqn": 227, "data": "404", "timestamp": "2024-08-31T19:15:26.661049"}
+{"id": 567, "balloon_id": 0, "sensor_id": 0, "sqn": 229, "data": "404", "timestamp": "2024-08-31T19:15:26.722540"}
+{"id": 568, "balloon_id": 0, "sensor_id": 0, "sqn": 228, "data": "404", "timestamp": "2024-08-31T19:15:26.793912"}
+{"id": 568, "balloon_id": 1, "sensor_id": 0, "sqn": 228, "data": "404", "timestamp": "2024-08-31T19:15:26.804465"}
+{"id": 568, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:26.830979"}
+{"id": 571, "balloon_id": 1, "sensor_id": 0, "sqn": 227, "data": "404", "timestamp": "2024-08-31T19:15:26.866079"}
+{"id": 572, "balloon_id": 1, "sensor_id": 0, "sqn": 229, "data": "404", "timestamp": "2024-08-31T19:15:26.940886"}
+{"id": 573, "balloon_id": 0, "sensor_id": 0, "sqn": 230, "data": "404", "timestamp": "2024-08-31T19:15:27.123070"}
+{"id": 573, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:27.123430"}
+{"id": 575, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:27.147677"}
+{"id": 576, "balloon_id": 1, "sensor_id": 0, "sqn": 230, "data": "404", "timestamp": "2024-08-31T19:15:27.305789"}
+{"id": 577, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:27.409145"}
+{"id": 578, "balloon_id": 0, "sensor_id": 0, "sqn": 231, "data": "404", "timestamp": "2024-08-31T19:15:27.488991"}
+{"id": 579, "balloon_id": 1, "sensor_id": 0, "sqn": 231, "data": "404", "timestamp": "2024-08-31T19:15:27.600381"}
+{"id": 580, "balloon_id": 0, "sensor_id": 5, "sqn": 232, "data": "404", "timestamp": "2024-08-31T19:15:27.629822"}
+{"id": 581, "balloon_id": 0, "sensor_id": 5, "sqn": 233, "data": "404", "timestamp": "2024-08-31T19:15:27.710020"}
+{"id": 582, "balloon_id": 2, "sensor_id": 5, "sqn": 232, "data": "404", "timestamp": "2024-08-31T19:15:27.818369"}
+{"id": 582, "balloon_id": 1, "sensor_id": 5, "sqn": 232, "data": "404", "timestamp": "2024-08-31T19:15:27.839673"}
+{"id": 583, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:27.842968"}
+{"id": 585, "balloon_id": 1, "sensor_id": 5, "sqn": 233, "data": "404", "timestamp": "2024-08-31T19:15:27.875568"}
+{"id": 585, "balloon_id": 2, "sensor_id": 5, "sqn": 233, "data": "404", "timestamp": "2024-08-31T19:15:27.885862"}
+{"id": 587, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:27.949225"}
+{"id": 588, "balloon_id": 1, "sensor_id": 0, "sqn": 234, "data": "404", "timestamp": "2024-08-31T19:15:28.211017"}
+{"id": 589, "balloon_id": 0, "sensor_id": 0, "sqn": 234, "data": "404", "timestamp": "2024-08-31T19:15:28.217140"}
+{"id": 590, "balloon_id": 2, "sensor_id": 0, "sqn": 6, "data": "Sensor data: 0_6!", "timestamp": "2024-08-31T19:15:28.496736"}
+{"id": 591, "balloon_id": 0, "sensor_id": 0, "sqn": 235, "data": "404", "timestamp": "2024-08-31T19:15:28.835458"}
+{"id": 592, "balloon_id": 1, "sensor_id": 0, "sqn": 235, "data": "404", "timestamp": "2024-08-31T19:15:28.846119"}
+{"id": 593, "balloon_id": 0, "sensor_id": 0, "sqn": 236, "data": "404", "timestamp": "2024-08-31T19:15:29.111600"}
+{"id": 593, "balloon_id": 1, "sensor_id": 0, "sqn": 236, "data": "404", "timestamp": "2024-08-31T19:15:29.114163"}
+{"id": 595, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:29.161329"}
+{"id": 596, "balloon_id": 0, "sensor_id": 0, "sqn": 237, "data": "404", "timestamp": "2024-08-31T19:15:29.363905"}
+{"id": 597, "balloon_id": 1, "sensor_id": 0, "sqn": 237, "data": "404", "timestamp": "2024-08-31T19:15:29.384990"}
+{"id": 598, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:29.638372"}
+{"id": 599, "balloon_id": 2, "sensor_id": 1, "sqn": 238, "data": "404", "timestamp": "2024-08-31T19:15:29.805507"}
+{"id": 599, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:29.825412"}
+{"id": 601, "balloon_id": 1, "sensor_id": 1, "sqn": 239, "data": "404", "timestamp": "2024-08-31T19:15:29.993728"}
+{"id": 602, "balloon_id": 1, "sensor_id": 1, "sqn": 4, "data": "Sensor data: 1_4!", "timestamp": "2024-08-31T19:15:30.182173"}
+{"id": 602, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:30.182879"}
+{"id": 602, "balloon_id": 1, "sensor_id": 0, "sqn": 240, "data": "404", "timestamp": "2024-08-31T19:15:30.183889"}
+{"id": 605, "balloon_id": 0, "sensor_id": 0, "sqn": 240, "data": "404", "timestamp": "2024-08-31T19:15:30.299065"}
+{"id": 606, "balloon_id": 2, "sensor_id": 1, "sqn": 239, "data": "404", "timestamp": "2024-08-31T19:15:30.462430"}
+{"id": 607, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:30.464725"}
+{"id": 608, "balloon_id": 0, "sensor_id": 5, "sqn": 241, "data": "404", "timestamp": "2024-08-31T19:15:30.592826"}
+{"id": 609, "balloon_id": 0, "sensor_id": 0, "sqn": 242, "data": "404", "timestamp": "2024-08-31T19:15:30.636139"}
+{"id": 610, "balloon_id": 1, "sensor_id": 5, "sqn": 241, "data": "404", "timestamp": "2024-08-31T19:15:30.812699"}
+{"id": 611, "balloon_id": 2, "sensor_id": 5, "sqn": 241, "data": "404", "timestamp": "2024-08-31T19:15:30.815231"}
+{"id": 611, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:30.825926"}
+{"id": 613, "balloon_id": 0, "sensor_id": 0, "sqn": 243, "data": "404", "timestamp": "2024-08-31T19:15:30.966814"}
+{"id": 614, "balloon_id": 1, "sensor_id": 0, "sqn": 243, "data": "404", "timestamp": "2024-08-31T19:15:30.972320"}
+{"id": 614, "balloon_id": 0, "sensor_id": 0, "sqn": 244, "data": "404", "timestamp": "2024-08-31T19:15:30.981796"}
+{"id": 616, "balloon_id": 1, "sensor_id": 0, "sqn": 242, "data": "404", "timestamp": "2024-08-31T19:15:31.000916"}
+{"id": 617, "balloon_id": 1, "sensor_id": 0, "sqn": 244, "data": "404", "timestamp": "2024-08-31T19:15:31.082726"}
+{"id": 618, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:31.195394"}
+{"id": 619, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:31.349545"}
+{"id": 620, "balloon_id": 1, "sensor_id": 0, "sqn": 245, "data": "404", "timestamp": "2024-08-31T19:15:31.384654"}
+{"id": 621, "balloon_id": 0, "sensor_id": 0, "sqn": 245, "data": "404", "timestamp": "2024-08-31T19:15:31.440139"}
+{"id": 622, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:31.445397"}
+{"id": 623, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:31.716812"}
+{"id": 624, "balloon_id": 1, "sensor_id": 0, "sqn": 246, "data": "404", "timestamp": "2024-08-31T19:15:32.001261"}
+{"id": 624, "balloon_id": 0, "sensor_id": 0, "sqn": 246, "data": "404", "timestamp": "2024-08-31T19:15:32.009498"}
+{"id": 626, "balloon_id": 1, "sensor_id": 0, "sqn": 247, "data": "404", "timestamp": "2024-08-31T19:15:32.312105"}
+{"id": 626, "balloon_id": 0, "sensor_id": 0, "sqn": 247, "data": "404", "timestamp": "2024-08-31T19:15:32.315952"}
+{"id": 628, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:32.344981"}
+{"id": 629, "balloon_id": 2, "sensor_id": 0, "sqn": 7, "data": "Sensor data: 0_7!", "timestamp": "2024-08-31T19:15:32.633334"}
+{"id": 630, "balloon_id": 1, "sensor_id": 1, "sqn": 248, "data": "404", "timestamp": "2024-08-31T19:15:32.835295"}
+{"id": 631, "balloon_id": 2, "sensor_id": 1, "sqn": 248, "data": "404", "timestamp": "2024-08-31T19:15:32.847103"}
+{"id": 632, "balloon_id": 1, "sensor_id": 1, "sqn": 249, "data": "404", "timestamp": "2024-08-31T19:15:33.128078"}
+{"id": 633, "balloon_id": 2, "sensor_id": 1, "sqn": 249, "data": "404", "timestamp": "2024-08-31T19:15:33.133373"}
+{"id": 634, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:33.196521"}
+{"id": 635, "balloon_id": 2, "sensor_id": 1, "sqn": 250, "data": "404", "timestamp": "2024-08-31T19:15:33.451827"}
+{"id": 635, "balloon_id": 1, "sensor_id": 1, "sqn": 250, "data": "404", "timestamp": "2024-08-31T19:15:33.474669"}
+{"id": 637, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:33.675630"}
+{"id": 638, "balloon_id": 1, "sensor_id": 0, "sqn": 252, "data": "404", "timestamp": "2024-08-31T19:15:33.808432"}
+{"id": 638, "balloon_id": 1, "sensor_id": 0, "sqn": 251, "data": "404", "timestamp": "2024-08-31T19:15:33.813358"}
+{"id": 640, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:33.836381"}
+{"id": 641, "balloon_id": 0, "sensor_id": 0, "sqn": 251, "data": "404", "timestamp": "2024-08-31T19:15:33.909188"}
+{"id": 642, "balloon_id": 0, "sensor_id": 0, "sqn": 252, "data": "404", "timestamp": "2024-08-31T19:15:33.923241"}
+{"id": 643, "balloon_id": 2, "sensor_id": 0, "sqn": 9, "data": "Sensor data: 0_9!", "timestamp": "2024-08-31T19:15:34.348704"}
+{"id": 643, "balloon_id": 1, "sensor_id": 1, "sqn": 253, "data": "404", "timestamp": "2024-08-31T19:15:34.359344"}
+{"id": 645, "balloon_id": 1, "sensor_id": 1, "sqn": 254, "data": "404", "timestamp": "2024-08-31T19:15:34.498066"}
+{"id": 645, "balloon_id": 2, "sensor_id": 0, "sqn": 9, "data": "Sensor data: 0_9!", "timestamp": "2024-08-31T19:15:34.513096"}
+{"id": 645, "balloon_id": 1, "sensor_id": 1, "sqn": 255, "data": "404", "timestamp": "2024-08-31T19:15:34.523636"}
+{"id": 647, "balloon_id": 2, "sensor_id": 1, "sqn": 253, "data": "404", "timestamp": "2024-08-31T19:15:34.554075"}
+{"id": 648, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:34.557715"}
+{"id": 648, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:34.558849"}
+{"id": 648, "balloon_id": 2, "sensor_id": 1, "sqn": 254, "data": "404", "timestamp": "2024-08-31T19:15:34.566616"}
+{"id": 652, "balloon_id": 2, "sensor_id": 1, "sqn": 255, "data": "404", "timestamp": "2024-08-31T19:15:34.622096"}
+{"id": 653, "balloon_id": 0, "sensor_id": 0, "sqn": 256, "data": "404", "timestamp": "2024-08-31T19:15:34.777840"}
+{"id": 654, "balloon_id": 1, "sensor_id": 0, "sqn": 256, "data": "404", "timestamp": "2024-08-31T19:15:34.942777"}
+{"id": 655, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:35.030931"}
+{"id": 656, "balloon_id": 2, "sensor_id": 1, "sqn": 257, "data": "404", "timestamp": "2024-08-31T19:15:35.063315"}
+{"id": 656, "balloon_id": 1, "sensor_id": 1, "sqn": 257, "data": "404", "timestamp": "2024-08-31T19:15:35.066441"}
+{"id": 658, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:35.326177"}
+{"id": 659, "balloon_id": 2, "sensor_id": 0, "sqn": 9, "data": "Sensor data: 0_9!", "timestamp": "2024-08-31T19:15:35.352988"}
+{"id": 660, "balloon_id": 1, "sensor_id": 1, "sqn": 258, "data": "404", "timestamp": "2024-08-31T19:15:35.579072"}
+{"id": 661, "balloon_id": 2, "sensor_id": 1, "sqn": 258, "data": "404", "timestamp": "2024-08-31T19:15:35.639681"}
+{"id": 662, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:35.978002"}
+{"id": 662, "balloon_id": 0, "sensor_id": 0, "sqn": 259, "data": "404", "timestamp": "2024-08-31T19:15:35.980563"}
+{"id": 664, "balloon_id": 1, "sensor_id": 0, "sqn": 259, "data": "404", "timestamp": "2024-08-31T19:15:36.010227"}
+{"id": 665, "balloon_id": 1, "sensor_id": 1, "sqn": 260, "data": "404", "timestamp": "2024-08-31T19:15:36.397811"}
+{"id": 666, "balloon_id": 2, "sensor_id": 1, "sqn": 260, "data": "404", "timestamp": "2024-08-31T19:15:36.433265"}
+{"id": 666, "balloon_id": 2, "sensor_id": 0, "sqn": 9, "data": "Sensor data: 0_9!", "timestamp": "2024-08-31T19:15:36.449390"}
+{"id": 668, "balloon_id": 0, "sensor_id": 0, "sqn": 261, "data": "404", "timestamp": "2024-08-31T19:15:36.652056"}
+{"id": 669, "balloon_id": 0, "sensor_id": 1, "sqn": 5, "data": "Sensor data: 1_5!", "timestamp": "2024-08-31T19:15:36.858480"}
+{"id": 670, "balloon_id": 1, "sensor_id": 0, "sqn": 261, "data": "404", "timestamp": "2024-08-31T19:15:37.136973"}
+{"id": 671, "balloon_id": 0, "sensor_id": 0, "sqn": 264, "data": "404", "timestamp": "2024-08-31T19:15:37.212715"}
+{"id": 672, "balloon_id": 2, "sensor_id": 1, "sqn": 262, "data": "404", "timestamp": "2024-08-31T19:15:37.235080"}
+{"id": 671, "balloon_id": 1, "sensor_id": 1, "sqn": 262, "data": "404", "timestamp": "2024-08-31T19:15:37.236672"}
+{"id": 671, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:37.245591"}
+{"id": 675, "balloon_id": 2, "sensor_id": 1, "sqn": 263, "data": "404", "timestamp": "2024-08-31T19:15:37.315516"}
+{"id": 675, "balloon_id": 1, "sensor_id": 1, "sqn": 263, "data": "404", "timestamp": "2024-08-31T19:15:37.317275"}
+{"id": 677, "balloon_id": 1, "sensor_id": 0, "sqn": 264, "data": "404", "timestamp": "2024-08-31T19:15:37.434294"}
+{"id": 678, "balloon_id": 2, "sensor_id": 0, "sqn": 9, "data": "Sensor data: 0_9!", "timestamp": "2024-08-31T19:15:37.668608"}
+{"id": 679, "balloon_id": 2, "sensor_id": 0, "sqn": 9, "data": "Sensor data: 0_9!", "timestamp": "2024-08-31T19:15:37.738103"}
+{"id": 679, "balloon_id": 1, "sensor_id": 1, "sqn": 265, "data": "404", "timestamp": "2024-08-31T19:15:37.753690"}
+{"id": 679, "balloon_id": 1, "sensor_id": 1, "sqn": 266, "data": "404", "timestamp": "2024-08-31T19:15:37.819640"}
+{"id": 679, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:37.837844"}
+{"id": 683, "balloon_id": 1, "sensor_id": 1, "sqn": 267, "data": "404", "timestamp": "2024-08-31T19:15:37.897392"}
+{"id": 683, "balloon_id": 2, "sensor_id": 1, "sqn": 265, "data": "404", "timestamp": "2024-08-31T19:15:37.898873"}
+{"id": 684, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:37.901335"}
+{"id": 686, "balloon_id": 2, "sensor_id": 1, "sqn": 266, "data": "404", "timestamp": "2024-08-31T19:15:38.186920"}
+{"id": 687, "balloon_id": 2, "sensor_id": 1, "sqn": 267, "data": "404", "timestamp": "2024-08-31T19:15:38.244710"}
+{"id": 687, "balloon_id": 2, "sensor_id": 1, "sqn": 268, "data": "404", "timestamp": "2024-08-31T19:15:38.257100"}
+{"id": 689, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:38.553895"}
+{"id": 689, "balloon_id": 1, "sensor_id": 1, "sqn": 268, "data": "404", "timestamp": "2024-08-31T19:15:38.573508"}
+{"id": 691, "balloon_id": 1, "sensor_id": 1, "sqn": 270, "data": "404", "timestamp": "2024-08-31T19:15:38.665936"}
+{"id": 692, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:38.751973"}
+{"id": 692, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:38.753150"}
+{"id": 692, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:38.755148"}
+{"id": 692, "balloon_id": 2, "sensor_id": 1, "sqn": 269, "data": "404", "timestamp": "2024-08-31T19:15:38.762138"}
+{"id": 696, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:38.873855"}
+{"id": 696, "balloon_id": 2, "sensor_id": 1, "sqn": 270, "data": "404", "timestamp": "2024-08-31T19:15:38.886124"}
+{"id": 696, "balloon_id": 1, "sensor_id": 1, "sqn": 269, "data": "404", "timestamp": "2024-08-31T19:15:38.897376"}
+{"id": 697, "balloon_id": 2, "sensor_id": 1, "sqn": 271, "data": "404", "timestamp": "2024-08-31T19:15:38.928510"}
+{"id": 697, "balloon_id": 1, "sensor_id": 1, "sqn": 271, "data": "404", "timestamp": "2024-08-31T19:15:38.940734"}
+{"id": 701, "balloon_id": 0, "sensor_id": 2, "sqn": 272, "data": "404", "timestamp": "2024-08-31T19:15:38.962897"}
+{"id": 702, "balloon_id": 2, "sensor_id": 2, "sqn": 272, "data": "404", "timestamp": "2024-08-31T19:15:39.015318"}
+{"id": 703, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:39.176454"}
+{"id": 704, "balloon_id": 2, "sensor_id": 1, "sqn": 273, "data": "404", "timestamp": "2024-08-31T19:15:39.286905"}
+{"id": 704, "balloon_id": 1, "sensor_id": 1, "sqn": 273, "data": "404", "timestamp": "2024-08-31T19:15:39.289903"}
+{"id": 706, "balloon_id": 1, "sensor_id": 2, "sqn": 7, "data": "Sensor data: 2_7!", "timestamp": "2024-08-31T19:15:39.336086"}
+{"id": 707, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:39.691954"}
+{"id": 708, "balloon_id": 1, "sensor_id": 1, "sqn": 274, "data": "404", "timestamp": "2024-08-31T19:15:39.707653"}
+{"id": 709, "balloon_id": 2, "sensor_id": 1, "sqn": 274, "data": "404", "timestamp": "2024-08-31T19:15:39.742074"}
+{"id": 710, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:40.124564"}
+{"id": 711, "balloon_id": 2, "sensor_id": 2, "sqn": 275, "data": "404", "timestamp": "2024-08-31T19:15:40.137399"}
+{"id": 712, "balloon_id": 0, "sensor_id": 2, "sqn": 275, "data": "404", "timestamp": "2024-08-31T19:15:40.159927"}
+{"id": 713, "balloon_id": 1, "sensor_id": 2, "sqn": 7, "data": "Sensor data: 2_7!", "timestamp": "2024-08-31T19:15:40.466946"}
+{"id": 714, "balloon_id": 1, "sensor_id": 1, "sqn": 276, "data": "404", "timestamp": "2024-08-31T19:15:40.646146"}
+{"id": 715, "balloon_id": 2, "sensor_id": 1, "sqn": 276, "data": "404", "timestamp": "2024-08-31T19:15:40.722652"}
+{"id": 716, "balloon_id": 2, "sensor_id": 1, "sqn": 277, "data": "404", "timestamp": "2024-08-31T19:15:40.993556"}
+{"id": 716, "balloon_id": 1, "sensor_id": 1, "sqn": 277, "data": "404", "timestamp": "2024-08-31T19:15:40.995449"}
+{"id": 718, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:41.139985"}
+{"id": 719, "balloon_id": 2, "sensor_id": 2, "sqn": 278, "data": "404", "timestamp": "2024-08-31T19:15:41.293973"}
+{"id": 720, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:41.332109"}
+{"id": 721, "balloon_id": 0, "sensor_id": 2, "sqn": 278, "data": "404", "timestamp": "2024-08-31T19:15:41.381506"}
+{"id": 722, "balloon_id": 0, "sensor_id": 2, "sqn": 279, "data": "404", "timestamp": "2024-08-31T19:15:41.601423"}
+{"id": 723, "balloon_id": 2, "sensor_id": 2, "sqn": 279, "data": "404", "timestamp": "2024-08-31T19:15:42.011917"}
+{"id": 724, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:42.364637"}
+{"id": 725, "balloon_id": 2, "sensor_id": 1, "sqn": 281, "data": "404", "timestamp": "2024-08-31T19:15:42.513513"}
+{"id": 726, "balloon_id": 2, "sensor_id": 1, "sqn": 280, "data": "404", "timestamp": "2024-08-31T19:15:42.538453"}
+{"id": 727, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:42.562481"}
+{"id": 726, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:42.607109"}
+{"id": 729, "balloon_id": 2, "sensor_id": 1, "sqn": 282, "data": "404", "timestamp": "2024-08-31T19:15:42.667403"}
+{"id": 729, "balloon_id": 1, "sensor_id": 1, "sqn": 281, "data": "404", "timestamp": "2024-08-31T19:15:42.720266"}
+{"id": 730, "balloon_id": 2, "sensor_id": 1, "sqn": 283, "data": "404", "timestamp": "2024-08-31T19:15:42.752831"}
+{"id": 731, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:42.809150"}
+{"id": 729, "balloon_id": 1, "sensor_id": 1, "sqn": 280, "data": "404", "timestamp": "2024-08-31T19:15:42.942809"}
+{"id": 734, "balloon_id": 1, "sensor_id": 1, "sqn": 283, "data": "404", "timestamp": "2024-08-31T19:15:42.996526"}
+{"id": 735, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:43.047457"}
+{"id": 736, "balloon_id": 2, "sensor_id": 1, "sqn": 284, "data": "404", "timestamp": "2024-08-31T19:15:43.049265"}
+{"id": 737, "balloon_id": 1, "sensor_id": 1, "sqn": 282, "data": "404", "timestamp": "2024-08-31T19:15:43.059610"}
+{"id": 738, "balloon_id": 1, "sensor_id": 1, "sqn": 284, "data": "404", "timestamp": "2024-08-31T19:15:43.090430"}
+{"id": 739, "balloon_id": 2, "sensor_id": 2, "sqn": 286, "data": "404", "timestamp": "2024-08-31T19:15:43.212120"}
+{"id": 740, "balloon_id": 1, "sensor_id": 1, "sqn": 285, "data": "404", "timestamp": "2024-08-31T19:15:43.393273"}
+{"id": 741, "balloon_id": 0, "sensor_id": 2, "sqn": 285, "data": "404", "timestamp": "2024-08-31T19:15:43.499119"}
+{"id": 741, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:43.518489"}
+{"id": 742, "balloon_id": 2, "sensor_id": 1, "sqn": 285, "data": "404", "timestamp": "2024-08-31T19:15:43.536104"}
+{"id": 743, "balloon_id": 2, "sensor_id": 2, "sqn": 288, "data": "404", "timestamp": "2024-08-31T19:15:43.586437"}
+{"id": 745, "balloon_id": 0, "sensor_id": 2, "sqn": 288, "data": "404", "timestamp": "2024-08-31T19:15:43.687104"}
+{"id": 745, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:43.689062"}
+{"id": 747, "balloon_id": 1, "sensor_id": 1, "sqn": 287, "data": "404", "timestamp": "2024-08-31T19:15:43.698310"}
+{"id": 748, "balloon_id": 1, "sensor_id": 1, "sqn": 289, "data": "404", "timestamp": "2024-08-31T19:15:43.716298"}
+{"id": 749, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:43.732697"}
+{"id": 750, "balloon_id": 1, "sensor_id": 1, "sqn": 290, "data": "404", "timestamp": "2024-08-31T19:15:43.774958"}
+{"id": 751, "balloon_id": 2, "sensor_id": 1, "sqn": 287, "data": "404", "timestamp": "2024-08-31T19:15:43.781648"}
+{"id": 751, "balloon_id": 2, "sensor_id": 1, "sqn": 289, "data": "404", "timestamp": "2024-08-31T19:15:43.789299"}
+{"id": 751, "balloon_id": 2, "sensor_id": 1, "sqn": 290, "data": "404", "timestamp": "2024-08-31T19:15:43.778356"}
+{"id": 754, "balloon_id": 0, "sensor_id": 2, "sqn": 291, "data": "404", "timestamp": "2024-08-31T19:15:43.808011"}
+{"id": 755, "balloon_id": 2, "sensor_id": 2, "sqn": 291, "data": "404", "timestamp": "2024-08-31T19:15:43.826363"}
+{"id": 755, "balloon_id": 0, "sensor_id": 2, "sqn": 292, "data": "404", "timestamp": "2024-08-31T19:15:43.827263"}
+{"id": 757, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:43.942709"}
+{"id": 758, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:43.972146"}
+{"id": 759, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:44.007337"}
+{"id": 760, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:44.035932"}
+{"id": 760, "balloon_id": 2, "sensor_id": 1, "sqn": 293, "data": "404", "timestamp": "2024-08-31T19:15:44.037736"}
+{"id": 760, "balloon_id": 2, "sensor_id": 2, "sqn": 292, "data": "404", "timestamp": "2024-08-31T19:15:44.039126"}
+{"id": 763, "balloon_id": 1, "sensor_id": 1, "sqn": 293, "data": "404", "timestamp": "2024-08-31T19:15:44.043560"}
+{"id": 764, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:44.079794"}
+{"id": 765, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:44.083988"}
+{"id": 766, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:44.139098"}
+{"id": 767, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:44.327767"}
+{"id": 768, "balloon_id": 1, "sensor_id": 1, "sqn": 294, "data": "404", "timestamp": "2024-08-31T19:15:44.792418"}
+{"id": 768, "balloon_id": 2, "sensor_id": 1, "sqn": 294, "data": "404", "timestamp": "2024-08-31T19:15:44.799673"}
+{"id": 770, "balloon_id": 1, "sensor_id": 1, "sqn": 295, "data": "404", "timestamp": "2024-08-31T19:15:45.192974"}
+{"id": 770, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:45.194642"}
+{"id": 772, "balloon_id": 2, "sensor_id": 1, "sqn": 295, "data": "404", "timestamp": "2024-08-31T19:15:45.401755"}
+{"id": 773, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:45.586777"}
+{"id": 774, "balloon_id": 2, "sensor_id": 2, "sqn": 296, "data": "404", "timestamp": "2024-08-31T19:15:45.839671"}
+{"id": 774, "balloon_id": 0, "sensor_id": 2, "sqn": 296, "data": "404", "timestamp": "2024-08-31T19:15:45.840477"}
+{"id": 775, "balloon_id": 2, "sensor_id": 1, "sqn": 297, "data": "404", "timestamp": "2024-08-31T19:15:45.850100"}
+{"id": 776, "balloon_id": 1, "sensor_id": 1, "sqn": 297, "data": "404", "timestamp": "2024-08-31T19:15:45.851253"}
+{"id": 778, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:46.380724"}
+{"id": 778, "balloon_id": 2, "sensor_id": 1, "sqn": 298, "data": "404", "timestamp": "2024-08-31T19:15:46.382122"}
+{"id": 778, "balloon_id": 1, "sensor_id": 1, "sqn": 298, "data": "404", "timestamp": "2024-08-31T19:15:46.446555"}
+{"id": 780, "balloon_id": 0, "sensor_id": 1, "sqn": 6, "data": "Sensor data: 1_6!", "timestamp": "2024-08-31T19:15:46.451250"}
+{"id": 782, "balloon_id": 0, "sensor_id": 2, "sqn": 298, "data": "404", "timestamp": "2024-08-31T19:15:46.743245"}
+{"id": 783, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:46.770011"}
+{"id": 784, "balloon_id": 1, "sensor_id": 1, "sqn": 301, "data": "404", "timestamp": "2024-08-31T19:15:47.042621"}
+{"id": 784, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:47.068733"}
+{"id": 786, "balloon_id": 1, "sensor_id": 1, "sqn": 300, "data": "404", "timestamp": "2024-08-31T19:15:47.132266"}
+{"id": 787, "balloon_id": 1, "sensor_id": 1, "sqn": 302, "data": "404", "timestamp": "2024-08-31T19:15:47.260425"}
+{"id": 788, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:47.373304"}
+{"id": 789, "balloon_id": 2, "sensor_id": 2, "sqn": 299, "data": "404", "timestamp": "2024-08-31T19:15:47.397869"}
+{"id": 790, "balloon_id": 2, "sensor_id": 1, "sqn": 301, "data": "404", "timestamp": "2024-08-31T19:15:47.511640"}
+{"id": 791, "balloon_id": 1, "sensor_id": 1, "sqn": 306, "data": "404", "timestamp": "2024-08-31T19:15:47.588922"}
+{"id": 791, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:47.590473"}
+{"id": 793, "balloon_id": 1, "sensor_id": 1, "sqn": 303, "data": "404", "timestamp": "2024-08-31T19:15:47.641838"}
+{"id": 794, "balloon_id": 2, "sensor_id": 1, "sqn": 300, "data": "404", "timestamp": "2024-08-31T19:15:47.726332"}
+{"id": 795, "balloon_id": 2, "sensor_id": 1, "sqn": 303, "data": "404", "timestamp": "2024-08-31T19:15:47.806197"}
+{"id": 796, "balloon_id": 1, "sensor_id": 1, "sqn": 305, "data": "404", "timestamp": "2024-08-31T19:15:47.816856"}
+{"id": 797, "balloon_id": 2, "sensor_id": 1, "sqn": 304, "data": "404", "timestamp": "2024-08-31T19:15:47.825355"}
+{"id": 797, "balloon_id": 1, "sensor_id": 1, "sqn": 304, "data": "404", "timestamp": "2024-08-31T19:15:47.841918"}
+{"id": 799, "balloon_id": 0, "sensor_id": 2, "sqn": 309, "data": "404", "timestamp": "2024-08-31T19:15:47.915604"}
+{"id": 800, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:47.942899"}
+{"id": 800, "balloon_id": 2, "sensor_id": 1, "sqn": 305, "data": "404", "timestamp": "2024-08-31T19:15:47.943726"}
+{"id": 802, "balloon_id": 2, "sensor_id": 1, "sqn": 302, "data": "404", "timestamp": "2024-08-31T19:15:47.984540"}
+{"id": 802, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:47.989202"}
+{"id": 803, "balloon_id": 0, "sensor_id": 2, "sqn": 308, "data": "404", "timestamp": "2024-08-31T19:15:47.992933"}
+{"id": 803, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:47.994197"}
+{"id": 806, "balloon_id": 2, "sensor_id": 1, "sqn": 306, "data": "404", "timestamp": "2024-08-31T19:15:48.042080"}
+{"id": 807, "balloon_id": 0, "sensor_id": 2, "sqn": 310, "data": "404", "timestamp": "2024-08-31T19:15:48.135913"}
+{"id": 808, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:48.182645"}
+{"id": 809, "balloon_id": 2, "sensor_id": 3, "sqn": 308, "data": "404", "timestamp": "2024-08-31T19:15:48.211446"}
+{"id": 809, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:48.213013"}
+{"id": 811, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:48.369730"}
+{"id": 812, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:48.384361"}
+{"id": 812, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:48.400678"}
+{"id": 812, "balloon_id": 0, "sensor_id": 2, "sqn": 311, "data": "404", "timestamp": "2024-08-31T19:15:48.401444"}
+{"id": 813, "balloon_id": 0, "sensor_id": 3, "sqn": 8, "data": "Sensor data: 3_8!", "timestamp": "2024-08-31T19:15:48.403213"}
+{"id": 816, "balloon_id": 2, "sensor_id": 2, "sqn": 310, "data": "404", "timestamp": "2024-08-31T19:15:48.463304"}
+{"id": 816, "balloon_id": 2, "sensor_id": 2, "sqn": 309, "data": "404", "timestamp": "2024-08-31T19:15:48.469976"}
+{"id": 816, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:48.472236"}
+{"id": 817, "balloon_id": 1, "sensor_id": 1, "sqn": 312, "data": "404", "timestamp": "2024-08-31T19:15:48.482758"}
+{"id": 820, "balloon_id": 2, "sensor_id": 2, "sqn": 311, "data": "404", "timestamp": "2024-08-31T19:15:48.492048"}
+{"id": 820, "balloon_id": 2, "sensor_id": 2, "sqn": 307, "data": "404", "timestamp": "2024-08-31T19:15:48.490712"}
+{"id": 822, "balloon_id": 2, "sensor_id": 1, "sqn": 312, "data": "404", "timestamp": "2024-08-31T19:15:48.533598"}
+{"id": 823, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:48.567790"}
+{"id": 824, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:48.786825"}
+{"id": 825, "balloon_id": 0, "sensor_id": 2, "sqn": 313, "data": "404", "timestamp": "2024-08-31T19:15:48.809748"}
+{"id": 826, "balloon_id": 2, "sensor_id": 2, "sqn": 313, "data": "404", "timestamp": "2024-08-31T19:15:48.835288"}
+{"id": 827, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:49.215591"}
+{"id": 828, "balloon_id": 0, "sensor_id": 2, "sqn": 314, "data": "404", "timestamp": "2024-08-31T19:15:49.359153"}
+{"id": 828, "balloon_id": 2, "sensor_id": 2, "sqn": 314, "data": "404", "timestamp": "2024-08-31T19:15:49.363124"}
+{"id": 830, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:49.760824"}
+{"id": 831, "balloon_id": 0, "sensor_id": 2, "sqn": 315, "data": "404", "timestamp": "2024-08-31T19:15:49.792167"}
+{"id": 832, "balloon_id": 0, "sensor_id": 2, "sqn": 316, "data": "404", "timestamp": "2024-08-31T19:15:49.877362"}
+{"id": 833, "balloon_id": 2, "sensor_id": 2, "sqn": 315, "data": "404", "timestamp": "2024-08-31T19:15:49.938865"}
+{"id": 834, "balloon_id": 2, "sensor_id": 2, "sqn": 316, "data": "404", "timestamp": "2024-08-31T19:15:49.985340"}
+{"id": 835, "balloon_id": 1, "sensor_id": 1, "sqn": 317, "data": "404", "timestamp": "2024-08-31T19:15:50.165765"}
+{"id": 836, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:50.201556"}
+{"id": 837, "balloon_id": 2, "sensor_id": 1, "sqn": 317, "data": "404", "timestamp": "2024-08-31T19:15:50.241175"}
+{"id": 838, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:50.329758"}
+{"id": 839, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:50.569181"}
+{"id": 840, "balloon_id": 2, "sensor_id": 1, "sqn": 318, "data": "404", "timestamp": "2024-08-31T19:15:50.634581"}
+{"id": 841, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:50.968116"}
+{"id": 842, "balloon_id": 1, "sensor_id": 1, "sqn": 319, "data": "404", "timestamp": "2024-08-31T19:15:51.137543"}
+{"id": 842, "balloon_id": 2, "sensor_id": 1, "sqn": 319, "data": "404", "timestamp": "2024-08-31T19:15:51.175676"}
+{"id": 844, "balloon_id": 1, "sensor_id": 1, "sqn": 318, "data": "404", "timestamp": "2024-08-31T19:15:51.253827"}
+{"id": 845, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:51.663025"}
+{"id": 846, "balloon_id": 0, "sensor_id": 3, "sqn": 321, "data": "404", "timestamp": "2024-08-31T19:15:51.966906"}
+{"id": 846, "balloon_id": 2, "sensor_id": 2, "sqn": 321, "data": "404", "timestamp": "2024-08-31T19:15:51.980801"}
+{"id": 848, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:52.166962"}
+{"id": 848, "balloon_id": 0, "sensor_id": 2, "sqn": 322, "data": "404", "timestamp": "2024-08-31T19:15:52.168303"}
+{"id": 848, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:52.169964"}
+{"id": 851, "balloon_id": 2, "sensor_id": 1, "sqn": 323, "data": "404", "timestamp": "2024-08-31T19:15:52.292836"}
+{"id": 851, "balloon_id": 2, "sensor_id": 1, "sqn": 322, "data": "404", "timestamp": "2024-08-31T19:15:52.306401"}
+{"id": 851, "balloon_id": 1, "sensor_id": 1, "sqn": 320, "data": "404", "timestamp": "2024-08-31T19:15:52.311902"}
+{"id": 851, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:52.322863"}
+{"id": 855, "balloon_id": 0, "sensor_id": 2, "sqn": 324, "data": "404", "timestamp": "2024-08-31T19:15:52.411089"}
+{"id": 856, "balloon_id": 1, "sensor_id": 1, "sqn": 323, "data": "404", "timestamp": "2024-08-31T19:15:52.453328"}
+{"id": 857, "balloon_id": 2, "sensor_id": 1, "sqn": 324, "data": "404", "timestamp": "2024-08-31T19:15:52.475394"}
+{"id": 857, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:52.480593"}
+{"id": 857, "balloon_id": 0, "sensor_id": 3, "sqn": 326, "data": "404", "timestamp": "2024-08-31T19:15:52.483491"}
+{"id": 857, "balloon_id": 2, "sensor_id": 2, "sqn": 325, "data": "404", "timestamp": "2024-08-31T19:15:52.547212"}
+{"id": 861, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:52.653559"}
+{"id": 862, "balloon_id": 1, "sensor_id": 1, "sqn": 325, "data": "404", "timestamp": "2024-08-31T19:15:52.706184"}
+{"id": 863, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:52.965047"}
+{"id": 863, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:52.966278"}
+{"id": 863, "balloon_id": 0, "sensor_id": 2, "sqn": 327, "data": "404", "timestamp": "2024-08-31T19:15:53.014633"}
+{"id": 866, "balloon_id": 2, "sensor_id": 2, "sqn": 327, "data": "404", "timestamp": "2024-08-31T19:15:53.061187"}
+{"id": 867, "balloon_id": 2, "sensor_id": 1, "sqn": 328, "data": "404", "timestamp": "2024-08-31T19:15:53.206613"}
+{"id": 868, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:53.535429"}
+{"id": 868, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:53.536528"}
+{"id": 869, "balloon_id": 0, "sensor_id": 3, "sqn": 328, "data": "404", "timestamp": "2024-08-31T19:15:53.563350"}
+{"id": 871, "balloon_id": 0, "sensor_id": 2, "sqn": 330, "data": "404", "timestamp": "2024-08-31T19:15:53.587637"}
+{"id": 871, "balloon_id": 0, "sensor_id": 3, "sqn": 329, "data": "404", "timestamp": "2024-08-31T19:15:53.595415"}
+{"id": 873, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:53.708274"}
+{"id": 874, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:53.785653"}
+{"id": 875, "balloon_id": 0, "sensor_id": 1, "sqn": 7, "data": "Sensor data: 1_7!", "timestamp": "2024-08-31T19:15:53.815180"}
+{"id": 875, "balloon_id": 2, "sensor_id": 2, "sqn": 331, "data": "404", "timestamp": "2024-08-31T19:15:53.821011"}
+{"id": 877, "balloon_id": 0, "sensor_id": 2, "sqn": 332, "data": "404", "timestamp": "2024-08-31T19:15:54.062724"}
+{"id": 877, "balloon_id": 1, "sensor_id": 1, "sqn": 330, "data": "404", "timestamp": "2024-08-31T19:15:54.085533"}
+{"id": 877, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:54.162298"}
+{"id": 879, "balloon_id": 0, "sensor_id": 2, "sqn": 333, "data": "404", "timestamp": "2024-08-31T19:15:54.170008"}
+{"id": 881, "balloon_id": 2, "sensor_id": 2, "sqn": 333, "data": "404", "timestamp": "2024-08-31T19:15:54.218981"}
+{"id": 882, "balloon_id": 2, "sensor_id": 2, "sqn": 332, "data": "404", "timestamp": "2024-08-31T19:15:54.382006"}
+{"id": 882, "balloon_id": 0, "sensor_id": 2, "sqn": 334, "data": "404", "timestamp": "2024-08-31T19:15:54.396987"}
+{"id": 882, "balloon_id": 2, "sensor_id": 2, "sqn": 334, "data": "404", "timestamp": "2024-08-31T19:15:54.410567"}
+{"id": 884, "balloon_id": 2, "sensor_id": 2, "sqn": 335, "data": "404", "timestamp": "2024-08-31T19:15:54.480029"}
+{"id": 886, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:54.566780"}
+{"id": 887, "balloon_id": 0, "sensor_id": 2, "sqn": 335, "data": "404", "timestamp": "2024-08-31T19:15:54.583097"}
+{"id": 888, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:54.638923"}
+{"id": 889, "balloon_id": 2, "sensor_id": 2, "sqn": 336, "data": "404", "timestamp": "2024-08-31T19:15:54.662393"}
+{"id": 890, "balloon_id": 0, "sensor_id": 2, "sqn": 336, "data": "404", "timestamp": "2024-08-31T19:15:54.698434"}
+{"id": 891, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:54.748667"}
+{"id": 891, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:54.750244"}
+{"id": 893, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:54.808612"}
+{"id": 893, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:54.814121"}
+{"id": 893, "balloon_id": 0, "sensor_id": 2, "sqn": 338, "data": "404", "timestamp": "2024-08-31T19:15:54.816196"}
+{"id": 896, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:54.858911"}
+{"id": 896, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:54.887418"}
+{"id": 898, "balloon_id": 2, "sensor_id": 2, "sqn": 337, "data": "404", "timestamp": "2024-08-31T19:15:55.034313"}
+{"id": 897, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:55.067657"}
+{"id": 900, "balloon_id": 0, "sensor_id": 2, "sqn": 337, "data": "404", "timestamp": "2024-08-31T19:15:55.136441"}
+{"id": 901, "balloon_id": 2, "sensor_id": 2, "sqn": 339, "data": "404", "timestamp": "2024-08-31T19:15:55.155703"}
+{"id": 902, "balloon_id": 0, "sensor_id": 2, "sqn": 339, "data": "404", "timestamp": "2024-08-31T19:15:55.202966"}
+{"id": 903, "balloon_id": 2, "sensor_id": 2, "sqn": 338, "data": "404", "timestamp": "2024-08-31T19:15:55.212803"}
+{"id": 904, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:55.269120"}
+{"id": 905, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:55.467509"}
+{"id": 906, "balloon_id": 0, "sensor_id": 2, "sqn": 340, "data": "404", "timestamp": "2024-08-31T19:15:55.661578"}
+{"id": 907, "balloon_id": 0, "sensor_id": 3, "sqn": 341, "data": "404", "timestamp": "2024-08-31T19:15:55.841693"}
+{"id": 908, "balloon_id": 2, "sensor_id": 2, "sqn": 340, "data": "404", "timestamp": "2024-08-31T19:15:55.978394"}
+{"id": 909, "balloon_id": 0, "sensor_id": 3, "sqn": 342, "data": "404", "timestamp": "2024-08-31T19:15:56.018517"}
+{"id": 910, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:56.267109"}
+{"id": 910, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:56.360551"}
+{"id": 910, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:56.392347"}
+{"id": 910, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:56.393962"}
+{"id": 913, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:56.451893"}
+{"id": 915, "balloon_id": 0, "sensor_id": 2, "sqn": 343, "data": "404", "timestamp": "2024-08-31T19:15:56.563377"}
+{"id": 916, "balloon_id": 2, "sensor_id": 2, "sqn": 343, "data": "404", "timestamp": "2024-08-31T19:15:56.642658"}
+{"id": 917, "balloon_id": 0, "sensor_id": 2, "sqn": 344, "data": "404", "timestamp": "2024-08-31T19:15:57.045172"}
+{"id": 918, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:57.195235"}
+{"id": 918, "balloon_id": 2, "sensor_id": 2, "sqn": 345, "data": "404", "timestamp": "2024-08-31T19:15:57.196368"}
+{"id": 920, "balloon_id": 0, "sensor_id": 3, "sqn": 345, "data": "404", "timestamp": "2024-08-31T19:15:57.402625"}
+{"id": 921, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:57.715682"}
+{"id": 922, "balloon_id": 0, "sensor_id": 2, "sqn": 346, "data": "404", "timestamp": "2024-08-31T19:15:57.790618"}
+{"id": 923, "balloon_id": 0, "sensor_id": 2, "sqn": 347, "data": "404", "timestamp": "2024-08-31T19:15:58.093304"}
+{"id": 923, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:58.104463"}
+{"id": 924, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:58.142607"}
+{"id": 926, "balloon_id": 2, "sensor_id": 2, "sqn": 346, "data": "404", "timestamp": "2024-08-31T19:15:58.262856"}
+{"id": 927, "balloon_id": 0, "sensor_id": 3, "sqn": 348, "data": "404", "timestamp": "2024-08-31T19:15:58.399875"}
+{"id": 926, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:58.400906"}
+{"id": 928, "balloon_id": 2, "sensor_id": 2, "sqn": 347, "data": "404", "timestamp": "2024-08-31T19:15:58.474176"}
+{"id": 930, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:58.827329"}
+{"id": 931, "balloon_id": 0, "sensor_id": 3, "sqn": 349, "data": "404", "timestamp": "2024-08-31T19:15:59.230593"}
+{"id": 932, "balloon_id": 0, "sensor_id": 2, "sqn": 350, "data": "404", "timestamp": "2024-08-31T19:15:59.346254"}
+{"id": 933, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:59.355226"}
+{"id": 933, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:59.356071"}
+{"id": 933, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:15:59.357599"}
+{"id": 935, "balloon_id": 0, "sensor_id": 3, "sqn": 351, "data": "404", "timestamp": "2024-08-31T19:15:59.413413"}
+{"id": 937, "balloon_id": 2, "sensor_id": 2, "sqn": 349, "data": "404", "timestamp": "2024-08-31T19:15:59.519256"}
+{"id": 938, "balloon_id": 0, "sensor_id": 3, "sqn": 352, "data": "404", "timestamp": "2024-08-31T19:15:59.603862"}
+{"id": 939, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:15:59.703620"}
+{"id": 940, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:15:59.836583"}
+{"id": 941, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:00.021212"}
+{"id": 942, "balloon_id": 2, "sensor_id": 2, "sqn": 351, "data": "404", "timestamp": "2024-08-31T19:16:00.266753"}
+{"id": 942, "balloon_id": 0, "sensor_id": 2, "sqn": 353, "data": "404", "timestamp": "2024-08-31T19:16:00.326116"}
+{"id": 944, "balloon_id": 0, "sensor_id": 2, "sqn": 357, "data": "404", "timestamp": "2024-08-31T19:16:00.588188"}
+{"id": 944, "balloon_id": 0, "sensor_id": 3, "sqn": 355, "data": "404", "timestamp": "2024-08-31T19:16:00.589293"}
+{"id": 946, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:16:00.697179"}
+{"id": 947, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:16:00.913513"}
+{"id": 948, "balloon_id": 0, "sensor_id": 2, "sqn": 360, "data": "404", "timestamp": "2024-08-31T19:16:01.206382"}
+{"id": 949, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:16:01.266175"}
+{"id": 949, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:16:01.304049"}
+{"id": 951, "balloon_id": 2, "sensor_id": 2, "sqn": 361, "data": "404", "timestamp": "2024-08-31T19:16:01.334194"}
+{"id": 951, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:01.364627"}
+{"id": 953, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:16:01.498682"}
+{"id": 953, "balloon_id": 0, "sensor_id": 2, "sqn": 361, "data": "404", "timestamp": "2024-08-31T19:16:01.509588"}
+{"id": 954, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:01.619700"}
+{"id": 956, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:16:01.703282"}
+{"id": 957, "balloon_id": 0, "sensor_id": 2, "sqn": 363, "data": "404", "timestamp": "2024-08-31T19:16:01.797288"}
+{"id": 957, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:01.863688"}
+{"id": 959, "balloon_id": 2, "sensor_id": 2, "sqn": 362, "data": "404", "timestamp": "2024-08-31T19:16:02.024902"}
+{"id": 960, "balloon_id": 1, "sensor_id": 3, "sqn": 9, "data": "Sensor data: 3_9!", "timestamp": "2024-08-31T19:16:02.071088"}
+{"id": 960, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:02.145257"}
+{"id": 961, "balloon_id": 2, "sensor_id": 2, "sqn": 360, "data": "404", "timestamp": "2024-08-31T19:16:02.156807"}
+{"id": 962, "balloon_id": 0, "sensor_id": 3, "sqn": 364, "data": "404", "timestamp": "2024-08-31T19:16:02.193433"}
+{"id": 963, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:02.199394"}
+{"id": 965, "balloon_id": 0, "sensor_id": 2, "sqn": 362, "data": "404", "timestamp": "2024-08-31T19:16:02.606522"}
+{"id": 966, "balloon_id": 2, "sensor_id": 2, "sqn": 363, "data": "404", "timestamp": "2024-08-31T19:16:02.862790"}
+{"id": 967, "balloon_id": 1, "sensor_id": 4, "sqn": 369, "data": "404", "timestamp": "2024-08-31T19:16:02.980041"}
+{"id": 968, "balloon_id": 1, "sensor_id": 4, "sqn": 366, "data": "404", "timestamp": "2024-08-31T19:16:03.109608"}
+{"id": 969, "balloon_id": 2, "sensor_id": 2, "sqn": 365, "data": "404", "timestamp": "2024-08-31T19:16:03.176789"}
+{"id": 969, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:16:03.189871"}
+{"id": 968, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:03.194519"}
+{"id": 969, "balloon_id": 0, "sensor_id": 2, "sqn": 368, "data": "404", "timestamp": "2024-08-31T19:16:03.243530"}
+{"id": 973, "balloon_id": 2, "sensor_id": 2, "sqn": 368, "data": "404", "timestamp": "2024-08-31T19:16:03.417365"}
+{"id": 973, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:03.419687"}
+{"id": 973, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:03.421807"}
+{"id": 973, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:03.425118"}
+{"id": 975, "balloon_id": 0, "sensor_id": 2, "sqn": 366, "data": "404", "timestamp": "2024-08-31T19:16:03.449070"}
+{"id": 978, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:03.767035"}
+{"id": 978, "balloon_id": 1, "sensor_id": 4, "sqn": 365, "data": "404", "timestamp": "2024-08-31T19:16:03.786005"}
+{"id": 980, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:03.914545"}
+{"id": 981, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:04.198691"}
+{"id": 981, "balloon_id": 1, "sensor_id": 4, "sqn": 371, "data": "404", "timestamp": "2024-08-31T19:16:04.217496"}
+{"id": 983, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:04.247708"}
+{"id": 984, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:04.421100"}
+{"id": 984, "balloon_id": 0, "sensor_id": 2, "sqn": 373, "data": "404", "timestamp": "2024-08-31T19:16:04.422659"}
+{"id": 985, "balloon_id": 2, "sensor_id": 2, "sqn": 373, "data": "404", "timestamp": "2024-08-31T19:16:04.475288"}
+{"id": 985, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:04.484930"}
+{"id": 987, "balloon_id": 1, "sensor_id": 4, "sqn": 370, "data": "404", "timestamp": "2024-08-31T19:16:04.508975"}
+{"id": 989, "balloon_id": 2, "sensor_id": 2, "sqn": 372, "data": "404", "timestamp": "2024-08-31T19:16:04.862083"}
+{"id": 990, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:04.935879"}
+{"id": 991, "balloon_id": 0, "sensor_id": 2, "sqn": 376, "data": "404", "timestamp": "2024-08-31T19:16:05.013065"}
+{"id": 992, "balloon_id": 1, "sensor_id": 4, "sqn": 375, "data": "404", "timestamp": "2024-08-31T19:16:05.167960"}
+{"id": 993, "balloon_id": 1, "sensor_id": 4, "sqn": 374, "data": "404", "timestamp": "2024-08-31T19:16:05.251036"}
+{"id": 994, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:05.309687"}
+{"id": 994, "balloon_id": 2, "sensor_id": 2, "sqn": 376, "data": "404", "timestamp": "2024-08-31T19:16:05.316386"}
+{"id": 996, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:05.408176"}
+{"id": 997, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:05.492596"}
+{"id": 997, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:05.499265"}
+{"id": 997, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:05.500310"}
+{"id": 997, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:05.521866"}
+{"id": 1001, "balloon_id": 2, "sensor_id": 2, "sqn": 377, "data": "404", "timestamp": "2024-08-31T19:16:05.811492"}
+{"id": 1002, "balloon_id": 1, "sensor_id": 4, "sqn": 377, "data": "404", "timestamp": "2024-08-31T19:16:06.061668"}
+{"id": 1002, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:06.066732"}
+{"id": 1004, "balloon_id": 0, "sensor_id": 2, "sqn": 379, "data": "404", "timestamp": "2024-08-31T19:16:06.128883"}
+{"id": 1005, "balloon_id": 1, "sensor_id": 4, "sqn": 378, "data": "404", "timestamp": "2024-08-31T19:16:06.313959"}
+{"id": 1006, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:06.337105"}
+{"id": 1007, "balloon_id": 2, "sensor_id": 2, "sqn": 381, "data": "404", "timestamp": "2024-08-31T19:16:06.517022"}
+{"id": 1007, "balloon_id": 0, "sensor_id": 2, "sqn": 381, "data": "404", "timestamp": "2024-08-31T19:16:06.536677"}
+{"id": 1009, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:06.583729"}
+{"id": 1009, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:06.646148"}
+{"id": 1010, "balloon_id": 2, "sensor_id": 4, "sqn": 12, "data": "Sensor data: 4_12!", "timestamp": "2024-08-31T19:16:06.666343"}
+{"id": 1012, "balloon_id": 1, "sensor_id": 4, "sqn": 380, "data": "404", "timestamp": "2024-08-31T19:16:06.915177"}
+{"id": 1012, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:06.958025"}
+{"id": 1014, "balloon_id": 0, "sensor_id": 4, "sqn": 11, "data": "Sensor data: 4_11!", "timestamp": "2024-08-31T19:16:07.154455"}
+{"id": 1015, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:16:07.208728"}
+{"id": 1016, "balloon_id": 2, "sensor_id": 3, "sqn": 10, "data": "Sensor data: 3_10!", "timestamp": "2024-08-31T19:16:07.307566"}
+{"id": 1017, "balloon_id": 1, "sensor_id": 2, "sqn": 8, "data": "Sensor data: 2_8!", "timestamp": "2024-08-31T19:16:07.479929"}
