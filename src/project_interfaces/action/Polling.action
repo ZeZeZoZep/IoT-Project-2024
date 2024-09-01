@@ -1,5 +1,5 @@
 project_interfaces/Req req
 ---
-project_interfaces/Data result
+project_interfaces/Res result
 ---
 string feedback
