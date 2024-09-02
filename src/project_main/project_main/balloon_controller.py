@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import time
 import random
 import rclpy
@@ -16,24 +18,25 @@ from rosgraph_msgs.msg import Clock
 import math_utils
 from project_interfaces.action import Patrol
 from project_interfaces.action import Polling
-from project_interfaces.msg import Res
 
 from sim_utils import EventScheduler
+
+load_dotenv()
 
 WORLD_NAME = "iot_project_world"
 MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
-DEBUG_RX = False
-DEBUG_SETUP = False
-DEBUG_POLLING = True
+debug_rx = os.getenv('DEBUG_RX')
+debug_setup = os.getenv('DEBUG_SETUP')
+debug_polling = os.getenv('DEBUG_POLLING')
+
 
 class BalloonController(Node):
 
     def __init__(self):
         super().__init__("drone_controller")
 
-        #self.timers = []
         self.cache = []
         self.cache_size = SIZE
 
@@ -111,27 +114,27 @@ class BalloonController(Node):
                 
 
         #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
-        if DEBUG_RX :
+        if debug_rx :
             self.get_logger().info('Message received')
             self.print_cache()
 
     def remove_SPECIFIC(self,m):
         try:
             self.cache.remove(m)
-            if DEBUG_RX :self.get_logger().info(f'Removing: {m.sensor_id}-{m.sqn}')
+            if debug_rx :self.get_logger().info(f'Removing: {m.sensor_id}-{m.sqn}')
             
         except ValueError:
-            if DEBUG_RX :self.get_logger().info(f'ERR_FIFO: {m.sensor_id}-{m.sqn}')
+            if debug_rx :self.get_logger().info(f'ERR_FIFO: {m.sensor_id}-{m.sqn}')
             pass       
 
     def remove_FIFO(self):
         temp_msg=self.cache[0]
         try:
             self.cache.pop(0)
-            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if debug_rx :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            if DEBUG_RX :self.get_logger().info(f'ERR_FIFO: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if debug_rx :self.get_logger().info(f'ERR_FIFO: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass
             
     def remove_RND(self):
@@ -139,10 +142,10 @@ class BalloonController(Node):
 
         try:
             self.cache.remove(temp_msg)
-            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if debug_rx :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            if DEBUG_RX :self.get_logger().info(f'ERR_RND: {temp_msg.sensor_id}-{temp_msg.sqn}')       
+            if debug_rx :self.get_logger().info(f'ERR_RND: {temp_msg.sensor_id}-{temp_msg.sqn}')       
             pass
 
     def remove_LRU(self):
@@ -155,10 +158,10 @@ class BalloonController(Node):
         try:
 
             self.cache.remove(temp_msg)
-            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if debug_rx :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if debug_rx :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass
 
     def remove_MRU(self):
@@ -171,18 +174,18 @@ class BalloonController(Node):
         try:
 
             self.cache.remove(temp_msg)
-            if DEBUG_RX :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if debug_rx :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
         except ValueError:
-            if DEBUG_RX :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
+            if debug_rx :self.get_logger().info(f'ERR_LRU: {temp_msg.sensor_id}-{temp_msg.sqn}')
             pass    
 
     def expire_callback(self,msg):
         try:
             self.cache.remove(msg)
-            if DEBUG_RX :self.get_logger().info(f'Expired: {msg.sensor_id}-{msg.sqn}')
+            if debug_rx :self.get_logger().info(f'Expired: {msg.sensor_id}-{msg.sqn}')
         except ValueError:
-            if DEBUG_RX :self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
+            if debug_rx :self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
             pass
 
         #self.get_logger().info(f'{self.cache}')
@@ -208,7 +211,7 @@ class BalloonController(Node):
 
         command_goal : Patrol.Goal = goal.request
 
-        if DEBUG_SETUP:self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
+        if debug_setup:self.get_logger().info(f"Action requested. Performing movement to targets:\n\t{command_goal.targets}")
 
         self.fly_to_altitude(MIN_ALTITUDE_TO_PERFORM_PATROL)
 
@@ -221,19 +224,19 @@ class BalloonController(Node):
     
     def polling_goal_callback(self, goal):
 
-        if DEBUG_POLLING: self.get_logger().info(f'SERVER - Goal received, polling sensor {goal.req.sensor_id}')
+        if debug_polling: self.get_logger().info(f'SERVER - Goal received, polling sensor {goal.req.sensor_id}')
 
         return rclpy.action.GoalResponse.ACCEPT
     
     def cancel_polling_callback(self, goal_handle):
 
-        if DEBUG_POLLING: self.get_logger().info(f'SERVER - Request for polling cancel received')
+        if debug_polling: self.get_logger().info(f'SERVER - Request for polling cancel received')
 
         return rclpy.action.CancelResponse.ACCEPT
     
     def execute_polling_action(self, goal : ServerGoalHandle):
 
-        if DEBUG_POLLING: self.get_logger().info(f'SERVER - Executing goal, polling sensor {goal.request.req.sensor_id}')
+        if debug_polling: self.get_logger().info(f'SERVER - Executing goal, polling sensor {goal.request.req.sensor_id}')
         
         requested_sensor = goal.request.req.sensor_id
 
@@ -249,10 +252,10 @@ class BalloonController(Node):
 
         
         if sensor_data:
-            if DEBUG_POLLING: self.get_logger().info(f'SERVER - Data found: {self.cache[index].sensor_id}-{self.cache[index].sqn} (Polling sqn number {goal.request.req.sqn})')
+            if debug_polling: self.get_logger().info(f'SERVER - Data found: {self.cache[index].sensor_id}-{self.cache[index].sqn} (Polling sqn number {goal.request.req.sqn})')
             self.cache[index].timestamp = self.get_clock().now().to_msg()
         else:
-            if DEBUG_POLLING: self.get_logger().info(f'SERVER - Data NOT found for sensor {goal.request.req.sensor_id} (Polling sqn number {goal.request.req.sqn})')
+            if debug_polling: self.get_logger().info(f'SERVER - Data NOT found for sensor {goal.request.req.sensor_id} (Polling sqn number {goal.request.req.sqn})')
         
         goal.succeed()
         
@@ -278,7 +281,7 @@ class BalloonController(Node):
         move_up.angular = Vector3(x=0.0, y=0.0, z=0.0)
 
         self.cmd_vel_publisher.publish(move_up)
-        if DEBUG_SETUP:self.get_logger().info(f'{altitude}')
+        if debug_setup:self.get_logger().info(f'{altitude}')
         # Wait for the drone to reach the desired altitude
         while(self.position.z < altitude):
             time.sleep(0.1)

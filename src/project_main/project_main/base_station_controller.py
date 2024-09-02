@@ -1,10 +1,11 @@
 import sys
+import os
+from dotenv import load_dotenv
 from time import sleep
 from threading import Thread
 from random import randint
-import requests
+#import requests
 import json
-from datetime import datetime
 
 import rclpy
 from rclpy.node import Node
@@ -14,16 +15,15 @@ from rclpy.executors import MultiThreadedExecutor
 
 from rosgraph_msgs.msg import Clock
 from project_interfaces.action import Polling
-from project_interfaces.msg import Res
 from sim_utils import EventScheduler
+
+load_dotenv()
 
 WORLD_NAME = "iot_project_world"
 NUMBER_OF_BALLOONS = int(sys.argv[1])
 NUMBER_OF_SENSORS = int(sys.argv[2])
 
-DEBUG_POLLING = True
-
-
+debug_polling = os.getenv("DEBUG_POLLING")
 
 
 class BaseStationController(Node):
@@ -97,14 +97,14 @@ class BaseStationController(Node):
         self.responses = []
 
         while not self.polling_action_clients[uav_id].wait_for_server(1):
-            if DEBUG_POLLING: self.get_logger().info("Waiting for polling action server to come online")
+            if debug_polling: self.get_logger().info("Waiting for polling action server to come online")
             sleep(3)
 
         polling_goal_msg = Polling.Goal()
         polling_goal_msg.req.sensor_id = sensor_id
         polling_goal_msg.req.sqn = self.generate_polling_msgs(uav_id)
 
-        if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Sending Polling Goal to balloon {uav_id} for sensor {polling_goal_msg.req.sensor_id} with sqn number {polling_goal_msg.req.sqn}')
+        if debug_polling: self.get_logger().info(f'CLIENT - Sending Polling Goal to balloon {uav_id} for sensor {polling_goal_msg.req.sensor_id} with sqn number {polling_goal_msg.req.sqn}')
         
         
         polling_future = self.polling_action_clients[uav_id].send_goal_async(polling_goal_msg)
@@ -115,7 +115,7 @@ class BaseStationController(Node):
         polling_goal_handle = future.result()
 
         if not polling_goal_handle.accepted:
-            if DEBUG_POLLING: self.get_logger().info('Goal rejected :(')
+            if debug_polling: self.get_logger().info('Goal rejected :(')
             return
         
         self.polling_goal_handles[uav_id] = polling_goal_handle
@@ -140,14 +140,14 @@ class BaseStationController(Node):
         polling_rate -= 1
         if result.data.data == "404":
             self.responses.append(result)
-            if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Balloon {uav_id}. No data found for sensor {result.data.sensor_id}, polling req sqn number {result.sqn}')
+            if debug_polling: self.get_logger().info(f'CLIENT - Balloon {uav_id}. No data found for sensor {result.data.sensor_id}, polling req sqn number {result.sqn}')
             if len(self.responses) == NUMBER_OF_BALLOONS:
                 if polling_rate == 0:
                     sensor_pick = self.pick_sensor()
                     random_rate = self.pick_polling_rate()
                     self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
                 else:
-                    if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
+                    if debug_polling: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
                     self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id , polling_rate])
 
         else:
@@ -156,18 +156,18 @@ class BaseStationController(Node):
                 self.received_polling_data = True
                 self.cancel_remaining_polling_goals(uav_id)
             
-            if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Balloon {uav_id}. Result data for sensor {result.data.sensor_id}, sensor sqn number {result.data.sqn}: {result.data.data}')
+            if debug_polling: self.get_logger().info(f'CLIENT - Balloon {uav_id}. Result data for sensor {result.data.sensor_id}, sensor sqn number {result.data.sqn}: {result.data.data}')
 
             if polling_rate == 0:
                 sensor_pick = self.pick_sensor()
                 random_rate = self.pick_polling_rate()
                 self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
             else:
-                if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
+                if debug_polling: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
                 self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id, polling_rate])
     
     def cancel_remaining_polling_goals(self, completed_uav_id):
-        if DEBUG_POLLING: self.get_logger().info(f'CLIENT - Canceling pending goals of other ballons except balloon {completed_uav_id}')
+        if debug_polling: self.get_logger().info(f'CLIENT - Canceling pending goals of other ballons except balloon {completed_uav_id}')
 
         for uav_id, goal_handle in self.polling_goal_handles.items():
             if goal_handle is not None and uav_id != completed_uav_id:
@@ -178,21 +178,21 @@ class BaseStationController(Node):
         cancel_response = future.result()
 
         if cancel_response.goals_canceling:
-            if DEBUG_POLLING: self.get_logger().info('CLIENT - Goal successfully cancelled')
+            if debug_polling: self.get_logger().info('CLIENT - Goal successfully cancelled')
             else:
                 self.get_logger().info('CLIENT - Impossible to cancel goal')
 
     #OFFLOAD SU SERVER
-    def offload_data_to_server(self, data):
+    """ def offload_data_to_server(self, data):
         server_url = "http://example.com/offload"  # Inserisci l'URL del tuo server
         try:
             response = requests.post(server_url, json=data)
             if response.status_code == 200:
-                if DEBUG_POLLING: self.get_logger().info("Data offloading successful")
+                if debug_polling: self.get_logger().info("Data offloading successful")
             else:
-                if DEBUG_POLLING: self.get_logger().info(f"Data offloading failed with status code {response.status_code}")
+                if debug_polling: self.get_logger().info(f"Data offloading failed with status code {response.status_code}")
         except requests.exceptions.RequestException as e:
-            self.get_logger().error(f"Error during data offloading: {e}")         
+            self.get_logger().error(f"Error during data offloading: {e}")  """        
 
     #OFFLOAD SU FILE 
     def offload_data_to_file(self, data):
@@ -201,17 +201,14 @@ class BaseStationController(Node):
         try:
             with open(filename, "a+", encoding='utf-8') as file:
                 file.write(json.dumps(data, ensure_ascii='utf-8', indent=4) + ",\n")
-                #json.dump(data, file, ensure_ascii='utf-8', indent=4)
 
             self.data_id += 1
-            if DEBUG_POLLING: self.get_logger().info("Data successfully offloaded to file")
+            if debug_polling: self.get_logger().info("Data successfully offloaded to file")
 
         except IOError as e:
             self.get_logger().error(f"Error during file offloading: {e}")     
 
-
-
-    
+    #Utility functions for data serialization
     def ros_message_to_dict(self, msg):
         # Using the built-in method to convert ROS 2 message to a dictionary
         if hasattr(msg, '__slots__') and hasattr(msg, '_fields_and_field_types'):

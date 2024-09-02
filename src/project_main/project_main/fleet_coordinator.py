@@ -1,4 +1,6 @@
 import sys
+import os
+from dotenv import load_dotenv
 from time import sleep
 from threading import Thread
 from enum import Enum
@@ -8,7 +10,6 @@ from random import randint
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-#from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 
 from geometry_msgs.msg import Point
@@ -16,9 +17,10 @@ from nav_msgs.msg import Odometry
 from rosgraph_msgs.msg import Clock
 from project_interfaces.action import Patrol
 from project_main.math_utils import random_point_in_circle, is_segment_in_circles
-#from project_interfaces.action import Polling
 
 from sim_utils import EventScheduler
+
+load_dotenv()
 
 WORLD_NAME = "iot_project_world"
 NUMBER_OF_BALLOONS = int(sys.argv[1])
@@ -26,8 +28,10 @@ NUMBER_OF_SENSORS = int(sys.argv[2])
 
 HOVERING_HEIGHT = 5.0
 
-DEBUG_SETUP= False
-DEBUG_PATROLLING= False
+debug_setup = os.getenv('DEBUG_SETUP')
+debug_patrolling = os.getenv('DEBUG_PATROLLING')
+
+
 class FleetCoordinator(Node):
 
     """
@@ -127,21 +131,21 @@ class FleetCoordinator(Node):
     def submit_task_balloon(self, uav_id : int):
         # Wait for the action server to go online
         flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-        if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
         while flag:
             sleep(3)
             flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-            if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
-        if DEBUG_SETUP:self.get_logger().info(f"Controllo se so dove sono")   
+            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Controllo se so dove sono")   
 
         while self.balloon_positions[uav_id] == None :
-            if DEBUG_SETUP:self.get_logger().info(f"dove sooonooooo?") 
+            if debug_setup:self.get_logger().info(f"dove sooonooooo?") 
             sleep(3)
 
-        if DEBUG_SETUP:self.get_logger().info(f"ECCOCI =)")  
+        if debug_setup:self.get_logger().info(f"ECCOCI =)")  
 
         """ while not self.balloon_action_clients[uav_id].wait_for_server(1) or len(self.balloon_positions) < NUMBER_OF_BALLOONS:
-            if DEBUG_SETUP:self.get_logger().info(f"{self.balloon_action_clients[uav_id].wait_for_server(1)}or{len(self.balloon_positions) < NUMBER_OF_BALLOONS} Waiting for action server to come online and sensors to announce their position")
+            if debug_setup:self.get_logger().info(f"{self.balloon_action_clients[uav_id].wait_for_server(1)}or{len(self.balloon_positions) < NUMBER_OF_BALLOONS} Waiting for action server to come online and sensors to announce their position")
             sleep(3) """
 
         # Set the Balloon to moving state
@@ -156,7 +160,7 @@ class FleetCoordinator(Node):
         goal.targets[0].z = HOVERING_HEIGHT
 
 
-        if DEBUG_SETUP:self.get_logger().info(f"Submitting task for Balloon {uav_id}")
+        if debug_setup:self.get_logger().info(f"Submitting task for Balloon {uav_id}")
 
         # Submit the task here and add a callback for when the submission is accepted
         patrol_future = self.balloon_action_clients[uav_id].send_goal_async(goal)
@@ -168,7 +172,7 @@ class FleetCoordinator(Node):
     
         if not goal_handle.accepted:
             # If not, set the balloon back to hovering, and return
-            if DEBUG_SETUP:self.get_logger().info("Task has been refused by the action server")
+            if debug_setup:self.get_logger().info("Task has been refused by the action server")
             self.balloon_states[uav_id] = BalloonState.HOVERING
             return
         
@@ -179,7 +183,7 @@ class FleetCoordinator(Node):
     def setup_balloon_completed_callback(self, uav_id, future):
         # Action completed, Balloon can go back to hovering. Note that we don't check if the patrol was correctly completed,
         # you may have to handle such cases
-        if DEBUG_SETUP:self.get_logger().info(f"Patrolling action for Balloon {uav_id} has been completed. Drone is going idle")
+        if debug_setup:self.get_logger().info(f"Patrolling action for Balloon {uav_id} has been completed. Drone is going idle")
         self.balloon_states[uav_id] = BalloonState.HOVERING
         
     
@@ -205,18 +209,18 @@ class FleetCoordinator(Node):
 
         # Wait for the action server to go online
         flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-        if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
         while flag:
             sleep(3)
             flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-            if DEBUG_SETUP:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
-        if DEBUG_SETUP:self.get_logger().info(f"Controllo se so dove sono i plaons")   
+            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Controllo se so dove sono i plaons")   
 
         while len(self.balloon_positions) < NUMBER_OF_BALLOONS :
-            if DEBUG_SETUP:self.get_logger().info(f"dove sono i miei amici?") 
+            if debug_setup:self.get_logger().info(f"dove sono i miei amici?") 
             sleep(3)
 
-        if DEBUG_SETUP:self.get_logger().info(f"ECCOCI =)")  
+        if debug_setup:self.get_logger().info(f"ECCOCI =)")  
         """ while not self.sensor_action_clients[sensor_id].wait_for_server(1) or (len(self.sensor_positions) < NUMBER_OF_SENSORS and len(self.balloon_positions) < NUMBER_OF_BALLOONS): 
             if DEBUG_PATROLLING:self.get_logger().info("Waiting for sensors")
             sleep(3) """
@@ -237,7 +241,7 @@ class FleetCoordinator(Node):
 
 
 
-        if DEBUG_PATROLLING:self.get_logger().info(f"Submitting task for sensor{sensor_id}")
+        if debug_patrolling:self.get_logger().info(f"Submitting task for sensor{sensor_id}")
 
         # Submit the task here and add a callback for when the submission is accepted
         patrol_future = self.sensor_action_clients[sensor_id].send_goal_async(goal)
@@ -251,7 +255,7 @@ class FleetCoordinator(Node):
     
         if not goal_handle.accepted:
             # If not, set the balloon back to hovering, and return
-            if DEBUG_PATROLLING:self.get_logger().info("Task has been refused by the action server")
+            if debug_patrolling:self.get_logger().info("Task has been refused by the action server")
             self.sensor_states[sensor_id] = SensorState.MOVING
             return
         
@@ -265,7 +269,7 @@ class FleetCoordinator(Node):
 
         # Action completed, Balloon can go back to hovering. Note that we don't check if the patrol was correctly completed,
         # you may have to handle such cases
-        if DEBUG_PATROLLING:self.get_logger().info(f"Patrolling action for Sensor{sensor_id} has been completed. Drone is going idle")
+        if debug_patrolling:self.get_logger().info(f"Patrolling action for Sensor{sensor_id} has been completed. Drone is going idle")
         self.sensor_states[sensor_id] = SensorState.STILL
         self.event_scheduler.schedule_event(1, self.submit_task_sensor, False, args = [sensor_id])
 
@@ -276,62 +280,6 @@ class FleetCoordinator(Node):
         self.sensor_positions[id] = msg.pose.pose.position
     def store_balloon_position(self, id, msg : Odometry):
         self.balloon_positions[id] = msg.pose.pose.position
-
-    """ def pick_random_sensor(self):
-        return randint(0, NUMBER_OF_SENSORS - 1)
-    
-    def pick_polling_rate(self):
-        return randint(2, 6)
-    
-    def send_polling_goal(self, sensor_id : int, polling_rate : int):
-        self.responses = []
-        polling_goal_msg = Polling.Goal()
-        polling_goal_msg.sensor_id = sensor_id
-
-        for i in range(NUMBER_OF_BALLOONS):
-
-            while not self.polling_action_clients[i].wait_for_server(1):
-                self.get_logger().info("Waiting for polling action server to come online")
-                sleep(3)
-            
-            self.polling_future = self.polling_action_clients[i].send_goal_async(polling_goal_msg)
-            self.polling_future.add_done_callback(lambda future, polling_rate = polling_rate : self.polling_submitted_callback(future, polling_rate))
-    
-    def polling_submitted_callback(self, future, polling_rate):
-        polling_goal_handle = future.result()
-
-        if not polling_goal_handle.accepted:
-            self.get_logger().info('Goal rejected :(')
-            return
-        
-        self.polling_result_future = polling_goal_handle.get_result_async()
-        self.polling_result_future.add_done_callback(lambda future, polling_rate = polling_rate : self.polling_result_callback(future, polling_rate))
-    
-    def polling_result_callback(self, future, polling_rate):
-        result = future.result().result
-        if result.result.data == "404":
-            self.responses.append(result.result)
-            self.get_logger().info(f'{result.result.data}')
-            if len(self.responses) == NUMBER_OF_BALLOONS:
-                if polling_rate == 0:
-                    random_sensor = self.pick_random_sensor()
-                    random_rate = self.pick_polling_rate()
-                    self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
-                else:
-                    self.get_logger().info(f'Polling rate: {polling_rate}')
-                    polling_rate -= 1
-                    self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [result.result.sensor_id, polling_rate])
-        else:
-            self.responses.append(result.result)
-            self.get_logger().info(f'{result.result.data}')
-            if polling_rate == 0:
-                random_sensor = self.pick_random_sensor()
-                random_rate = self.pick_polling_rate()
-                self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
-            else:
-                self.get_logger().info(f'Polling rate: {polling_rate}')
-                polling_rate -= 1
-                self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [result.result.sensor_id, polling_rate]) """
 
 
 class BalloonState(Enum):
