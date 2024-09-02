@@ -28,8 +28,8 @@ NUMBER_OF_SENSORS = int(sys.argv[2])
 
 HOVERING_HEIGHT = 5.0
 
-debug_setup = os.getenv('DEBUG_SETUP')
-debug_patrolling = os.getenv('DEBUG_PATROLLING')
+debug_setup = int(os.getenv('DEBUG_SETUP'))
+debug_patrolling = int(os.getenv('DEBUG_PATROLLING'))
 
 
 class FleetCoordinator(Node):
