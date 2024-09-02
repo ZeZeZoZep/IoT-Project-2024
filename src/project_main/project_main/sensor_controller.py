@@ -23,6 +23,7 @@ load_dotenv()
 WORLD_NAME = "iot_project_world"
 
 debug_patrolling = os.getenv('DEBUG_PATROLLING')
+sensor_transmission_rate = float(os.getenv('SENSOR_TRANSMISSION_RATE'))
 
 
 class SensorController(Node):
@@ -78,8 +79,8 @@ class SensorController(Node):
             self.event_scheduler.routine,
             10
         )
-        self.rate = 0.2 #average num of msg per second
-        self.event_scheduler.schedule_event(np.random.exponential(1 / self.rate), self.simple_publish, False)
+
+        self.event_scheduler.schedule_event(np.random.exponential(1 / sensor_transmission_rate), self.simple_publish, False)
 
         #self.create_timer(1, self.simple_publish)
     def wrapperino(self,msg):
@@ -102,7 +103,7 @@ class SensorController(Node):
         msg.data = f"Sensor data: {id}_{msg.sqn}!"
 
         self.tx_topic.publish(msg)
-        self.event_scheduler.schedule_event(np.random.exponential(1 / self.rate), self.simple_publish, False) 
+        self.event_scheduler.schedule_event(np.random.exponential(1 / sensor_transmission_rate), self.simple_publish, False) 
 
     def execute_patrol_action(self, goal : ServerGoalHandle):
 

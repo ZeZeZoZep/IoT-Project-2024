@@ -27,9 +27,10 @@ WORLD_NAME = "iot_project_world"
 MIN_ALTITUDE_TO_PERFORM_PATROL = 4
 SIZE = 10
 
-debug_rx = os.getenv('DEBUG_RX')
-debug_setup = os.getenv('DEBUG_SETUP')
-debug_polling = os.getenv('DEBUG_POLLING')
+debug_rx = int(os.getenv('DEBUG_RX'))
+debug_setup = int(os.getenv('DEBUG_SETUP'))
+debug_polling = int(os.getenv('DEBUG_POLLING'))
+caching_algorithm = int(os.getenv('CACHING_ALGORITHM'))
 
 
 class BalloonController(Node):
@@ -107,7 +108,7 @@ class BalloonController(Node):
         if temp_msg!= None:
             self.remove_SPECIFIC(temp_msg)    
         elif len(self.cache)>=self.cache_size: 
-            self.remove_LRU()
+            self.select_caching_algorithm(caching_algorithm)
         self.cache.append(msg)
         self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
         #Idea: Depending on the global variable we apply a different policy for the removal of messages in the cache
@@ -291,6 +292,18 @@ class BalloonController(Node):
         stop_mov.linear = Vector3(x=0.0, y=0.0, z=0.0)
         stop_mov.angular = Vector3(x=0.0, y=0.0, z=0.0)
         self.cmd_vel_publisher.publish(stop_mov)
+    
+    #Utility functions to choose the caching algorithm
+    def select_caching_algorithm(self, algorithm_id):
+        if algorithm_id == 0:
+            self.remove_FIFO()
+        elif algorithm_id == 1:
+            self.remove_RND()
+        elif algorithm_id == 2:
+            self.remove_LRU()
+        elif algorithm_id == 3:
+            self.remove_MRU()
+
 
 
 
