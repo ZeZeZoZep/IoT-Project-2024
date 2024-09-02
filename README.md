@@ -37,6 +37,11 @@ we need to decide the behaviour of the exchange Antenna-Balloon (via topic, via 
 
 There's still the need to create some kind of patrolling system for the sensors.
 
+### update 3
+- added environmental variables to manage different scenarios to thest the simulation with
+
+To make the variable works, create a ".env" file inside the root directory of the project and insert there the variables needed in the format "NAME=value". Make sure to have python-dotenv installed in the system.
+
 ## Launching the Simulation
 
 You can start the simulation displayed in the image with the command:
