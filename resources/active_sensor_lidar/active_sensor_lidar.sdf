@@ -45,8 +45,7 @@
                 </geometry>   
             </visual>
         </link>
-
-        <!--
+        
         <link name='sensor'>
             <pose>0.3 0 0.5 0 1.5707 0</pose>
             <inertial>
@@ -57,27 +56,30 @@
                     <izz>0.000166667</izz>
                 </inertia>
             </inertial>
+
             <collision name="collision">
                 <geometry>
                     <cylinder>
                         <radius>0.05</radius>
                         <length>0.2</length>
                     </cylinder>
-            </geometry>
+                </geometry>
             </collision>
+
             <visual name="visual">
-            <geometry>
-                <cylinder>
-                    <radius>0.05</radius>
-                    <length>0.2</length>
-                </cylinder>
-            </geometry>
+                <geometry>
+                    <cylinder>
+                        <radius>0.05</radius>
+                        <length>0.2</length>
+                    </cylinder>
+                </geometry>
             </visual>
+
             <sensor name='gpu_lidar' type='gpu_lidar'>"
                 <pose>0 0 0 0 -1.5707 0</pose>
-
                 <topic>ActiveSensor/lidar</topic>
                 <update_rate>5</update_rate>
+
                 <ray>
                     <scan>
                         <horizontal>
@@ -102,8 +104,7 @@
                 <always_on>1</always_on>
                 <visualize>false</visualize>
             </sensor>
-        </link>
-        -->
+        </link>       
 
         <link name='left_wheel'>
             <pose relative_to="body">-0.3 0.3 0.15 -1.5707 0 0</pose>
@@ -236,14 +237,12 @@
                 </limit>
             </axis>
         </joint>
-
-        <!--
+        
         <joint name="lidar_joint" type="fixed">
-        <parent>body</parent>
-        <child>sensor</child>
-        <pose>0 0 0.15 0 0 0</pose>
-        </joint>
-        -->
+            <parent>body</parent>
+            <child>sensor</child>
+            <pose>0 0 0.15 0 0 0</pose>
+        </joint>      
 
         <joint name='right_wheel_joint' type='revolute'>
             <pose relative_to='right_wheel'/>
