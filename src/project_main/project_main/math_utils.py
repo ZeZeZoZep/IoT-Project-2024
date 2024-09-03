@@ -3,7 +3,7 @@ import math
 from geometry_msgs.msg import Point
 import numpy as np
 import matplotlib.pyplot as plt
-import math
+
 def random_point_in_circle(centre,radius):
     # Genera un angolo casuale tra 0 e 2π
         theta = np.random.uniform(0, 2 * math.pi)
@@ -17,6 +17,15 @@ def random_point_in_circle(centre,radius):
         y = r * math.sin(theta)
         
         return (centre[0]+x, centre[1]+y, 0,701)
+def polar_to_euclidian(module,phase,centre):
+    # Converte le coordinate polari in cartesiane
+    x = module * math.cos(phase)
+    y = module * math.sin(phase)
+    ret=Point()
+    ret.x=centre.x+x
+    ret.y=centre.y+y
+    ret.z=centre.z
+    return ret
 
 def is_segment_in_circles(segment, circles, num_points=100):
     """
