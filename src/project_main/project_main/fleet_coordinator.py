@@ -142,9 +142,9 @@ class FleetCoordinator(Node):
                 if i==0:
                     punto=(0.0, 0.0, 0.0)
                 elif i==1:
-                    punto = (0.0, +32.0, 0.0)
+                    punto = (+32.0, 0.0, 0.0)
                 elif i==2:
-                    punto = (-27.71, +16.0, 0.0)
+                    punto = (+16.0,-27.71, 0.0)
                 balloon_spawn_positions.append(self.tuple_to_point(punto))
         
         #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso >3 balloon
@@ -152,22 +152,22 @@ class FleetCoordinator(Node):
             for i in range(NUMBER_OF_BALLOONS):
                 punto=tuple()
                 if i%3==0:
-                    punto=(0.0, (i/3)*32.0, 0.0)
+                    punto=((i/3)*32.0, 0.0, 0.0)
                 elif i%3==1:
-                    punto=(27.71, (((i-1)/3)*32.0)+16.0, 0.0)
+                    punto=((((i-1)/3)*32.0)+16.0, 27.71, 0.0)
                 else:
-                    punto=(-27.71, (((i-2)/3)*32.0)+16.0, 0.0)
+                    punto=((((i-2)/3)*32.0)+16.0, -27.71, 0.0)
                 balloon_spawn_positions.append(self.tuple_to_point(punto))
 
         for index in range(NUMBER_OF_BALLOONS):
             b_position=balloon_spawn_positions[index]
             b_position.z=0.701
-            self.create_node(index*7,self.point_to_tuple(b_position))
+            self.create_node(index*7,b_position)
 
             #CREA GRAFO ESAGONO
             for i in range(6):
                 new_point=polar_to_euclidian(12,(i*math.pi/3),b_position)
-                self.create_node(index*7+(i+1),self.point_to_tuple(new_point))
+                self.create_node(index*7+(i+1),new_point)
                 self.create_link(index*7,index*7+(i+1))
                 if i != 0: self.create_link(index*7+(i+1),index*7+i)
                 if i == 5: self.create_link(index*7+(i+1),index*7+1)
@@ -245,7 +245,7 @@ class FleetCoordinator(Node):
             if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
         if debug_setup:self.get_logger().info(f"Controllo se so dove sono")   
 
-        while self.balloon_positions[uav_id] == None :
+        while len(self.balloon_positions) !=NUMBER_OF_BALLOONS :
             if debug_setup:self.get_logger().info(f"dove sooonooooo?") 
             sleep(3)
 
