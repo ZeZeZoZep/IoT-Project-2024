@@ -2,7 +2,7 @@ import math
 
 from geometry_msgs.msg import Point
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 def random_point_in_circle(centre,radius):
     # Genera un angolo casuale tra 0 e 2π

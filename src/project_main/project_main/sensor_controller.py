@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import rclpy
 from rclpy.node import Node
 import numpy as np
@@ -15,8 +17,15 @@ from sensor_msgs.msg import LaserScan
 from project_interfaces.action import Patrol
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
+
+load_dotenv()
+
 WORLD_NAME = "iot_project_world"
-DEBUG_PATROLLING=False
+
+debug_patrolling = os.getenv('DEBUG_PATROLLING')
+sensor_transmission_rate = float(os.getenv('SENSOR_TRANSMISSION_RATE'))
+
+
 class SensorController(Node):
 
     def __init__(self):
@@ -70,15 +79,15 @@ class SensorController(Node):
             self.event_scheduler.routine,
             10
         )
-        self.rate = 0.2 #average num of msg per second
-        self.event_scheduler.schedule_event(np.random.exponential(1 / self.rate), self.simple_publish, False)
+
+        self.event_scheduler.schedule_event(np.random.exponential(1 / sensor_transmission_rate), self.simple_publish, False)
 
         #self.create_timer(1, self.simple_publish)
     def wrapperino(self,msg):
         flag=False
         for sample in msg.ranges:
             if sample<1.0:
-                if DEBUG_PATROLLING:self.get_logger().info('LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR')
+                if debug_patrolling:self.get_logger().info('LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR#LIDAR')
                 flag=True
                 break
         self.obstacle=flag
@@ -94,7 +103,7 @@ class SensorController(Node):
         msg.data = f"Sensor data: {id}_{msg.sqn}!"
 
         self.tx_topic.publish(msg)
-        self.event_scheduler.schedule_event(np.random.exponential(1 / self.rate), self.simple_publish, False) 
+        self.event_scheduler.schedule_event(np.random.exponential(1 / sensor_transmission_rate), self.simple_publish, False) 
 
     def execute_patrol_action(self, goal : ServerGoalHandle):
 
@@ -112,7 +121,7 @@ class SensorController(Node):
             self.rotate_to_target(target)
             self.move_to_target(target)
 
-            if DEBUG_PATROLLING:self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
+            if debug_patrolling:self.get_logger().info(f"Movement to target {targets_patrolled} completed!")
             targets_patrolled += 1
         self.get_logger().info(f"completed")
         
