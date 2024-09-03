@@ -114,23 +114,28 @@ class FleetCoordinator(Node):
         self.event_scheduler.schedule_event(1, self.setup_balloon, False, args = [])
         self.event_scheduler.schedule_event(5, self.patrol_targets, False, args = [])
         #self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
+
+
     def point_to_tuple(self,point):
         return (point.x,point.y,point.z)
-    def object_to_point(self,object):
+    
+    def tuple_to_point(self,object):
         ret=Point()
         ret.x=object[0]
         ret.y=object[1]
         ret.z=object[2]
         return ret
+    
     def create_node(self,integer,point):
         self.points.update({integer:point})
+        
     def create_link(self,point1,point2):
         self.edges.append((point1,point2))
 
     def setup_balloon(self):
         balloon_spawn_positions=[]
 
-        #CALCOLA SPAWNING POSITIONS DEI BALLOON
+        #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso <=3 balloon
         if NUMBER_OF_BALLOONS<4:
             for i in range(NUMBER_OF_BALLOONS):
                 punto=tuple()
@@ -140,7 +145,9 @@ class FleetCoordinator(Node):
                     punto = (0.0, +32.0, 0.0)
                 elif i==2:
                     punto = (-27.71, +16.0, 0.0)
-                balloon_spawn_positions.append(self.object_to_point(punto))
+                balloon_spawn_positions.append(self.tuple_to_point(punto))
+        
+        #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso >3 balloon
         else:
             for i in range(NUMBER_OF_BALLOONS):
                 punto=tuple()
@@ -150,7 +157,7 @@ class FleetCoordinator(Node):
                     punto=(27.71, (((i-1)/3)*32.0)+16.0, 0.0)
                 else:
                     punto=(-27.71, (((i-2)/3)*32.0)+16.0, 0.0)
-                balloon_spawn_positions.append(self.object_to_point(punto))
+                balloon_spawn_positions.append(self.tuple_to_point(punto))
 
         for index in range(NUMBER_OF_BALLOONS):
             b_position=balloon_spawn_positions[index]
@@ -165,7 +172,7 @@ class FleetCoordinator(Node):
                 if i != 0: self.create_link(index*7+(i+1),index*7+i)
                 if i == 5: self.create_link(index*7+(i+1),index*7+1)
 
-            #CONNETTI COMPONENTI ESAGONALI
+            #CONNETTI COMPONENTI ESAGONALI: caso <= 3 balloon
             if NUMBER_OF_BALLOONS<4:
                 if index==0:pass
                 elif index==1:
@@ -179,7 +186,7 @@ class FleetCoordinator(Node):
                     self.create_link(index*7+3,index2*7+6)
                     index2=index-1
                     self.create_link(index*7+5,index2*7+2)
-
+            #CONNETTI COMPONENTI ESAGONALI: caso > 3 balloon
             else:
                 if i%3==0:
                     if index-3>0: 
