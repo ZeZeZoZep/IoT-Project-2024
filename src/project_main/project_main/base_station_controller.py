@@ -25,6 +25,7 @@ NUMBER_OF_BALLOONS = int(sys.argv[1])
 NUMBER_OF_SENSORS = int(sys.argv[2])
 
 debug_polling = int(os.getenv("DEBUG_POLLING"))
+is_random = int(os.getenv('IS_RANDOM'))
 
 
 class BaseStationController(Node):
@@ -71,20 +72,10 @@ class BaseStationController(Node):
         
         #Schedule the first call of the polling action with sensor 0 and a random polling rate
         sensor_pick = self.pick_sensor()
-        random_rate = self.pick_polling_rate()
+        rate_pick = self.pick_polling_rate(is_random)
 
-        self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
+        self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, rate_pick])
     
-    #Utility functions for polling rate and sqn number generator for the base station's requests
-    def pick_sensor(self):
-        return randint(0, NUMBER_OF_SENSORS - 1)
-
-    def pick_polling_rate(self):
-        return randint(2, 5)
-    
-    def generate_polling_msgs(self, i):
-        self.polling_msgs_sqn[i] += 1
-        return self.polling_msgs_sqn[i]
     
     #Start of the polling action
     def send_polling_requests(self, sensor_id : int, polling_rate : int):
@@ -151,8 +142,8 @@ class BaseStationController(Node):
             if len(self.responses) == NUMBER_OF_BALLOONS:
                 if polling_rate == 0:
                     sensor_pick = self.pick_sensor()
-                    random_rate = self.pick_polling_rate()
-                    self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
+                    rate_pick = self.pick_polling_rate(is_random)
+                    self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, rate_pick])
                 else:
                     if debug_polling: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
                     self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id , polling_rate])
@@ -167,8 +158,8 @@ class BaseStationController(Node):
 
             if polling_rate == 0:
                 sensor_pick = self.pick_sensor()
-                random_rate = self.pick_polling_rate()
-                self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, random_rate])
+                rate_pick = self.pick_polling_rate(is_random)
+                self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, rate_pick])
             else:
                 if debug_polling: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
                 self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id, polling_rate])
@@ -215,7 +206,7 @@ class BaseStationController(Node):
         except IOError as e:
             self.get_logger().error(f"Error during file offloading: {e}")     
 
-    #Utility functions for data serialization
+    # Utility functions for data serialization
     def ros_message_to_dict(self, msg):
         # Using the built-in method to convert ROS 2 message to a dictionary
         if hasattr(msg, '__slots__') and hasattr(msg, '_fields_and_field_types'):
@@ -230,12 +221,27 @@ class BaseStationController(Node):
         else:
             raise ValueError("Input is not a valid ROS message")    
         
-    # Funzione per convertire il messaggio Time in un dizionario
+    # Convert Time msg in a dict obj
     def time_to_dict(self, time_msg):
         return {
             'sec': time_msg.sec,
             'nanosec': time_msg.nanosec
         }
+    
+    #Utility functions for sensor pick, polling rate and sqn number generator for the base station's requests
+    def pick_sensor(self):
+        return randint(0, NUMBER_OF_SENSORS - 1)
+
+    def pick_polling_rate(self, flag):
+        if flag:
+            return 1
+        else:
+            return randint(2, 5)
+    
+    def generate_polling_msgs(self, i):
+        self.polling_msgs_sqn[i] += 1
+        return self.polling_msgs_sqn[i]
+    
 
 def main():
 
