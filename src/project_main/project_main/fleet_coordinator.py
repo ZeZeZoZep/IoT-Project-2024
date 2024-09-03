@@ -6,7 +6,7 @@ from threading import Thread
 from enum import Enum
 import random
 from random import randint
-
+import math
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
@@ -16,7 +16,9 @@ from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
 from rosgraph_msgs.msg import Clock
 from project_interfaces.action import Patrol
-from project_main.math_utils import random_point_in_circle, is_segment_in_circles
+from project_main.math_utils import random_point_in_circle, is_segment_in_circles, polar_to_euclidian
+#from project_interfaces.action import Polling
+import networkx as nx
 
 from sim_utils import EventScheduler
 
@@ -50,7 +52,10 @@ class FleetCoordinator(Node):
         self.sensor_positions = {}      
         self.sensor_states = {} 
         self.circles =[]
-        self.balloon_states = {} 
+        self.balloon_states = {}
+        self.G = nx.Graph()
+        self.points = {}
+        self.edges = []
 
         self.event_scheduler = EventScheduler()
         self.clock_topic = self.create_subscription(
@@ -109,8 +114,103 @@ class FleetCoordinator(Node):
         self.event_scheduler.schedule_event(1, self.setup_balloon, False, args = [])
         self.event_scheduler.schedule_event(5, self.patrol_targets, False, args = [])
         #self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
-    def setup_balloon(self):
+    def point_to_tuple(self,point):
+        return (point.x,point.y,point.z)
+    def object_to_point(self,object):
+        ret=Point()
+        ret.x=object[0]
+        ret.y=object[1]
+        ret.z=object[2]
+        return ret
+    def create_node(self,integer,point):
+        self.points.update({integer:point})
+    def create_link(self,point1,point2):
+        self.edges.append((point1,point2))
 
+    def setup_balloon(self):
+        balloon_spawn_positions=[]
+
+        #CALCOLA SPAWNING POSITIONS DEI BALLOON
+        if NUMBER_OF_BALLOONS<4:
+            for i in range(NUMBER_OF_BALLOONS):
+                punto=tuple()
+                if i==0:
+                    punto=(0.0, 0.0, 0.0)
+                elif i==1:
+                    punto = (0.0, +32.0, 0.0)
+                elif i==2:
+                    punto = (-27.71, +16.0, 0.0)
+                balloon_spawn_positions.append(self.object_to_point(punto))
+        else:
+            for i in range(NUMBER_OF_BALLOONS):
+                punto=tuple()
+                if i%3==0:
+                    punto=(0.0, (i/3)*32.0, 0.0)
+                elif i%3==1:
+                    punto=(27.71, (((i-1)/3)*32.0)+16.0, 0.0)
+                else:
+                    punto=(-27.71, (((i-2)/3)*32.0)+16.0, 0.0)
+                balloon_spawn_positions.append(self.object_to_point(punto))
+
+        for index in range(NUMBER_OF_BALLOONS):
+            b_position=balloon_spawn_positions[index]
+            b_position.z=0.701
+            self.create_node(index*7,self.point_to_tuple(b_position))
+
+            #CREA GRAFO ESAGONO
+            for i in range(6):
+                new_point=polar_to_euclidian(12,(i*math.pi/3),b_position)
+                self.create_node(index*7+(i+1),self.point_to_tuple(new_point))
+                self.create_link(index*7,index*7+(i+1))
+                if i != 0: self.create_link(index*7+(i+1),index*7+i)
+                if i == 5: self.create_link(index*7+(i+1),index*7+1)
+
+            #CONNETTI COMPONENTI ESAGONALI
+            if NUMBER_OF_BALLOONS<4:
+                if index==0:pass
+                elif index==1:
+
+                    index2=index-3
+                    self.create_link(index*7+4,index2*7+1)
+
+                elif index==2:
+
+                    index2=index-2
+                    self.create_link(index*7+3,index2*7+6)
+                    index2=index-1
+                    self.create_link(index*7+5,index2*7+2)
+
+            else:
+                if i%3==0:
+                    if index-3>0: 
+                        index2=index-3
+                        self.create_link(index*7+4,index2*7+1)
+                    if index-2>0: 
+                        index2=index-2
+                        self.create_link(index*7+3,index2*7+6)
+                    if index-1>0: 
+                        index2=index-1
+                        self.create_link(index*7+5,index2*7+2)
+                elif i%3==1:
+                    if index-3>0: 
+                        index2=index-3
+                        self.create_link(index*7+4,index2*7+1)
+                    if index-1>0: 
+                        index2=index-1
+                        self.create_link(index*7+5,index2*7+2)
+
+                else:
+                    if index-3>0: 
+                        index2=index-3
+                        self.create_link(index*7+4,index2*7+1)
+                    if index-2>0: 
+                        index2=index-2
+                        self.create_link(index*7+3,index2*7+6)
+        for point, coord in self.points.items():
+            self.G.add_node(point, pos=coord)
+
+    # Aggiungi lati (come tuple dei punti connessi)
+        self.G.add_edges_from(self.edges)
         
         #Method used to keep the fleet of Balloons constantly patrolling the set of targets.
         #When a patrolling task has been completed, a new one with the same targets is given again.

@@ -6,6 +6,7 @@ from threading import Thread
 from random import randint
 #import requests
 import json
+import os
 
 import rclpy
 from rclpy.node import Node
@@ -38,6 +39,12 @@ class BaseStationController(Node):
         self.seq = NUMBER_OF_SENSORS
 
         self.data_id = 0
+        file_path = "offloaded_data.json"
+
+        if os.path.exists(file_path):
+            os.remove(file_path)
+           
+
 
         #Vars specific for cancelling goals no more needed
         self.polling_goal_handles = {}
