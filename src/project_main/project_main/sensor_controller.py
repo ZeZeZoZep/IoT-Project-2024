@@ -1,4 +1,5 @@
 import os
+import sys
 from dotenv import load_dotenv
 import rclpy
 from rclpy.node import Node
@@ -24,7 +25,7 @@ WORLD_NAME = "iot_project_world"
 
 debug_patrolling = os.getenv('DEBUG_PATROLLING')
 sensor_transmission_rate = float(os.getenv('SENSOR_TRANSMISSION_RATE'))
-
+NUMBER_OF_LIDAR_SENSORS= 3
 
 class SensorController(Node):
 
@@ -47,13 +48,7 @@ class SensorController(Node):
             self.store_position,
             10
         )
-        """
-        self.lidar_subscriber = self.create_subscription(
-            LaserScan,
-            'lidar',
-            self.wrapperino,
-            10
-        ) """
+        
         
         self.cmd_vel_publisher = self.create_publisher(
             Twist,
@@ -68,6 +63,13 @@ class SensorController(Node):
         )
         
         self.id = self.declare_parameter('id', -1)
+        if self.id.get_parameter_value().integer_value<NUMBER_OF_LIDAR_SENSORS:
+            self.lidar_subscriber = self.create_subscription(
+                LaserScan,
+                'lidar',
+                self.wrapperino,
+                10
+            )
 
         self.generated_data = 0
 
@@ -116,6 +118,7 @@ class SensorController(Node):
 
         targets_patrolled = 0
         self.get_logger().info(f"target {command_goal.targets}")
+        if command_goal.targets==[]: sleep(3)
         for target in command_goal.targets:
                 
             self.rotate_to_target(target)
