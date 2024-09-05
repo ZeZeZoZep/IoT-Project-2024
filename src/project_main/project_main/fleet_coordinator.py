@@ -1,5 +1,6 @@
 import sys
 import os
+import ast
 from dotenv import load_dotenv
 from time import sleep
 from threading import Thread
@@ -25,9 +26,9 @@ from sim_utils import EventScheduler
 load_dotenv()
 
 WORLD_NAME = "iot_project_world"
-NUMBER_OF_BALLOONS = int(sys.argv[1])
-NUMBER_OF_SENSORS = int(sys.argv[2])
-
+NUMBER_OF_BALLOONS = int(sys.argv[2])
+NUMBER_OF_SENSORS = int(sys.argv[3])
+NUMBER_OF_LIDAR_SENSORS=int(sys.argv[4])
 HOVERING_HEIGHT = 5.0
 
 debug_setup = int(os.getenv('DEBUG_SETUP'))
@@ -56,7 +57,8 @@ class FleetCoordinator(Node):
         self.G = nx.Graph()
         self.points = {}
         self.edges = []
-
+        self.markings=ast.literal_eval(sys.argv[1])
+        #self.get_logger().info(f'{self.markings.get(0)}')
         self.event_scheduler = EventScheduler()
         self.clock_topic = self.create_subscription(
             Clock,
@@ -107,121 +109,14 @@ class FleetCoordinator(Node):
                 10
             )
         
-    
-        """ random_sensor = self.pick_random_sensor()
-        random_rate = self.pick_polling_rate() """
-
+        self.setup_graph()
         self.event_scheduler.schedule_event(1, self.setup_balloon, False, args = [])
         self.event_scheduler.schedule_event(5, self.patrol_targets, False, args = [])
         #self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
 
-
-    def point_to_tuple(self,point):
-        return (point.x,point.y,point.z)
-    
-    def tuple_to_point(self,object):
-        ret=Point()
-        ret.x=object[0]
-        ret.y=object[1]
-        ret.z=object[2]
-        return ret
-    
-    def create_node(self,integer,point):
-        self.points.update({integer:point})
-        
-    def create_link(self,point1,point2):
-        self.edges.append((point1,point2))
-
     def setup_balloon(self):
-        balloon_spawn_positions=[]
-
-        #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso <=3 balloon
-        if NUMBER_OF_BALLOONS<4:
-            for i in range(NUMBER_OF_BALLOONS):
-                punto=tuple()
-                if i==0:
-                    punto=(0.0, 0.0, 0.0)
-                elif i==1:
-                    punto = (0.0, +32.0, 0.0)
-                elif i==2:
-                    punto = (-27.71, +16.0, 0.0)
-                balloon_spawn_positions.append(self.tuple_to_point(punto))
-        
-        #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso >3 balloon
-        else:
-            for i in range(NUMBER_OF_BALLOONS):
-                punto=tuple()
-                if i%3==0:
-                    punto=(0.0, (i/3)*32.0, 0.0)
-                elif i%3==1:
-                    punto=(27.71, (((i-1)/3)*32.0)+16.0, 0.0)
-                else:
-                    punto=(-27.71, (((i-2)/3)*32.0)+16.0, 0.0)
-                balloon_spawn_positions.append(self.tuple_to_point(punto))
-
-        for index in range(NUMBER_OF_BALLOONS):
-            b_position=balloon_spawn_positions[index]
-            b_position.z=0.701
-            self.create_node(index*7,self.point_to_tuple(b_position))
-
-            #CREA GRAFO ESAGONO
-            for i in range(6):
-                new_point=polar_to_euclidian(12,(i*math.pi/3),b_position)
-                self.create_node(index*7+(i+1),self.point_to_tuple(new_point))
-                self.create_link(index*7,index*7+(i+1))
-                if i != 0: self.create_link(index*7+(i+1),index*7+i)
-                if i == 5: self.create_link(index*7+(i+1),index*7+1)
-
-            #CONNETTI COMPONENTI ESAGONALI: caso <= 3 balloon
-            if NUMBER_OF_BALLOONS<4:
-                if index==0:pass
-                elif index==1:
-
-                    index2=index-3
-                    self.create_link(index*7+4,index2*7+1)
-
-                elif index==2:
-
-                    index2=index-2
-                    self.create_link(index*7+3,index2*7+6)
-                    index2=index-1
-                    self.create_link(index*7+5,index2*7+2)
-            #CONNETTI COMPONENTI ESAGONALI: caso > 3 balloon
-            else:
-                if i%3==0:
-                    if index-3>0: 
-                        index2=index-3
-                        self.create_link(index*7+4,index2*7+1)
-                    if index-2>0: 
-                        index2=index-2
-                        self.create_link(index*7+3,index2*7+6)
-                    if index-1>0: 
-                        index2=index-1
-                        self.create_link(index*7+5,index2*7+2)
-                elif i%3==1:
-                    if index-3>0: 
-                        index2=index-3
-                        self.create_link(index*7+4,index2*7+1)
-                    if index-1>0: 
-                        index2=index-1
-                        self.create_link(index*7+5,index2*7+2)
-
-                else:
-                    if index-3>0: 
-                        index2=index-3
-                        self.create_link(index*7+4,index2*7+1)
-                    if index-2>0: 
-                        index2=index-2
-                        self.create_link(index*7+3,index2*7+6)
-        for point, coord in self.points.items():
-            self.G.add_node(point, pos=coord)
-
-    # Aggiungi lati (come tuple dei punti connessi)
-        self.G.add_edges_from(self.edges)
         
         #Method used to keep the fleet of Balloons constantly patrolling the set of targets.
-        #When a patrolling task has been completed, a new one with the same targets is given again.
-        
 
         def setup_balloon_inner():
 
@@ -235,26 +130,10 @@ class FleetCoordinator(Node):
         # Start this function in another thread, so that the node can start spinning immediately after
         # this function has finished
         Thread(target=setup_balloon_inner).start()
+    
     def submit_task_balloon(self, uav_id : int):
         # Wait for the action server to go online
-        flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
-        while flag:
-            sleep(3)
-            flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
-        if debug_setup:self.get_logger().info(f"Controllo se so dove sono")   
-
-        while self.balloon_positions[uav_id] == None :
-            if debug_setup:self.get_logger().info(f"dove sooonooooo?") 
-            sleep(3)
-
-        if debug_setup:self.get_logger().info(f"ECCOCI =)")  
-
-        """ while not self.balloon_action_clients[uav_id].wait_for_server(1) or len(self.balloon_positions) < NUMBER_OF_BALLOONS:
-            if debug_setup:self.get_logger().info(f"{self.balloon_action_clients[uav_id].wait_for_server(1)}or{len(self.balloon_positions) < NUMBER_OF_BALLOONS} Waiting for action server to come online and sensors to announce their position")
-            sleep(3) """
-
+        self.wait_for_balloons(uav_id)
         # Set the Balloon to moving state
         self.balloon_states[uav_id] = BalloonState.MOVING
         goal = Patrol.Goal()
@@ -296,42 +175,71 @@ class FleetCoordinator(Node):
     
     def patrol_targets(self):
 
-        
+
         #Method used to keep the fleet of Balloons constantly patrolling the set of targets.
         #When a patrolling task has been completed, a new one with the same targets is given again.
-        
+        def patrol_targets_inner():
+            for i in range(NUMBER_OF_SENSORS):
+                if i<NUMBER_OF_LIDAR_SENSORS:
+                    # Do not resubmit tasks to already moving balloons
+                    if not self.sensor_states[i] is SensorState.MOVING:
+                        self.submit_task_lidar_sensor(i)
+                else:
+                    if not self.sensor_states[i] is SensorState.MOVING:
+                        self.submit_task_sensor(i)
 
 
             
         # Start this function in another thread, so that the node can start spinning immediately after
         # this function has finished
-        Thread(target=self.patrol_targets_inner).start()
+        Thread(target=patrol_targets_inner).start()
 
-    def patrol_targets_inner(self):
-        for i in range(NUMBER_OF_SENSORS):
-            # Do not resubmit tasks to already moving balloons
-            if not self.sensor_states[i] is SensorState.MOVING:
-                self.submit_task_sensor(i)
+    
     def submit_task_sensor(self,sensor_id : int):
+        self.get_logger().info(f'Sensor: {sensor_id}, Lidar: NO')
+        self.wait_for_sensors(sensor_id)
+
+        
+        goal = Patrol.Goal()
+        goal.targets = []
+
+        #self.get_logger().info(f'{self.markings}')  
+        index_occupied_node=self.markings.get(sensor_id)
+        neighbours=self.G[index_occupied_node]
+        #self.get_logger().info(f'{neighbours}') 
+        aux_list=list(set(neighbours.keys()).difference(set(self.markings.values())))
+        if(len(aux_list)>0):
+            #for elem in aux_list:
+            #    self.get_logger().info(f'{elem}')    
+            #self.get_logger().info(f'lista{aux_list}')
+            #self.get_logger().info(f'cacca{len(aux_list)}cacca')
+            random_neighbour=random.randint(0,len(aux_list)-1)
+            #self.get_logger().info(f'ciao{random_neighbour}')
+            target=aux_list[random_neighbour]
+            #self.get_logger().info(f'ciao{target}')
+            #self.get_logger().info(f'ciaopaloneg{self.points[target]}')  
+            goal.targets.append(self.points[target])
+            self.markings.update({sensor_id:target})
+            #self.get_logger().info(f'lamerda {sensor_id}:{target}')
+            self.sensor_states[sensor_id] = SensorState.MOVING
+         
+        # Set the Balloon to moving state
+
+
+
+
+        if debug_patrolling:self.get_logger().info(f"Submitting task for sensor{sensor_id}")
+
+        # Submit the task here and add a callback for when the submission is accepted
+        patrol_future = self.sensor_action_clients[sensor_id].send_goal_async(goal)
+        patrol_future.add_done_callback(lambda future, sensor_id = sensor_id : self.patrol_submitted_callback(sensor_id, future))
+    
+    def submit_task_lidar_sensor(self,sensor_id : int):
+        self.get_logger().info(f'Sensor: {sensor_id}, Lidar: YES')
 
         # Wait for the action server to go online
-        flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
-        while flag:
-            sleep(3)
-            flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
-        if debug_setup:self.get_logger().info(f"Controllo se so dove sono i plaons")   
+        self.wait_for_sensors(sensor_id)
 
-        while len(self.balloon_positions) < NUMBER_OF_BALLOONS :
-            if debug_setup:self.get_logger().info(f"dove sono i miei amici?") 
-            sleep(3)
-
-        if debug_setup:self.get_logger().info(f"ECCOCI =)")  
-        """ while not self.sensor_action_clients[sensor_id].wait_for_server(1) or (len(self.sensor_positions) < NUMBER_OF_SENSORS and len(self.balloon_positions) < NUMBER_OF_BALLOONS): 
-            if DEBUG_PATROLLING:self.get_logger().info("Waiting for sensors")
-            sleep(3) """
-        temp=None
         balloon_id=random.randint(0,NUMBER_OF_BALLOONS-1)
         chosen_balloon=self.balloon_positions[balloon_id]
         temp=random_point_in_circle((chosen_balloon.x,chosen_balloon.y),10) 
@@ -353,6 +261,7 @@ class FleetCoordinator(Node):
         # Submit the task here and add a callback for when the submission is accepted
         patrol_future = self.sensor_action_clients[sensor_id].send_goal_async(goal)
         patrol_future.add_done_callback(lambda future, sensor_id = sensor_id : self.patrol_submitted_callback(sensor_id, future))
+
 
 
     def patrol_submitted_callback(self, sensor_id, future):
@@ -378,7 +287,8 @@ class FleetCoordinator(Node):
         # you may have to handle such cases
         if debug_patrolling:self.get_logger().info(f"Patrolling action for Sensor{sensor_id} has been completed. Drone is going idle")
         self.sensor_states[sensor_id] = SensorState.STILL
-        self.event_scheduler.schedule_event(1, self.submit_task_sensor, False, args = [sensor_id])
+        if sensor_id<NUMBER_OF_LIDAR_SENSORS:self.event_scheduler.schedule_event(1, self.submit_task_lidar_sensor, False, args = [sensor_id])
+        else: self.event_scheduler.schedule_event(1, self.submit_task_sensor, False, args = [sensor_id])
 
    
 
@@ -387,7 +297,144 @@ class FleetCoordinator(Node):
         self.sensor_positions[id] = msg.pose.pose.position
     def store_balloon_position(self, id, msg : Odometry):
         self.balloon_positions[id] = msg.pose.pose.position
+    def setup_graph(self):
+        balloon_spawn_positions=[]
 
+        #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso <=3 balloon
+        if NUMBER_OF_BALLOONS<4:
+            for i in range(NUMBER_OF_BALLOONS):
+                punto=tuple()
+                if i==0:
+                    punto=(0.0, 0.0, 0.0)
+                elif i==1:
+                    punto = (+32.0, 0.0, 0.0)
+                elif i==2:
+                    punto = (+16.0,-27.71, 0.0)
+                balloon_spawn_positions.append(self.tuple_to_point(punto))
+        
+        #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso >3 balloon
+        else:
+            for i in range(NUMBER_OF_BALLOONS):
+                punto=tuple()
+                if i%3==0:
+                    punto=((i/3)*32.0, 0.0, 0.0)
+                elif i%3==1:
+                    punto=((((i-1)/3)*32.0)+16.0, 27.71, 0.0)
+                else:
+                    punto=((((i-2)/3)*32.0)+16.0, -27.71, 0.0)
+                balloon_spawn_positions.append(self.tuple_to_point(punto))
+
+        for index in range(NUMBER_OF_BALLOONS):
+            b_position=balloon_spawn_positions[index]
+            b_position.z=0.701
+            self.create_node(index*7,b_position)
+
+            #CREA GRAFO ESAGONO
+            for i in range(6):
+                new_point=polar_to_euclidian(12,(i*math.pi/3),b_position)
+                self.create_node(index*7+(i+1),new_point)
+                self.create_link(index*7,index*7+(i+1))
+                if i != 0: self.create_link(index*7+(i+1),index*7+i)
+                if i == 5: 
+                    self.create_link(index*7+(i+1),index*7+1)
+                    #self.get_logger().info(f'nuovo edge {index*7+(i+1)} - {index*7+1}')
+
+            #CONNETTI COMPONENTI ESAGONALI: caso <= 3 balloon
+            if NUMBER_OF_BALLOONS<4:
+                if index==0:pass
+                elif index==1:
+
+                    index2=index-1
+                    self.create_link(index*7+4,index2*7+1)
+
+                elif index==2:
+
+                    index2=index-2
+                    self.create_link(index*7+3,index2*7+6)
+                    index2=index-1
+                    self.create_link(index*7+5,index2*7+2)
+            #CONNETTI COMPONENTI ESAGONALI: caso > 3 balloon
+            else:
+                if i%3==0:
+                    if index-3>0: 
+                        index2=index-3
+                        self.create_link(index*7+4,index2*7+1)
+                    if index-2>0: 
+                        index2=index-2
+                        self.create_link(index*7+3,index2*7+6)
+                    if index-1>0: 
+                        index2=index-1
+                        self.create_link(index*7+5,index2*7+2)
+                elif i%3==1:
+                    if index-3>0: 
+                        index2=index-3
+                        self.create_link(index*7+4,index2*7+1)
+                    if index-1>0: 
+                        index2=index-1
+                        self.create_link(index*7+5,index2*7+2)
+
+                else:
+                    if index-3>0: 
+                        index2=index-3
+                        self.create_link(index*7+4,index2*7+1)
+                    if index-2>0: 
+                        index2=index-2
+                        self.create_link(index*7+3,index2*7+6)
+            #self.get_logger().info(f'{self.points.keys()}')
+            #self.get_logger().info(f'{self.edges}')
+        for point, coord in self.points.items():
+            self.G.add_node(point, pos=coord)
+            #self.get_logger().info(f'{point}')
+
+    # Aggiungi lati (come tuple dei punti connessi)
+        self.G.add_edges_from(self.edges)
+
+    def wait_for_balloons(self,uav_id):
+        flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
+        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        while flag:
+            sleep(3)
+            flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
+            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Controllo se so dove sono")   
+
+        while len(self.balloon_positions) !=NUMBER_OF_BALLOONS :
+            if debug_setup:self.get_logger().info(f"dove sooonooooo?") 
+            sleep(3)
+
+        if debug_setup:self.get_logger().info(f"ECCOCI =)")  
+
+    def wait_for_sensors(self,sensor_id):
+        flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
+        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        while flag:
+            sleep(3)
+            flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
+            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Controllo se so dove sono i plaons")   
+
+        while len(self.balloon_positions) < NUMBER_OF_BALLOONS :
+            if debug_setup:self.get_logger().info(f"dove sono i miei amici?") 
+            sleep(3)
+
+        if debug_setup:self.get_logger().info(f"ECCOCI =)")  
+
+
+    def point_to_tuple(self,point):
+        return (point.x,point.y,point.z)
+    
+    def tuple_to_point(self,object):
+        ret=Point()
+        ret.x=object[0]
+        ret.y=object[1]
+        ret.z=object[2]
+        return ret
+    
+    def create_node(self,integer,point):
+        self.points.update({integer:point})
+        
+    def create_link(self,point1,point2):
+        self.edges.append((point1,point2))
 
 class BalloonState(Enum):
     LANDED = 1

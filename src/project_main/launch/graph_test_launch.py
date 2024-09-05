@@ -1,6 +1,6 @@
 
 import math
-
+import random
 from geometry_msgs.msg import Point
 
 import matplotlib.pyplot as plt
@@ -10,7 +10,7 @@ import networkx as nx
 
 WORLD_NAME = "iot_project_world"
 
-NUMBER_OF_BALLOONS = 7
+NUMBER_OF_BALLOONS = 3
 NUMBER_OF_SENSORS = 1
 
 
@@ -180,6 +180,7 @@ def main():
     # Aggiungi lati (come tuple dei punti connessi)
     G.add_edges_from(edges)
 
+    print(random.choice(list(G.neighbors(0))))
     # Ottieni le posizioni dei nodi per la visualizzazione
     pos = nx.get_node_attributes(G, 'pos')
 

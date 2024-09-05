@@ -1,4 +1,7 @@
 import sys
+import math
+
+from geometry_msgs.msg import Point
 
 from random import randint
 
@@ -13,22 +16,42 @@ from launch.substitutions import PathJoinSubstitution
 from project_main.sim_utils import spawn_sdf
 
 
+import numpy as np
+from project_main.math_utils import random_point_in_circle
 
 
 WORLD_NAME = "iot_project_world"
 
 NUMBER_OF_BALLOONS = 3
-NUMBER_OF_SENSORS = 9
+NUMBER_OF_SENSORS = 10
+NUMBER_OF_LIDAR_SENSORS = 3
 
 
-import numpy as np
-from project_main.math_utils import random_point_in_circle
-
-
+points = []
 
 #-----------------------------------------------------------------------------------------------
 # Launch file for the IoT Project. Launches all the nodes required to start the final solution
 #-----------------------------------------------------------------------------------------------
+def polar_to_euclidian(module,phase,centre):
+    # Converte le coordinate polari in cartesiane
+    x = module * math.cos(phase)
+    y = module * math.sin(phase)
+    ret=Point()
+    ret.x=centre[0]+x
+    ret.y=centre[1]+y
+    ret.z=centre[2]
+    return ret
+def point_to_tuple(point):
+    return (point.x,point.y,point.z)
+def object_to_point(object):
+    ret=Point()
+    ret.x=object[0]
+    ret.y=object[1]
+    ret.z=object[2]
+    return ret
+def create_node(integer,point):
+    points.append((integer,point))
+
 
 def generate_launch_description():
 
@@ -78,26 +101,36 @@ def generate_launch_description():
     circles=[]
     #-------------------------- Spawn balloons and bridge their topics ---------------------------
     # if 5 above the ground effective range is 19, the distance between neighbour ballons should be 32 (+16, +27,71)
-    for i in range(NUMBER_OF_BALLOONS):
+    for index in range(NUMBER_OF_BALLOONS):
         punto=tuple()
-        if i==1:
-            punto = (0, +32.0, 0)
-        elif i==3:
-            punto = (+27.71, +16, 0)
-        elif i%3==0:
-            punto=(0, (i/3)*32, 0)
-        elif i%3==1:
-            punto=(27.71, (((i-1)/3)*32)+16, 0)
+        if NUMBER_OF_BALLOONS<4:
+            if index==0:
+                punto=(0.0, 0.0, 0.0)
+            elif index==1:
+                punto = (+32.0, 0.0, 0.0)
+            elif index==2:
+                punto = (+16.0,-27.71, 0.0)
         else:
-            punto=(-27.71, (((i-2)/3)*32)+16, 0)
+            if index%3==0:
+                punto=((index/3)*32.0, 0.0,0.0)
+            elif index%3==1:
+                punto=((((index-1)/3)*32.0)+16.0, 27.71,0.0)
+            else:
+                punto=((((index-2)/3)*32.0)+16.0, -27.71,0.0)
+                   
+
+        #CREA GRAFO ESAGONO
+        for i in range(6):
+            new_point=point_to_tuple(polar_to_euclidian(12,(i*math.pi/3),punto))
+            create_node(index*7+(i+1),new_point)
         circles.append((punto,10))
-        targets_to_spawn.append(spawn_sdf("resources/balloon/balloon.sdf", id = i, pos = punto))
+        targets_to_spawn.append(spawn_sdf("resources/balloon/balloon.sdf", id = index, pos = punto))
         targets_to_spawn.append(
         Node(
             package="ros_gz_bridge",
             executable="parameter_bridge",
             arguments=[
-            f"/Balloon_{i}/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
+            f"/Balloon_{index}/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
             ]
         )
         )
@@ -106,7 +139,7 @@ def generate_launch_description():
             package="ros_gz_bridge",
             executable="parameter_bridge",
             arguments=[
-            f"/Balloon_{i}/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
+            f"/Balloon_{index}/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
             ]
         )
         )
@@ -115,8 +148,8 @@ def generate_launch_description():
             Node(
                 package="project_main",
                 executable="balloon_controller",
-                namespace=f"Balloon_{i}",
-                name=f"BalloonController{i}"
+                namespace=f"Balloon_{index}",
+                name=f"BalloonController{index}"
             )
         )
 
@@ -157,52 +190,78 @@ def generate_launch_description():
             )
         )
     '''
+    node_position={}
      #-------------------------- Spawn sensors and bridge their topics ---------------------------
     for i in range(NUMBER_OF_SENSORS):
-        circle=np.random.randint(0, NUMBER_OF_BALLOONS)
-        targets_to_spawn.append(spawn_sdf("resources/active_sensor/active_sensor.sdf", id = i, pos = random_point_in_circle(circles[circle][0],circles[circle][1])))
+        spawn_point=None
+        spawn_point_index=None
+        if i<NUMBER_OF_LIDAR_SENSORS:
+            circle=np.random.randint(0, NUMBER_OF_BALLOONS)
+            spawn_point=random_point_in_circle(circles[circle][0],circles[circle][1])
+            targets_to_spawn.append(spawn_sdf("resources/active_sensor_lidar/active_sensor_lidar.sdf", id = i, pos = spawn_point))
+            targets_to_spawn.append(
+            Node(             
+                package="ros_gz_bridge",
+                executable="parameter_bridge",
+                arguments=[
+                f"/ActiveSensor_{i}/lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan"
+                ]
+            )
+            )
 
-        targets_to_spawn.append(
-        Node(
-            package="ros_gz_bridge",
-            executable="parameter_bridge",
-            arguments=[
-            f"/ActiveSensor_{i}/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
-            ]
-        )
-        )
-
-        targets_to_spawn.append(
-        Node(             
-            package="ros_gz_bridge",
-            executable="parameter_bridge",
-            arguments=[
-            f"/ActiveSensor_{i}/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
-            ]
-        )
-        )
-
-        """ targets_to_spawn.append(
-        Node(             
-            package="ros_gz_bridge",
-            executable="parameter_bridge",
-            arguments=[
-            f"/ActiveSensor_{i}/lidar@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan"
-            ]
-        )
-        ) """
+        
+        else:
+            spawn_point_index=np.random.randint(0, len(points))
+            print(points[spawn_point_index])
+            spawn_point=points[spawn_point_index][1]
+            node_position.update({i:points[spawn_point_index][0]})
+            points.pop(spawn_point_index)
+            targets_to_spawn.append(spawn_sdf("resources/active_sensor/active_sensor.sdf", id = i, pos = spawn_point))
+            
+            
 
         targets_to_spawn.append(
             Node(
-                package="project_main",
-                executable="sensor_controller",
-                namespace=f"ActiveSensor_{i}",
-                parameters=[
-                    {'id': i}
+                package="ros_gz_bridge",
+                executable="parameter_bridge",
+                arguments=[
+                f"/ActiveSensor_{i}/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry"
                 ]
             )
-        )
-    
+            )
+
+        targets_to_spawn.append(
+            Node(             
+                package="ros_gz_bridge",
+                executable="parameter_bridge",
+                arguments=[
+                f"/ActiveSensor_{i}/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist"
+                ]
+            )
+            )
+        if i<NUMBER_OF_LIDAR_SENSORS:
+            targets_to_spawn.append(
+                    Node(
+                        package="project_main",
+                        executable="sensor_controller",
+                        namespace=f"ActiveSensor_{i}",
+                        parameters=[
+                            {'id': i, 'nls':NUMBER_OF_LIDAR_SENSORS}
+                        ]
+                    )
+                )
+        else:
+            targets_to_spawn.append(
+                    Node(
+                        package="project_main",
+                        executable="sensor_controller",
+                        namespace=f"ActiveSensor_{i}",
+                        parameters=[
+                            {'id': i, 'nls':NUMBER_OF_LIDAR_SENSORS}
+                        ]
+                    )
+                )
+            
 
 
     #------------------------------------ Spawn base station -------------------------------------
@@ -245,8 +304,10 @@ def generate_launch_description():
             package="project_main",
             executable="fleet_coordinator",
             arguments=[
+                f"{node_position}",
                 f"{NUMBER_OF_BALLOONS}",
-                f"{NUMBER_OF_SENSORS}"
+                f"{NUMBER_OF_SENSORS}",
+                f"{NUMBER_OF_LIDAR_SENSORS}"
             ]
         )
     )
