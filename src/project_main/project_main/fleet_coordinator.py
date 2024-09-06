@@ -1,24 +1,24 @@
 import sys
 import os
 import ast
+import random
+import math
+import rclpy
+
 from dotenv import load_dotenv
 from time import sleep
 from threading import Thread
 from enum import Enum
-import random
-from random import randint
-import math
-import rclpy
+
 from rclpy.node import Node
 from rclpy.action import ActionClient
 from rclpy.executors import MultiThreadedExecutor
-
 from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
 from rosgraph_msgs.msg import Clock
+
 from project_interfaces.action import Patrol
-from project_main.math_utils import random_point_in_circle, is_segment_in_circles, polar_to_euclidian
-#from project_interfaces.action import Polling
+from project_main.math_utils import random_point_in_circle, polar_to_euclidian
 import networkx as nx
 
 from sim_utils import EventScheduler
@@ -26,13 +26,13 @@ from sim_utils import EventScheduler
 load_dotenv()
 
 WORLD_NAME = "iot_project_world"
-NUMBER_OF_BALLOONS = int(sys.argv[2])
-NUMBER_OF_SENSORS = int(sys.argv[3])
-NUMBER_OF_LIDAR_SENSORS=int(sys.argv[4])
 HOVERING_HEIGHT = 5.0
 
 debug_setup = int(os.getenv('DEBUG_SETUP'))
 debug_patrolling = int(os.getenv('DEBUG_PATROLLING'))
+number_of_balloons = int(os.getenv('NUMBER_OF_BALLOONS'))
+number_of_sensors = int(os.getenv('NUMBER_OF_SENSORS'))
+number_of_lidar_sensors = int(os.getenv('NUMBER_OF_LIDAR_SENSORS'))
 
 
 class FleetCoordinator(Node):
@@ -46,7 +46,6 @@ class FleetCoordinator(Node):
 
         super().__init__('fleet_coordinator')
 
-        #self.polling_action_clients = {}
         self.balloon_action_clients = {}
         self.sensor_action_clients = {}
         self.balloon_positions = {}
@@ -58,7 +57,7 @@ class FleetCoordinator(Node):
         self.points = {}
         self.edges = []
         self.markings=ast.literal_eval(sys.argv[1])
-        #self.get_logger().info(f'{self.markings.get(0)}')
+
         self.event_scheduler = EventScheduler()
         self.clock_topic = self.create_subscription(
             Clock,
@@ -67,7 +66,7 @@ class FleetCoordinator(Node):
             10
         )
 
-        for i in range(NUMBER_OF_BALLOONS):
+        for i in range(number_of_balloons):
 
             self.balloon_action_clients[i] = ActionClient(
                     self,
@@ -84,16 +83,7 @@ class FleetCoordinator(Node):
                 10
             )
 
-            """ polling_callback_group = ReentrantCallbackGroup()
-            self.polling_action_clients[i] = ActionClient(
-                self,
-                Polling,
-                f'/Balloon_{i}/polling',
-                callback_group = polling_callback_group
-            ) """
-
-
-        for i in range(NUMBER_OF_SENSORS):
+        for i in range(number_of_sensors):
             self.sensor_action_clients[i] = ActionClient(
                     self,
                     Patrol,
@@ -112,26 +102,23 @@ class FleetCoordinator(Node):
         self.setup_graph()
         self.event_scheduler.schedule_event(1, self.setup_balloon, False, args = [])
         self.event_scheduler.schedule_event(5, self.patrol_targets, False, args = [])
-        #self.event_scheduler.schedule_event(1, self.send_polling_goal, False, args = [random_sensor, random_rate])
 
     def setup_balloon(self):
         
         #Method used to keep the fleet of Balloons constantly patrolling the set of targets.
 
         def setup_balloon_inner():
-
-
             
-            for i in range(NUMBER_OF_BALLOONS):
+            for i in range(number_of_balloons):
                 # Do not resubmit tasks to already moving balloons
                 if not self.balloon_states[i] is BalloonState.MOVING:
                     self.submit_task_balloon(i)
             
-        # Start this function in another thread, so that the node can start spinning immediately after
-        # this function has finished
+        # Start this function in another thread, so that the node can start spinning immediately after this function has finished
         Thread(target=setup_balloon_inner).start()
     
     def submit_task_balloon(self, uav_id : int):
+        
         # Wait for the action server to go online
         self.wait_for_balloons(uav_id)
         # Set the Balloon to moving state
@@ -179,8 +166,8 @@ class FleetCoordinator(Node):
         #Method used to keep the fleet of Balloons constantly patrolling the set of targets.
         #When a patrolling task has been completed, a new one with the same targets is given again.
         def patrol_targets_inner():
-            for i in range(NUMBER_OF_SENSORS):
-                if i<NUMBER_OF_LIDAR_SENSORS:
+            for i in range(number_of_sensors):
+                if i<number_of_lidar_sensors:
                     # Do not resubmit tasks to already moving balloons
                     if not self.sensor_states[i] is SensorState.MOVING:
                         self.submit_task_lidar_sensor(i)
@@ -240,7 +227,7 @@ class FleetCoordinator(Node):
         # Wait for the action server to go online
         self.wait_for_sensors(sensor_id)
 
-        balloon_id=random.randint(0,NUMBER_OF_BALLOONS-1)
+        balloon_id=random.randint(0,number_of_balloons-1)
         chosen_balloon=self.balloon_positions[balloon_id]
         temp=random_point_in_circle((chosen_balloon.x,chosen_balloon.y),10) 
 
@@ -287,7 +274,7 @@ class FleetCoordinator(Node):
         # you may have to handle such cases
         if debug_patrolling:self.get_logger().info(f"Patrolling action for Sensor{sensor_id} has been completed. Drone is going idle")
         self.sensor_states[sensor_id] = SensorState.STILL
-        if sensor_id<NUMBER_OF_LIDAR_SENSORS:self.event_scheduler.schedule_event(1, self.submit_task_lidar_sensor, False, args = [sensor_id])
+        if sensor_id<number_of_lidar_sensors:self.event_scheduler.schedule_event(1, self.submit_task_lidar_sensor, False, args = [sensor_id])
         else: self.event_scheduler.schedule_event(1, self.submit_task_sensor, False, args = [sensor_id])
 
    
@@ -301,8 +288,8 @@ class FleetCoordinator(Node):
         balloon_spawn_positions=[]
 
         #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso <=3 balloon
-        if NUMBER_OF_BALLOONS<4:
-            for i in range(NUMBER_OF_BALLOONS):
+        if number_of_balloons<4:
+            for i in range(number_of_balloons):
                 punto=tuple()
                 if i==0:
                     punto=(0.0, 0.0, 0.0)
@@ -314,7 +301,7 @@ class FleetCoordinator(Node):
         
         #CALCOLA SPAWNING POSITIONS DEI BALLOON: caso >3 balloon
         else:
-            for i in range(NUMBER_OF_BALLOONS):
+            for i in range(number_of_balloons):
                 punto=tuple()
                 if i%3==0:
                     punto=((i/3)*32.0, 0.0, 0.0)
@@ -324,7 +311,7 @@ class FleetCoordinator(Node):
                     punto=((((i-2)/3)*32.0)+16.0, -27.71, 0.0)
                 balloon_spawn_positions.append(self.tuple_to_point(punto))
 
-        for index in range(NUMBER_OF_BALLOONS):
+        for index in range(number_of_balloons):
             b_position=balloon_spawn_positions[index]
             b_position.z=0.701
             self.create_node(index*7,b_position)
@@ -340,7 +327,7 @@ class FleetCoordinator(Node):
                     #self.get_logger().info(f'nuovo edge {index*7+(i+1)} - {index*7+1}')
 
             #CONNETTI COMPONENTI ESAGONALI: caso <= 3 balloon
-            if NUMBER_OF_BALLOONS<4:
+            if number_of_balloons<4:
                 if index==0:pass
                 elif index==1:
 
@@ -391,14 +378,14 @@ class FleetCoordinator(Node):
 
     def wait_for_balloons(self,uav_id):
         flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         while flag:
             sleep(3)
             flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+            if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         if debug_setup:self.get_logger().info(f"Controllo se so dove sono")   
 
-        while len(self.balloon_positions) !=NUMBER_OF_BALLOONS :
+        while len(self.balloon_positions) !=number_of_balloons :
             if debug_setup:self.get_logger().info(f"dove sooonooooo?") 
             sleep(3)
 
@@ -406,14 +393,14 @@ class FleetCoordinator(Node):
 
     def wait_for_sensors(self,sensor_id):
         flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         while flag:
             sleep(3)
             flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+            if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         if debug_setup:self.get_logger().info(f"Controllo se so dove sono i plaons")   
 
-        while len(self.balloon_positions) < NUMBER_OF_BALLOONS :
+        while len(self.balloon_positions) < number_of_balloons :
             if debug_setup:self.get_logger().info(f"dove sono i miei amici?") 
             sleep(3)
 

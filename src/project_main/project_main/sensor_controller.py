@@ -1,23 +1,24 @@
 import os
-import sys
-from dotenv import load_dotenv
-import rclpy
-from rclpy.node import Node
-import numpy as np
-from rclpy.executors import MultiThreadedExecutor
-from time import sleep
 import math
-from project_interfaces.msg import Data
-from rosgraph_msgs.msg import Clock
 import math_utils
+import rclpy
+import numpy as np
+
+from dotenv import load_dotenv
+from time import sleep
 from sim_utils import EventScheduler
+from rclpy.node import Node
+from rclpy.executors import MultiThreadedExecutor
+from rclpy.action import ActionServer
+from rclpy.action.server import ServerGoalHandle
+from rosgraph_msgs.msg import Clock
+
+from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Point, Vector3, Twist
 from nav_msgs.msg import Odometry
 
-from sensor_msgs.msg import LaserScan
+from project_interfaces.msg import Data
 from project_interfaces.action import Patrol
-from rclpy.action import ActionServer
-from rclpy.action.server import ServerGoalHandle
 
 load_dotenv()
 
@@ -25,7 +26,11 @@ WORLD_NAME = "iot_project_world"
 
 debug_patrolling = os.getenv('DEBUG_PATROLLING')
 sensor_transmission_rate = float(os.getenv('SENSOR_TRANSMISSION_RATE'))
-NUMBER_OF_LIDAR_SENSORS= 3
+number_of_lidar_sensors = int(os.getenv('NUMBER_OF_LIDAR_SENSORS'))
+number_of_sensors = int(os.getenv('NUMBER_OF_SENSORS'))
+msg_expiration_time = int(os.getenv('MSG_EXPIRATION_TIME'))
+rate_of_sensors_with_expiration_msgs = float(os.getenv('RATE_OF_SENSORS_WITH_EXPIRATION_MSGS'))
+
 
 class SensorController(Node):
 
@@ -35,6 +40,8 @@ class SensorController(Node):
         self.yaw = 0
         self.obstacle=False
         self.stop_msg = Twist()
+        self.number_of_sensors_with_expiration_msgs = round(number_of_sensors * rate_of_sensors_with_expiration_msgs)
+
         self.patrol_action_server = ActionServer(
             self,
             Patrol,
@@ -63,7 +70,7 @@ class SensorController(Node):
         )
         
         self.id = self.declare_parameter('id', -1)
-        if self.id.get_parameter_value().integer_value<NUMBER_OF_LIDAR_SENSORS:
+        if self.id.get_parameter_value().integer_value<number_of_lidar_sensors:
             self.lidar_subscriber = self.create_subscription(
                 LaserScan,
                 'lidar',
@@ -72,7 +79,6 @@ class SensorController(Node):
             )
 
         self.generated_data = 0
-
 
         self.event_scheduler = EventScheduler()
         self.clock_topic = self.create_subscription(
@@ -84,7 +90,6 @@ class SensorController(Node):
 
         self.event_scheduler.schedule_event(np.random.exponential(1 / sensor_transmission_rate), self.simple_publish, False)
 
-        #self.create_timer(1, self.simple_publish)
     def wrapperino(self,msg):
         flag=False
         for sample in msg.ranges:
@@ -99,7 +104,10 @@ class SensorController(Node):
 
         msg = Data()
         msg.timestamp = self.get_clock().now().to_msg()
-        msg.duration = 10#one min
+        if id < self.number_of_sensors_with_expiration_msgs:
+            msg.duration = 10 # seconds
+        else:
+            msg.duration = 9999999 # seconds
         msg.sensor_id = id
         msg.sqn = self.generate_data()
         msg.data = f"Sensor data: {id}_{msg.sqn}!"
@@ -130,7 +138,7 @@ class SensorController(Node):
         
         goal.succeed()
 
-        result =  Patrol.Result()
+        result = Patrol.Result()
         result.result = "Movement completed"
 
         return result
