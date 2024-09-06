@@ -10,11 +10,16 @@ with open("offloaded_data.json") as f:
 # Trasforma i dati in un DataFrame
 df_0 = pd.json_normalize(data)
 
-max_polling_sqn = 1000
-print("\n***\nVERRANNO ANALIZZATE",max_polling_sqn," RICHIESTE DELLA BASE STATION\n***\n")
+max_req_polling_sqn = 1000
+max_polling_sqn = df_0['polling_sqn'].max()-1
+if (max_req_polling_sqn>max_polling_sqn):
+    print_max = max_polling_sqn
+else:
+    print_max= max_req_polling_sqn     
+print("\n***\nVERRANNO ANALIZZATE",print_max,"RICHIESTE DELLA BASE STATION\n***\n")
 
 
-df = df_0[(df_0['polling_sqn'] < max_polling_sqn) & (df_0['polling_sqn'] > 0)]
+df = df_0[(df_0['polling_sqn'] < print_max) & (df_0['polling_sqn'] > 0)]
 
 # Visualizza i primi record
 #print(df.head())
