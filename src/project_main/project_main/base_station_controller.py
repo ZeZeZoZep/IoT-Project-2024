@@ -159,7 +159,7 @@ class BaseStationController(Node):
                 self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id, polling_rate]) """
         
         data_to_offload = {
-            "id" : self.data_id,
+            #"id" : self.data_id,
             "balloon_id": uav_id,
             "data": self.ros_message_to_dict(result.data),
             "polling_sqn": result.sqn,
