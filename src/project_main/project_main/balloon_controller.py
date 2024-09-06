@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+import threading
 import time
 import random
 import rclpy
@@ -21,6 +22,7 @@ from project_interfaces.action import Polling
 
 from sim_utils import EventScheduler
 
+lock = threading.Lock()
 load_dotenv()
 
 WORLD_NAME = "iot_project_world"
