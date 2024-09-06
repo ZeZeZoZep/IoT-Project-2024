@@ -1,62 +1,54 @@
-import sys
-import math
-
+import os
 import rclpy
+
+from dotenv import load_dotenv
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
 
 from project_interfaces.msg import Data
-from geometry_msgs.msg import Point
 from nav_msgs.msg import Odometry
-from sensor_msgs.msg import LaserScan
 import math_utils
 
+load_dotenv()
 
-NUMBER_OF_BALLOONS = int(sys.argv[1])
-NUMBER_OF_SENSORS = int(sys.argv[2])
+number_of_balloons = int(os.getenv('NUMBER_OF_BALLOONS'))
+number_of_sensors = int(os.getenv('NUMBER_OF_SENSORS'))
 
 SENSORS_RANGE = 20
 
 class SimulationManager(Node):
 
     def __init__(self):
-
         super().__init__('simulation_manager')
 
-
         self.sensor_positions = {}
-        self.balloon_positions = {}
-        
+        self.balloon_positions = {}        
 
-        for i in range(NUMBER_OF_SENSORS):
+        for i in range(number_of_sensors):
             
             self.create_subscription(
                 Odometry,
                 f'ActiveSensor_{i}/odometry',
                 lambda odometry_msg, sensor_id = i: self.store_sensor_position(sensor_id, odometry_msg),
                 10
-                #self.store_sensor_position
             )
             
             self.create_subscription(
                 Data,
                 f'ActiveSensor_{i}/tx_data',
                 lambda string_msg, sensor_id = i: self.forward_data_sb(sensor_id, string_msg),
-                #self.forward_data,
                 10
             )
             
 
         self.balloons_rx = {}
-        for i in range(NUMBER_OF_BALLOONS):
-
+        for i in range(number_of_balloons):
 
             self.create_subscription(
                 Odometry,
                 f'Balloon_{i}/odometry',
                 lambda odometry_msg, balloon_id = i: self.store_balloon_position(balloon_id, odometry_msg),
                 10
-                #self.store_sensor_position
             )
 
             self.balloons_rx[i] = self.create_publisher(
@@ -76,7 +68,7 @@ class SimulationManager(Node):
 
     def forward_data_sb(self, sensor_id, msg : Data):
 
-        for i in range(NUMBER_OF_BALLOONS):
+        for i in range(number_of_balloons):
             if sensor_id in self.sensor_positions and i in self.balloon_positions:
                 distance=math_utils.point_distance(self.sensor_positions[sensor_id], self.balloon_positions[i])
                 if distance < SENSORS_RANGE:

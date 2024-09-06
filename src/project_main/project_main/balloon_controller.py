@@ -1,28 +1,27 @@
 import os
-from dotenv import load_dotenv
-import threading
 import time
 import random
 import rclpy
 import rclpy.action
+import math_utils
+
+from dotenv import load_dotenv
 from rclpy.node import Node
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
 
-from project_interfaces.msg import Data
 from geometry_msgs.msg import Point, Vector3, Twist
 from nav_msgs.msg import Odometry
 from rosgraph_msgs.msg import Clock
 
-import math_utils
+from project_interfaces.msg import Data
 from project_interfaces.action import Patrol
 from project_interfaces.action import Polling
 
 from sim_utils import EventScheduler
 
-lock = threading.Lock()
 load_dotenv()
 
 WORLD_NAME = "iot_project_world"
@@ -99,9 +98,7 @@ class BalloonController(Node):
 
     def rx_callback(self, msg : Data):
 
-        #print the cache length
-        #self.get_logger().info(f'{len(self.cache)}')
-        #updating the message of the same sensor if present
+        # Updating the message of the same sensor if present
         temp_msg=None
         for m in self.cache:
             if (msg.sensor_id == m.sensor_id):
@@ -109,18 +106,17 @@ class BalloonController(Node):
                 break
         if temp_msg!= None:
             self.remove_SPECIFIC(temp_msg)    
-        elif len(self.cache)>=self.cache_size: 
+        elif len(self.cache)>=self.cache_size:
+            # Idea: Depending on the global variable we apply a different policy for the removal of messages in the cache
             self.select_caching_algorithm(caching_algorithm)
         self.cache.append(msg)
         self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
-        #Idea: Depending on the global variable we apply a different policy for the removal of messages in the cache
-                
 
-        #self.get_logger().info(f'TIME:(sec:{msg.timestamp.sec},nanosec:{msg.timestamp.nanosec}), DATA: {msg.data}')
-        if debug_rx :
+        if debug_rx:
             self.get_logger().info('Message received')
             self.print_cache()
 
+    # Different algorithms for msg removal from cache
     def remove_SPECIFIC(self,m):
         try:
             self.cache.remove(m)
@@ -175,7 +171,6 @@ class BalloonController(Node):
             elif m.timestamp.sec>temp_msg.timestamp.sec or (m.timestamp.sec==temp_msg.timestamp.sec and m.timestamp.nanosec>temp_msg.timestamp.nanosec):
                 temp_msg=m
         try:
-
             self.cache.remove(temp_msg)
             if debug_rx :self.get_logger().info(f'Removing: {temp_msg.sensor_id}-{temp_msg.sqn}')
             
@@ -191,9 +186,8 @@ class BalloonController(Node):
             if debug_rx :self.get_logger().info(f'ERR_EXP: {msg.sensor_id}-{msg.sqn}')
             pass
 
-        #self.get_logger().info(f'{self.cache}')
     def print_cache(self):
-        self.get_logger().info('#########################################################')
+        self.get_logger().info('##############################################################')
         for log in self.cache:
            self.get_logger().info(f'{log.sensor_id}-{log.sqn}==>(sec:{log.timestamp.sec},nanosec:{log.timestamp.nanosec})')
         self.get_logger().info('##############################################################')
@@ -207,10 +201,8 @@ class BalloonController(Node):
             odometry_msg.pose.pose.orientation.z,
             odometry_msg.pose.pose.orientation.w
         )
-        #self.get_logger().info(f"Storing position {self.drone_position}")
     
     def execute_patrol_action(self, goal : ServerGoalHandle):
-
 
         command_goal : Patrol.Goal = goal.request
 
@@ -295,7 +287,7 @@ class BalloonController(Node):
         stop_mov.angular = Vector3(x=0.0, y=0.0, z=0.0)
         self.cmd_vel_publisher.publish(stop_mov)
     
-    #Utility functions to choose the caching algorithm
+    # Utility function to choose the caching algorithm
     def select_caching_algorithm(self, algorithm_id):
         if algorithm_id == 0:
             self.remove_FIFO()
