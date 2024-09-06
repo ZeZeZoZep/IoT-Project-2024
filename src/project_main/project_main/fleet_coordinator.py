@@ -378,11 +378,11 @@ class FleetCoordinator(Node):
 
     def wait_for_balloons(self,uav_id):
         flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         while flag:
             sleep(3)
             flag=not self.balloon_action_clients[uav_id].wait_for_server(1)
-            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+            if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         if debug_setup:self.get_logger().info(f"Controllo se so dove sono")   
 
         while len(self.balloon_positions) !=number_of_balloons :
@@ -393,11 +393,11 @@ class FleetCoordinator(Node):
 
     def wait_for_sensors(self,sensor_id):
         flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-        if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+        if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         while flag:
             sleep(3)
             flag=not self.sensor_action_clients[sensor_id].wait_for_server(1)
-            if debug_setup:self.get_logger().info(f"ORCODIOOOOOO: {flag}")
+            if debug_setup:self.get_logger().info(f"Balloons server status: {flag}")
         if debug_setup:self.get_logger().info(f"Controllo se so dove sono i plaons")   
 
         while len(self.balloon_positions) < number_of_balloons :

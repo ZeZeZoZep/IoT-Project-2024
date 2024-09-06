@@ -27,6 +27,10 @@ WORLD_NAME = "iot_project_world"
 debug_patrolling = os.getenv('DEBUG_PATROLLING')
 sensor_transmission_rate = float(os.getenv('SENSOR_TRANSMISSION_RATE'))
 number_of_lidar_sensors = int(os.getenv('NUMBER_OF_LIDAR_SENSORS'))
+number_of_sensors = int(os.getenv('NUMBER_OF_SENSORS'))
+msg_expiration_time = int(os.getenv('MSG_EXPIRATION_TIME'))
+rate_of_sensors_with_expiration_msgs = float(os.getenv('RATE_OF_SENSORS_WITH_EXPIRATION_MSGS'))
+
 
 class SensorController(Node):
 
@@ -36,6 +40,8 @@ class SensorController(Node):
         self.yaw = 0
         self.obstacle=False
         self.stop_msg = Twist()
+        self.number_of_sensors_with_expiration_msgs = round(number_of_sensors * rate_of_sensors_with_expiration_msgs)
+
         self.patrol_action_server = ActionServer(
             self,
             Patrol,
@@ -74,7 +80,6 @@ class SensorController(Node):
 
         self.generated_data = 0
 
-
         self.event_scheduler = EventScheduler()
         self.clock_topic = self.create_subscription(
             Clock,
@@ -99,7 +104,10 @@ class SensorController(Node):
 
         msg = Data()
         msg.timestamp = self.get_clock().now().to_msg()
-        msg.duration = 10 # seconds
+        if id < self.number_of_sensors_with_expiration_msgs:
+            msg.duration = 10 # seconds
+        else:
+            msg.duration = 9999999 # seconds
         msg.sensor_id = id
         msg.sqn = self.generate_data()
         msg.data = f"Sensor data: {id}_{msg.sqn}!"
@@ -130,7 +138,7 @@ class SensorController(Node):
         
         goal.succeed()
 
-        result =  Patrol.Result()
+        result = Patrol.Result()
         result.result = "Movement completed"
 
         return result

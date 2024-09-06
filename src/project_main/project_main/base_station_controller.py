@@ -117,7 +117,8 @@ class BaseStationController(Node):
             if debug_polling: self.get_logger().info('Goal rejected :(')
             return
         
-        self.polling_goal_handles[uav_id] = polling_goal_handle
+        with lock:
+            self.polling_goal_handles[uav_id] = polling_goal_handle
         
         polling_result_future = polling_goal_handle.get_result_async()
         polling_result_future.add_done_callback(lambda future, uav_id = uav_id : self.polling_result_callback(future, uav_id))

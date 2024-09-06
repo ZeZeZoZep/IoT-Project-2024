@@ -99,16 +99,28 @@ class BalloonController(Node):
     def rx_callback(self, msg : Data):
 
         # Updating the message of the same sensor if present
-        temp_msg=None
+        temp_msg = None
+
         for m in self.cache:
-            if (msg.sensor_id == m.sensor_id):
+
+            if (temp_msg == None) and (m.sensor_id == msg.sensor_id):
                 temp_msg = m
                 break
-        if temp_msg!= None:
-            self.remove_SPECIFIC(temp_msg)    
+
+        if temp_msg != None:
+
+            for m in self.cache:
+                if temp_msg != None and m.sensor_id == msg.sensor_id and m.timestamp.sec < temp_msg.timestamp.sec or (m.timestamp.sec == temp_msg.timestamp.sec and m.timestamp.nanosec < temp_msg.timestamp.nanosec):
+                    temp_msg = m
+
+            self.remove_SPECIFIC(temp_msg)
+        
         elif len(self.cache)>=self.cache_size:
+
             # Idea: Depending on the global variable we apply a different policy for the removal of messages in the cache
             self.select_caching_algorithm(caching_algorithm)
+        
+        if debug_rx: self.get_logger().info(f'Appending msg with EXPIRATION TIME: {msg.duration}')
         self.cache.append(msg)
         self.event_scheduler.schedule_event(msg.duration, self.expire_callback,False,args = [msg])
 
