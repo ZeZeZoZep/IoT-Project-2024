@@ -74,7 +74,7 @@ class BaseStationController(Node):
     # Start of the polling action
     def send_polling_requests(self, sensor_id : int):
 
-        #The separated thread will manage the execution of the functions for each balloon   
+        # The separated thread will manage the execution of the functions for each balloon   
         Thread(target=self.send_polling_requests_inner, args=[sensor_id]).start()
         
         self.event_scheduler.schedule_event(np.random.exponential(1 / base_station_polling_rate), self.send_polling_requests, False, args = [sensor_id])
