@@ -25,7 +25,6 @@ WORLD_NAME = "iot_project_world"
 number_of_balloons = int(os.getenv('NUMBER_OF_BALLOONS'))
 number_of_sensors = int(os.getenv('NUMBER_OF_SENSORS'))
 debug_polling = int(os.getenv("DEBUG_POLLING"))
-is_random = int(os.getenv('IS_RANDOM'))
 base_station_polling_rate = float(os.getenv('BASE_STATION_POLLING_RATE'))
 
 
@@ -75,7 +74,7 @@ class BaseStationController(Node):
     # Start of the polling action
     def send_polling_requests(self, sensor_id : int):
 
-        #The separated thread will manage the execution of the functions for each balloon   
+        # The separated thread will manage the execution of the functions for each balloon   
         Thread(target=self.send_polling_requests_inner, args=[sensor_id]).start()
         
         self.event_scheduler.schedule_event(np.random.exponential(1 / base_station_polling_rate), self.send_polling_requests, False, args = [sensor_id])
@@ -130,41 +129,22 @@ class BaseStationController(Node):
 
         if result.data.data == "404":
             if debug_polling: self.get_logger().info(f'CLIENT - Balloon {uav_id}. No data found for sensor {result.data.sensor_id}, polling req sqn number {result.sqn}')
-
             self.responses.append(result)
-            
-            """ if len(self.responses) == number_of_balloons:
-                if polling_rate == 0:
-                    sensor_pick = self.pick_sensor()
-                    rate_pick = self.pick_polling_rate(is_random)
-                    self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, rate_pick])
-                else:
-                    if debug_polling: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
-                    self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id , polling_rate]) """
 
         else:
-
             if debug_polling: self.get_logger().info(f'CLIENT - Balloon {uav_id}. Result data for sensor {result.data.sensor_id}, sensor sqn number {result.data.sqn}: {result.data.data}')
 
             if not self.received_polling_data:
                 self.received_polling_data = True
                 self.cancel_remaining_polling_goals(uav_id)
-
-            """ if polling_rate == 0:
-                sensor_pick = self.pick_sensor()
-                rate_pick = self.pick_polling_rate(is_random)
-                self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [sensor_pick, rate_pick])
-            else:
-                if debug_polling: self.get_logger().info(f'CLIENT - Remaining polling request: {polling_rate}')
-                self.event_scheduler.schedule_event(1, self.send_polling_requests, False, args = [result.data.sensor_id, polling_rate]) """
         
         data_to_offload = {
-            #"id" : self.data_id,
             "balloon_id": uav_id,
             "data": self.ros_message_to_dict(result.data),
             "polling_sqn": result.sqn,
             "msg_receive_timestamp": self.time_to_dict(self.get_clock().now().to_msg())
         }
+
         self.offload_data_to_file(data_to_offload)
     
     def cancel_remaining_polling_goals(self, completed_uav_id):
@@ -183,10 +163,10 @@ class BaseStationController(Node):
             else:
                 self.get_logger().info('CLIENT - Impossible to cancel goal')     
 
-    # Offload on file
+    # Offload to file
     def offload_data_to_file(self, data):
-        
-        filename = "offloaded_data.json"  # Nome del file dove verranno salvati i dati
+        filename = "offloaded_data.json"  # Name of file where data will be offloaded
+
         with lock:
             try:
                 with open(filename, "a+", encoding='utf-8') as file:
@@ -200,11 +180,14 @@ class BaseStationController(Node):
 
     # Utility functions for data serialization
     def ros_message_to_dict(self, msg):
+
         # Using the built-in method to convert ROS 2 message to a dictionary
         if hasattr(msg, '__slots__') and hasattr(msg, '_fields_and_field_types'):
+
             msg_dict = {}
             for field_name in msg.__slots__:
                 field_value = getattr(msg, field_name)
+
                 if field_name == "_timestamp":
                     field_value = self.time_to_dict(field_value)
                 
@@ -215,6 +198,7 @@ class BaseStationController(Node):
         
     # Convert Time msg in a dict obj
     def time_to_dict(self, time_msg):
+
         return {
             'sec': time_msg.sec,
             'nanosec': time_msg.nanosec
@@ -223,12 +207,6 @@ class BaseStationController(Node):
     # Utility functions for sensor pick, polling rate and sqn number generator for the base station's requests
     def pick_sensor(self):
         return randint(0, number_of_sensors - 1)
-
-    def pick_polling_rate(self, flag):
-        if flag:
-            return 1
-        else:
-            return randint(2, 5)
     
     def generate_polling_msgs(self):
         self.polling_msgs_sqn += 1

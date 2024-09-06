@@ -1,14 +1,10 @@
-import os
 import re
-from typing import Callable, List
 
+from typing import Callable
 from launch_ros.actions import Node
-
 from rosgraph_msgs.msg import Clock
 
 WORLD_NAME = "iot_project_world"
-
-
 
 
 def spawn_sdf(sdf_input, id : int = None, pos : tuple = (0, 0, 0), world_name : str =  WORLD_NAME):
