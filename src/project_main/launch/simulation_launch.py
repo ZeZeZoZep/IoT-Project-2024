@@ -18,7 +18,7 @@ from project_main.sim_utils import spawn_sdf
 WORLD_NAME = "iot_project_world"
 
 NUMBER_OF_BALLOONS = 3
-NUMBER_OF_SENSORS = 6
+NUMBER_OF_SENSORS = 12
 
 
 import numpy as np

@@ -127,7 +127,7 @@ class BaseStationController(Node):
         result = future.result().result.result
 
         data_to_offload = {
-            "id" : self.data_id,
+            #"id" : self.data_id,
             "balloon_id": uav_id,
             "data": self.ros_message_to_dict(result.data),
             "polling_sqn": result.sqn,
