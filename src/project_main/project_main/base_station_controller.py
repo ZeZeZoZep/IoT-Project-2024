@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from time import sleep
 import threading
 from threading import Thread
-from random import randint
+from random import randint, random
 import json
 import numpy as np
 
@@ -25,7 +25,6 @@ WORLD_NAME = "iot_project_world"
 number_of_balloons = int(os.getenv('NUMBER_OF_BALLOONS'))
 number_of_sensors = int(os.getenv('NUMBER_OF_SENSORS'))
 debug_polling = int(os.getenv("DEBUG_POLLING"))
-base_station_polling_rate = float(os.getenv('BASE_STATION_POLLING_RATE'))
 
 
 class BaseStationController(Node):
@@ -34,11 +33,9 @@ class BaseStationController(Node):
 
         super().__init__('base_station_controller')
 
+        self.poissonian_interrarival_rates = [0.0] * number_of_sensors
         self.polling_action_clients = {}
         self.polling_msgs_sqn = 0
-        self.seq = number_of_sensors
-
-        self.data_id = 0
         file_path = "offloaded_data.json"
 
         if os.path.exists(file_path):
@@ -63,6 +60,9 @@ class BaseStationController(Node):
                 callback_group = polling_callback_group
             )
 
+        for i in range(number_of_sensors):
+            self.poissonian_interrarival_rates[i] = self.pick_poissonian_interrarival_rate()
+        
         self.event_scheduler.schedule_event(1, self.call_polling_task, False, args = [])
     
     
@@ -74,10 +74,12 @@ class BaseStationController(Node):
     # Start of the polling action
     def send_polling_requests(self, sensor_id : int):
 
-        # The separated thread will manage the execution of the functions for each balloon   
+        thread_specific_interrarrival_rate = self.poissonian_interrarival_rates[sensor_id]
+
+        # The separated thread will manage the execution of the functions for each balloon
         Thread(target=self.send_polling_requests_inner, args=[sensor_id]).start()
         
-        self.event_scheduler.schedule_event(np.random.exponential(1 / base_station_polling_rate), self.send_polling_requests, False, args = [sensor_id])
+        self.event_scheduler.schedule_event(np.random.exponential(1 / thread_specific_interrarrival_rate), self.send_polling_requests, False, args = [sensor_id])
     
     def send_polling_requests_inner(self, sensor_id):
 
@@ -173,7 +175,6 @@ class BaseStationController(Node):
                 with open(filename, "a+", encoding='utf-8') as file:
                     file.write(json.dumps(data, ensure_ascii='utf-8', indent=4) + ",\n")
 
-                self.data_id += 1
                 if debug_polling: self.get_logger().info("Data successfully offloaded to file")
 
             except IOError as e:
@@ -212,6 +213,10 @@ class BaseStationController(Node):
     def generate_polling_msgs(self):
         self.polling_msgs_sqn += 1
         return self.polling_msgs_sqn
+    
+    # Pick a Poissonian rate between 0,2 and 1
+    def pick_poissonian_interrarival_rate(self):
+        return (random() * 0.8) + 0.2
     
 
 def main():
