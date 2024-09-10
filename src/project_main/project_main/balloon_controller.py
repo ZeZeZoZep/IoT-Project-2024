@@ -249,13 +249,16 @@ class BalloonController(Node):
 
         sensor_data = None
         index = 0
+
         for d in self.cache:
             if d.sensor_id == requested_sensor:
-                index = self.cache.index(d)
                 if sensor_data == None:
                     sensor_data = d
+                    index = self.cache.index(d)
+                    
                 elif d.timestamp.sec > sensor_data.timestamp.sec or (d.timestamp.sec == sensor_data.timestamp.sec and d.timestamp.nanosec > sensor_data.timestamp.nanosec):
                     sensor_data = d
+                    index = self.cache.index(d)
 
         
         if sensor_data:
