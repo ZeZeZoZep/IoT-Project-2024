@@ -152,11 +152,11 @@ class BaseStationController(Node):
     
     def cancel_remaining_polling_goals(self, completed_uav_id):
         if debug_polling: self.get_logger().info(f'CLIENT - Canceling pending goals of other ballons except balloon {completed_uav_id}')
-
-        for uav_id, goal_handle in self.polling_goal_handles.items():
-            if goal_handle is not None and uav_id != completed_uav_id:
-                cancel_polling_future = goal_handle.cancel_goal_async()
-                cancel_polling_future.add_done_callback(self.cancel_done_callback)
+        with lock:
+            for uav_id, goal_handle in self.polling_goal_handles.items():
+                if goal_handle is not None and uav_id != completed_uav_id:
+                    cancel_polling_future = goal_handle.cancel_goal_async()
+                    cancel_polling_future.add_done_callback(self.cancel_done_callback)
     
     def cancel_done_callback(self, future):
         cancel_response = future.result()
